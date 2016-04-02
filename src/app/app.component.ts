@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component} from 'angular2/core';
+import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
 import {Home} from './home';
@@ -17,24 +17,10 @@ import {RouterActive} from './router-active';
   pipes: [ ],
   providers: [ ],
   directives: [ RouterActive ],
-  styles: [`
-    h1 {
-      font-family: Arial, Helvetica, sans-serif
-    }
-    nav ul {
-      display: inline;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      width: 60px;
-    }
-    nav li {
-      display: inline;
-    }
-    nav li.active {
-      background-color: lightgray;
-    }
-  `],
+  styles: [
+    require('./app.scss')
+  ],
+  encapsulation: ViewEncapsulation.None,
   template: `
     <header>
       <nav>

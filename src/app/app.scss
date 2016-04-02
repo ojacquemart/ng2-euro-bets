@@ -1,0 +1,22 @@
+$background: tomato;
+
+html {
+  background-color: $background;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif
+}
+nav ul {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 60px;
+}
+nav li {
+  display: inline;
+}
+nav li.active {
+  background-color: lightgray;
+}
