@@ -78,6 +78,7 @@
     "exports-loader": "^0.6.3",
     "expose-loader": "^0.7.1",
     "file-loader": "^0.8.5",
+    "firebase": "^2.4.2",
     "html-webpack-plugin": "^2.9.0",
     "http-server": "^0.9.0",
     "imports-loader": "^0.6.5",
