@@ -1,5 +1,10 @@
-$background: tomato;
+/* ng2-material2 imports */
+@import "node_modules/ng2-material/source/core";
+$md-primary: md-palette($md-light-blue, 500, 100, 700, $md-contrast-palettes);
+$md-accent: md-palette($md-blue, 500, 300, 700, $md-contrast-palettes);
+@import "node_modules/ng2-material/source/components";
 
+$background: tomato;
 html {
   background-color: $background;
 }

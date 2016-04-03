@@ -7,6 +7,9 @@ import {provide, PLATFORM_DIRECTIVES} from 'angular2/core';
 // Angular 2 Router
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
+// Ng Material 2 while Angular Material 2 provides more features
+import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
+
 // Angular 2 Material 2
 // TODO(gdi2290): uncomment when materal is fixed
 // import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
@@ -25,7 +28,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 // application_directives: directives that are global through out the application
 export const APPLICATION_DIRECTIVES = [
   ...ROUTER_DIRECTIVES,
-  // ...MATERIAL_DIRECTIVES,
+  ...MATERIAL_DIRECTIVES,
 ];
 
 export const DIRECTIVES = [
