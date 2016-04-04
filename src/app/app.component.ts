@@ -4,9 +4,8 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
-import {Home} from './home';
-import {AppState} from './app.service';
-import {RouterActive} from './router-active';
+import {LoginCmp} from './login/index';
+import {PronosCmp} from './pronos/index';
 
 /*
  * App Component
@@ -14,60 +13,28 @@ import {RouterActive} from './router-active';
  */
 @Component({
   selector: 'app',
-  pipes: [ ],
-  providers: [ ],
-  directives: [ RouterActive ],
+  pipes: [],
+  providers: [],
+  directives: [],
   styles: [
     require('./app.scss')
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
-    <header>
-      <nav>
-        <h1>Hello {{ name }}</h1>
-        <ul>
-          <li router-active>
-            <a [routerLink]=" ['Index'] ">Index</a>
-          </li>
-          <li router-active>
-            <a [routerLink]=" ['Home'] ">Home</a>
-          </li>
-          <li router-active>
-            <a [routerLink]=" ['About'] ">About</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-
-    <footer>
-      WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a>
-      <div>
-        <img [src]="angularclassLogo" width="10%">
-      </div>
-    </footer>
-
-    <pre>this.appState.state = {{ appState.state | json }}</pre>
+    <router-outlet></router-outlet>
   `
 })
 @RouteConfig([
-  { path: '/',      name: 'Index', component: Home, useAsDefault: true },
-  { path: '/home',  name: 'Home',  component: Home },
-  // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
-  { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
+  {path: '/', name: 'Index', component: PronosCmp, useAsDefault: true},
+  {path: '/pronos', name: 'Pronos', component: PronosCmp},
+  {path: '/login', name: 'Login', component: LoginCmp}
 ])
 export class App {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
-  name = 'Angular 2 Webpack Starter';
-  url = 'https://twitter.com/AngularClass';
 
-  constructor(public appState: AppState) {}
+  constructor() {
+  }
 
   ngOnInit() {
-    console.log('Initial App State', this.appState.state);
   }
 
 }
