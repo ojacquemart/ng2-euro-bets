@@ -6,6 +6,8 @@ import {RouteConfig, Router} from 'angular2/router';
 
 import {Auth} from './core/services/firebase/auth.service';
 
+import {LoggedInRouterOutlet} from './core/services/router/loggedin-router-outlet.directive';
+
 import {LoginCmp} from './login/index';
 import {PronosCmp} from './pronos/index';
 
@@ -17,13 +19,14 @@ import {PronosCmp} from './pronos/index';
   selector: 'app',
   pipes: [],
   providers: [],
-  directives: [],
+  directives: [LoggedInRouterOutlet],
   styles: [
     require('./app.scss')
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
-    <router-outlet></router-outlet>
+    <p *ngIf="authenticated">???</p>
+    <auth-router-outlet></auth-router-outlet>
   `
 })
 @RouteConfig([
@@ -33,18 +36,16 @@ import {PronosCmp} from './pronos/index';
 ])
 export class App {
 
-  private authenticated: boolean;
+  private authenticated:boolean;
 
-  constructor(private auth: Auth) {
+  constructor(private auth:Auth) {
   }
 
   ngOnInit() {
     console.log('app#ngOnInit');
 
+    this.auth.authenticated$.subscribe(authenticated => this.authenticated = authenticated);
     this.auth.onAuth();
-    this.auth.authenticated$.subscribe(authenticated => {
-      this.authenticated = authenticated;
-    })
   }
 
 }
