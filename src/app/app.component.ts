@@ -4,6 +4,8 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
+import {Auth} from './core/services/firebase/auth.service';
+
 import {LoginCmp} from './login/index';
 import {PronosCmp} from './pronos/index';
 
@@ -31,10 +33,18 @@ import {PronosCmp} from './pronos/index';
 ])
 export class App {
 
-  constructor() {
+  private authenticated: boolean;
+
+  constructor(private auth: Auth) {
   }
 
   ngOnInit() {
+    console.log('app#ngOnInit');
+
+    this.auth.onAuth();
+    this.auth.authenticated$.subscribe(authenticated => {
+      this.authenticated = authenticated;
+    })
   }
 
 }
