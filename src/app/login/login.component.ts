@@ -1,21 +1,33 @@
 import {Component} from 'angular2/core';
-import {Auth} from "../core/services/firebase/auth.service";
+
+import {Auth} from '../core/services/firebase/auth.service';
+
+import {LOGIN_PROVIDERS} from './login-providers.constants';
 
 @Component({
-  template: require('./login.html')
+  template: require('./login.html'),
+  styles: [require('./login.scss')]
 })
 export class LoginCmp {
 
-  constructor(private auth: Auth) {
+  private providers;
+
+  constructor(private auth:Auth) {
     console.log('login#init');
+
+    this.providers = LOGIN_PROVIDERS;
   }
 
-  login(provider: string) {
+  login(provider:string) {
     this.auth.login(provider);
   }
 
   ngOnInit() {
     console.log('login#ngOnInit');
+
+    if (this.auth.authenticated) {
+      this.auth.navigateToHome();
+    }
   }
 
 }

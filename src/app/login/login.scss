@@ -1,0 +1,44 @@
+$login-container-background: #E53935;
+$login-background: #fff;
+$twitter: #55ACEE;
+$google: #DD4B39;
+
+.login-container {
+  background: $login-container-background;
+  height: 100%;
+
+  .login {
+    margin: 20px 0;
+    padding: 16px;
+    background: $login-background;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+
+    p {
+      text-align: center;
+    }
+
+    button {
+      margin-bottom: 20px;
+      width: 220px;
+      height: 36px;
+      border: none;
+      border-radius: 2px;
+      color: #FFF;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    & .twitter {
+      background-color: $twitter;
+    }
+
+    & .google {
+      background-color: $google;
+    }
+
+  }
+}
+
