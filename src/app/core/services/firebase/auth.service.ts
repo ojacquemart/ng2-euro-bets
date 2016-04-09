@@ -38,13 +38,13 @@ export class Auth {
       if (authData) {
         console.log('auth#auth ok');
         this.authData = authData;
-        this.authenticatedSource.next(true);
+        this.publishAuthenticated();
 
         return;
       }
 
       console.log('auth#not authenticated');
-      this.authenticatedSource.next(false);
+      this.publishUnauthenticated();
       this.navigateToLogin();
     };
 
@@ -68,8 +68,7 @@ export class Auth {
 
       console.log('auth#login ok', authData);
 
-      this.authenticatedSource.next(true);
-
+      this.publishAuthenticated();
       this.navigateToHome();
       this.afterLogin();
     };
@@ -93,7 +92,8 @@ export class Auth {
   logout() {
     this.ref.unauth();
     this.authData = null;
-    this.authenticatedSource.next(false);
+
+    this.publishUnauthenticated();
     this.navigateToLogin();
   }
 
@@ -103,6 +103,14 @@ export class Auth {
 
   navigateToLogin() {
     this.router.navigate(['Login']);
+  }
+
+  private publishAuthenticated() {
+    this.authenticatedSource.next(true);
+  }
+
+  private publishUnauthenticated() {
+    this.authenticatedSource.next(false);
   }
 
 }
