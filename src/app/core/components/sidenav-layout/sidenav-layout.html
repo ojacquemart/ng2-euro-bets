@@ -1,0 +1,70 @@
+<demos-app layout="row" layout-align="center start">
+  <md-sidenav-container layout="row" flex>
+    <md-sidenav name="menu" class="app-menu" [style]="fullPage ? 'side' : 'over'">
+      <md-toolbar class="app-menu-top">
+        <div class="md-toolbar-tools" [routerLink]="['Index']">
+          <h1>Euro 2016 Pronos</h1>
+        </div>
+        <span flex></span>
+        <div layout="column" class="user md-toolbar-tools-bottom inset">
+          <pronos-user-avatar></pronos-user-avatar>
+        </div>
+      </md-toolbar>
+      <md-list>
+        <md-list-item md-ink>
+          <a [routerLink]=" ['Pronos'] ">Pronostics</a>
+        </md-list-item>
+        <md-list-item md-ink>
+          <a [routerLink]=" ['Table'] ">Table</a>
+        </md-list-item>
+        <md-list-item md-ink>
+          <a (click)="logout()">Logout</a>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
+    <section class="app-content" layout="column" layout-align="start center" flex>
+      <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo [break]="210" breakAction="show"></md-toolbar>
+      <md-toolbar class="fixed-toolbar"
+                  md-peekaboo
+                  [break]="190"
+                  breakAction="show">
+      </md-toolbar>
+      <md-toolbar class="hero">
+        <h1 md-peekaboo
+            [breakMd]="72"
+            [breakXs]="20"
+            breakAction="hide">Foo</h1>
+      </md-toolbar>
+      <md-toolbar class="fixed-toolbar">
+        <div class="md-toolbar-tools">
+          <button md-button
+                  class="md-hamburger md-icon-button"
+                  hide-gt-lg
+                  (click)="showMenu($event)"
+                  aria-label="Home">
+            <i md-icon class="md-dark">menu</i>
+          </button>
+          <h2 md-peekaboo
+              [breakMd]="72"
+              breakAction="show"
+              class="md-caption">
+            <span class="verbose-title" >Components <small>–</small>&nbsp;</span>
+            <span> ???</span>
+          </h2>
+          <span flex></span>
+          <a md-peekaboo
+             href="https://github.com/justindujardin/ng2-material/releases/tag/v{{version}}"
+             target="_blank"
+             [breakMd]="72"
+             breakAction="show"
+             class="md-caption">v 1.0</a>
+        </div>
+      </md-toolbar>
+
+      <md-content class="examples" md-scroll-y layout-padding>
+        <ng-content></ng-content>
+      </md-content>
+    </section>
+  </md-sidenav-container>
+
+</demos-app>

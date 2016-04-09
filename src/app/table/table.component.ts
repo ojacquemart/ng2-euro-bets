@@ -6,20 +6,20 @@ import {SidenavLayout} from '../core/components/sidenav-layout/sidenav-layout.co
   directives: [SidenavLayout],
   template: `
       <pronos-sidenav-layout>
-      Pronos
+      Table
 
-      TODO</pronos-sidenav-layout>
+      TODO
+      </pronos-sidenav-layout>
 
   `
 })
-export class PronosCmp {
+export class TableCmp {
 
   constructor() {
-    console.log('pronos#init');
+    console.log('table#init');
   }
 
   ngOnInit() {
-    console.log('pronos#ngOnInit');
+    console.log('table#ngOnInit');
   }
-
 }

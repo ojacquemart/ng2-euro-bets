@@ -7,5 +7,20 @@ $md-accent: md-palette($md-blue, 500, 300, 700, $md-contrast-palettes);
 $body-background: #DDD;
 
 body {
+}
+
+/**
+ * Mixin that creates a new stacking context.
+ * see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+ */
+html, body {
+  height: 100%;
+  color: rgba(0, 0, 0, 0.87);
   background: $body-background;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }

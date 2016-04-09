@@ -9,7 +9,8 @@ import {Auth} from './core/services/firebase/auth.service';
 import {LoggedInRouterOutlet} from './core/services/router/loggedin-router-outlet.directive';
 
 import {LoginCmp} from './login/index';
-import {PronosCmp} from './pronos/index';
+import {PronosCmp} from './pronos/pronos.component';
+import {TableCmp} from './table/table.component';
 
 /*
  * App Component
@@ -25,13 +26,13 @@ import {PronosCmp} from './pronos/index';
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
-    <p *ngIf="authenticated">???</p>
-    <auth-router-outlet></auth-router-outlet>
+     <auth-router-outlet></auth-router-outlet>
   `
 })
 @RouteConfig([
   {path: '/', name: 'Index', component: PronosCmp, useAsDefault: true},
   {path: '/pronos', name: 'Pronos', component: PronosCmp},
+  {path: '/table', name: 'Table', component: TableCmp},
   {path: '/login', name: 'Login', component: LoginCmp}
 ])
 export class App {
@@ -41,10 +42,16 @@ export class App {
   constructor(private auth:Auth) {
   }
 
+  isLoggedIn() {
+    return this.authenticated;
+  }
+
   ngOnInit() {
     console.log('app#ngOnInit');
 
-    this.auth.authenticated$.subscribe(authenticated => this.authenticated = authenticated);
+    this.auth.authenticated$.subscribe(authenticated =>{
+      this.authenticated = authenticated;
+    });
     this.auth.onAuth();
   }
 
