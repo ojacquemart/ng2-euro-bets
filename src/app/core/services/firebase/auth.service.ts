@@ -45,7 +45,6 @@ export class Auth {
 
       console.log('auth#not authenticated');
       this.publishUnauthenticated();
-      this.navigateToLogin();
     };
 
     this.ref.onAuth(onAuthComplete);
@@ -69,7 +68,6 @@ export class Auth {
       console.log('auth#login ok', authData);
 
       this.publishAuthenticated();
-      this.navigateToHome();
       this.afterLogin();
     };
 
@@ -94,15 +92,6 @@ export class Auth {
     this.authData = null;
 
     this.publishUnauthenticated();
-    this.navigateToLogin();
-  }
-
-  navigateToHome() {
-    this.router.navigate(['Index']);
-  }
-
-  navigateToLogin() {
-    this.router.navigate(['Login']);
   }
 
   private publishAuthenticated() {

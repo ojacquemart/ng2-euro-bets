@@ -1,15 +1,11 @@
 import {Component} from 'angular2/core';
 
-import {SidenavLayout} from '../core/components/sidenav-layout/sidenav-layout.component'
-
 @Component({
-  directives: [SidenavLayout],
+  directives: [],
   template: `
-      <pronos-sidenav-layout>
       Table
 
       TODO
-      </pronos-sidenav-layout>
 
   `
 })

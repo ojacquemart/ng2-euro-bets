@@ -3,6 +3,7 @@
     <h1>Euro 2016 Pronos</h1>
     <p class>Sign in</p>
 
+
     <div layout="column" layout-align="center center">
       <button *ngFor="#provider of providers" [ngClass]="provider.code" (click)="login(provider.code)">
         {{ provider.name }}

@@ -6,9 +6,9 @@ import {RouteConfig, Router} from 'angular2/router';
 
 import {Auth} from './core/services/firebase/auth.service';
 
-import {LoggedInRouterOutlet} from './core/services/router/loggedin-router-outlet.directive';
+import {SidenavLayoutCmp} from './core/components/sidenav-layout/sidenav-layout.component';
 
-import {LoginCmp} from './login/index';
+import {LoginCmp} from './login/login.component';
 import {PronosCmp} from './pronos/pronos.component';
 import {TableCmp} from './table/table.component';
 
@@ -20,30 +20,29 @@ import {TableCmp} from './table/table.component';
   selector: 'app',
   pipes: [],
   providers: [],
-  directives: [LoggedInRouterOutlet],
+  directives: [LoginCmp, SidenavLayoutCmp],
   styles: [
     require('./app.scss')
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
-     <auth-router-outlet></auth-router-outlet>
+    <pronos-sidenav-layout *ngIf="authenticated">
+      <router-outlet></router-outlet>
+    </pronos-sidenav-layout>
+
+    <pronos-login *ngIf="!authenticated "></pronos-login>
   `
 })
 @RouteConfig([
   {path: '/', name: 'Index', component: PronosCmp, useAsDefault: true},
   {path: '/pronos', name: 'Pronos', component: PronosCmp},
-  {path: '/table', name: 'Table', component: TableCmp},
-  {path: '/login', name: 'Login', component: LoginCmp}
+  {path: '/table', name: 'Table', component: TableCmp}
 ])
 export class App {
 
   private authenticated:boolean;
 
   constructor(private auth:Auth) {
-  }
-
-  isLoggedIn() {
-    return this.authenticated;
   }
 
   ngOnInit() {

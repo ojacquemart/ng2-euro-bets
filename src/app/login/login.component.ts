@@ -5,6 +5,7 @@ import {Auth} from '../core/services/firebase/auth.service';
 import {LOGIN_PROVIDERS} from './login-providers.constants';
 
 @Component({
+  selector: 'pronos-login',
   template: require('./login.html'),
   styles: [require('./login.scss')]
 })
@@ -24,10 +25,6 @@ export class LoginCmp {
 
   ngOnInit() {
     console.log('login#ngOnInit');
-
-    if (this.auth.authenticated) {
-      this.auth.navigateToHome();
-    }
   }
 
 }

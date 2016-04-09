@@ -13,7 +13,7 @@ import {UserAvatar} from '../../components/user-avatar/user-avatar.component';
   styles: [require('./sidenav-layout.scss')],
   template: require('./sidenav-layout.html')
 })
-export class SidenavLayout {
+export class SidenavLayoutCmp {
 
   @Input()
   private fullPage = Media.hasMedia('gt-md');

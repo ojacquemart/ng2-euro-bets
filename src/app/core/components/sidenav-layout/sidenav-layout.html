@@ -11,11 +11,11 @@
         </div>
       </md-toolbar>
       <md-list>
-        <md-list-item md-ink>
-          <a [routerLink]=" ['Pronos'] ">Pronostics</a>
+        <md-list-item [routerLink]="['Pronos']" md-ink>
+          <span>Pronostics</span>
         </md-list-item>
-        <md-list-item md-ink>
-          <a [routerLink]=" ['Table'] ">Table</a>
+        <md-list-item md-ink [routerLink]="['Table']" >
+          <span>Table</span>
         </md-list-item>
         <md-list-item md-ink>
           <a (click)="logout()">Logout</a>
