@@ -1,26 +1,31 @@
-<demos-app layout="row" layout-align="center start">
+<div layout="row" layout-align="center start">
   <md-sidenav-container layout="row" flex>
-    <md-sidenav name="menu" class="app-menu" [style]="fullPage ? 'side' : 'over'">
-      <md-toolbar class="app-menu-top">
-        <div class="md-toolbar-tools" [routerLink]="['Index']">
-          <h1>Euro 2016 Pronos</h1>
+    <md-sidenav name="menu" layout="column" flex class="app-menu" [style]="fullPage ? 'side' : 'over'">
+      <md-toolbar class="md-accent title" [routerLink]="['Index']">
+        <div class="md-toolbar-tools name" layout="column" layout-align="center center" [routerLink]="['Index']">
+          <div>
+            <h1>Euro 2016 Pronos</h1>
+          </div>
         </div>
         <span flex></span>
-        <div layout="column" class="user md-toolbar-tools-bottom inset">
-          <pronos-user-avatar></pronos-user-avatar>
+        <pronos-user-avatar></pronos-user-avatar>
+        <div class="user md-toolbar-tools-bottom inset" layout="row" layout-align="space-between center">
+          <div><span>Rank: -</span></div>
+          <div><span>Precision: -</span></div>
         </div>
       </md-toolbar>
       <md-list>
         <md-list-item [routerLink]="['Pronos']" md-ink>
           <span>Pronostics</span>
         </md-list-item>
-        <md-list-item md-ink [routerLink]="['Table']" >
+        <md-list-item md-ink [routerLink]="['Table']">
           <span>Table</span>
         </md-list-item>
         <md-list-item md-ink>
           <a (click)="logout()">Logout</a>
         </md-list-item>
       </md-list>
+      <div flex></div>
     </md-sidenav>
     <section class="app-content" layout="column" layout-align="start center" flex>
       <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo [break]="210" breakAction="show"></md-toolbar>
@@ -33,7 +38,7 @@
         <h1 md-peekaboo
             [breakMd]="72"
             [breakXs]="20"
-            breakAction="hide">Foo</h1>
+            breakAction="hide">TITLE</h1>
       </md-toolbar>
       <md-toolbar class="fixed-toolbar">
         <div class="md-toolbar-tools">
@@ -46,10 +51,9 @@
           </button>
           <h2 md-peekaboo
               [breakMd]="72"
-              breakAction="show"
-              class="md-caption">
-            <span class="verbose-title" >Components <small>–</small>&nbsp;</span>
-            <span> ???</span>
+              [breakXs]="20"
+              breakAction="show">
+            <span>TITLE</span>
           </h2>
           <span flex></span>
           <a md-peekaboo
@@ -57,7 +61,7 @@
              target="_blank"
              [breakMd]="72"
              breakAction="show"
-             class="md-caption">v 1.0</a>
+             *ngIf="version" class="md-caption">v&</a>
         </div>
       </md-toolbar>
 
@@ -66,5 +70,4 @@
       </md-content>
     </section>
   </md-sidenav-container>
-
-</demos-app>
+</div>

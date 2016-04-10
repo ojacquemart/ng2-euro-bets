@@ -1,0 +1,35 @@
+$title-text-color: #fff;
+$logo-width: 92px;
+$logo-height: 92px;
+
+.app-menu {
+  md-toolbar {
+    .title {
+      color: $title-text-color;
+    }
+
+    .name {
+      cursor: pointer;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      h1 {
+        font-weight: 700;
+      }
+    }
+
+  }
+
+  md-toolbar {
+    & .user {
+      font-size: small;
+    }
+  }
+
+  .euro-logo {
+    margin-bottom: auto;
+
+    img {
+      width: $logo-width;
+      height: $logo-height;
+    }
+  }
+}

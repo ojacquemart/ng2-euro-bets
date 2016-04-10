@@ -1,3 +1,8 @@
-<span></span>
-<img [src]="user.profileImageURL">
-<div>{{ user.displayName }}</div>
+<div class="user md-toolbar-tools-bottom inset" layout="column" layout-align="start start">
+  <div>
+    <img [src]="user.profileImageURL">
+  </div>
+  <div>
+    <span>{{ user.displayName }}</span>
+  </div>
+</div>

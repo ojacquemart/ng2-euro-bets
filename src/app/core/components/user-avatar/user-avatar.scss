@@ -1,7 +1,13 @@
 $avatar_size: 64px;
+$border-radius: 99%;
+
+.user {
+  padding-top: 0;
+  font-size: small;
+}
 
 img {
   width: $avatar_size;
   height: $avatar_size;
-  border-radius: 99%
+  border-radius: $border-radius;
 }

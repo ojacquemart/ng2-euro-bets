@@ -4,7 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {MATERIAL_DIRECTIVES, Media, SidenavService} from 'ng2-material/all';
 
 import {Auth} from '../../services/firebase/auth.service';
-import {UserAvatar} from '../../components/user-avatar/user-avatar.component';
+import {UserAvatar} from '../user-avatar/user-avatar.component';
 
 @Component({
   selector: 'pronos-sidenav-layout',
