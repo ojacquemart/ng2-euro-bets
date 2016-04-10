@@ -1,0 +1,13 @@
+$uefa-euro-logo-xs: 92px;
+$uefa-euro-logo-md: 128px;
+$uefa-euro-logo-gt: 256px;
+
+.xs img {
+  width: $uefa-euro-logo-xs;
+}
+.md img {
+  width: $uefa-euro-logo-md;
+}
+.gt img {
+  width: $uefa-euro-logo-gt;
+}
