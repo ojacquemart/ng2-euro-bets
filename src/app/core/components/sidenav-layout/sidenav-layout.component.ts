@@ -5,11 +5,11 @@ import {MATERIAL_DIRECTIVES, Media, SidenavService} from 'ng2-material/all';
 
 import {Auth} from '../../services/firebase/auth.service';
 import {UserAvatar} from '../user-avatar/user-avatar.component';
-import {UefaEuroLogo} from '../uefa-euro-logo/uefa-euro-logo.component';
+import {UefaEuroLogoCmp} from '../uefa-euro-logo/uefa-euro-logo.component';
 
 @Component({
   selector: 'pronos-sidenav-layout',
-  directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES, UserAvatar, UefaEuroLogo],
+  directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES, UserAvatar, UefaEuroLogoCmp],
   providers: [SidenavService],
   styles: [require('./sidenav-layout.scss')],
   template: require('./sidenav-layout.html')

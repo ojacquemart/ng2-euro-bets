@@ -5,7 +5,7 @@ import {Component, Input} from 'angular2/core';
   styles: [require('./uefa-euro-logo.scss')],
   template: require('./uefa-euro-logo.html')
 })
-export class UefaEuroLogo {
+export class UefaEuroLogoCmp {
   @Input()
   private size: string;
 }
