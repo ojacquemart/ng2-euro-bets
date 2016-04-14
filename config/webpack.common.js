@@ -196,6 +196,12 @@ module.exports = {
       to: 'assets'
     }]),
 
+    // Copies flag-icon-css
+    new CopyWebpackPlugin([{
+      from: 'node_modules/flag-icon-css/flags',
+      to: 'flags'
+    }]),
+
     // Plugin: HtmlWebpackPlugin
     // Description: Simplifies creation of HTML files to serve your webpack bundles.
     // This is especially useful for webpack bundles that include a hash in the filename

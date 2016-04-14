@@ -5,6 +5,18 @@ $md-primary: md-palette($md-light-blue, 500, 100, 700, $md-contrast-palettes);
 $md-accent: md-palette($md-red, 500, 300, 700, $md-contrast-palettes);
 @import "node_modules/ng2-material/source/components";
 
+/** flag-icon-icss imports */
+@import "node_modules/flag-icon-css/sass/flag-icon";
+
+/* palette */
+
+$primary-color-light:  #BBDEFB;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FF5252;
+$primary-text-color:   #212121;
+$secondary-text-color: #727272;
+$divider-color:        #B6B6B6;
+
 $app-content-lg: 940px;
 $app-content-md: 580px;
 $app-content-sm: 360px;
