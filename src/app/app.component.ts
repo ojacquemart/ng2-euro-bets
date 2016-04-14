@@ -43,15 +43,11 @@ export class App {
   private authenticated:boolean;
 
   constructor(private auth:Auth) {
-  }
+    console.log('app @ init');
 
-  ngOnInit() {
-    console.log('app @ ngOnInit');
-
-    this.auth.authenticated$.subscribe(authenticated =>{
+    this.auth.subscribe((authenticated: boolean) => {
       this.authenticated = authenticated;
     });
-    this.auth.onAuth();
   }
 
 }

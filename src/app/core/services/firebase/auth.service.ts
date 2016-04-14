@@ -18,10 +18,10 @@ export class Auth {
   private authData:FirebaseAuthData = null;
 
   private authenticatedSource:Subject<boolean> = new Subject<boolean>();
-  public authenticated$:Observable<boolean>;
+  private authenticated$:Observable<boolean>;
 
-  constructor(private router:Router, private onLoginLogger: OnLoginLogger) {
-    console.log('auth#init');
+  constructor(private router:Router, private onLoginLogger:OnLoginLogger) {
+    console.log('aut @ init');
     this.authenticated$ = this.authenticatedSource.asObservable();
   }
 
@@ -33,17 +33,22 @@ export class Auth {
     return this.authData.uid;
   }
 
-  onAuth() {
+  subscribe(next:(authenticated:boolean) => void) {
+    this.authenticated$.subscribe(next);
+    this.onAuth();
+  }
+
+  private onAuth() {
     let onAuthComplete = (authData:FirebaseAuthData) => {
       if (authData) {
-        console.log('auth#auth ok');
+        console.log('auth @ onAut - ok');
         this.authData = authData;
         this.publishAuthenticated();
 
         return;
       }
 
-      console.log('auth#not authenticated');
+      console.log('auth @ onAuth - ko');
       this.publishUnauthenticated();
     };
 
@@ -59,25 +64,25 @@ export class Auth {
   login(provider:string) {
     let authWithOAuthPopupComplete = (error:any, authData:FirebaseAuthData) => {
       if (error) {
-        console.log('auth#login failed', error);
+        console.log('auth @ login ko', error);
         // TODO: toast error message
 
         return;
       }
 
-      console.log('auth#login ok', authData);
+      console.log('auth @ login ok', authData);
 
       this.publishAuthenticated();
       this.afterLogin();
     };
 
-    console.log('auth#login with', provider);
+    console.log('auth @ login with', provider);
 
     this.ref.authWithOAuthPopup(provider, authWithOAuthPopupComplete);
   }
 
   private afterLogin() {
-    console.log('auth#after login');
+    console.log('auth @ after login');
 
     let connectionEntry:ConnectionEntry = {
       uid: this.uid,
