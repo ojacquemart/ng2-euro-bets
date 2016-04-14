@@ -1,0 +1,63 @@
+$card-default-background: transparent;
+$card-stadium-height: 128px;
+
+md-toolbar.stadium {
+  background: transparent;
+  min-height: $card-stadium-height;
+
+  .stadium-toolbar {
+    background:rgba(0,0,0,0.4);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 8px;
+  }
+}
+
+@import '../styles/stadiums';
+
+md-card-title {
+  border-bottom: 1px solid #ddd;
+
+  md-card-title-text {
+    text-align: center;
+  }
+}
+
+md-card-content {
+  padding-top: 16px;
+
+  .top {
+    text-align: center;
+  }
+
+  .win {
+    font-weight: 800;
+  }
+
+  .score-input {
+    width: 60px;
+    text-align: center;
+  }
+
+  .score-separator {
+    text-align: center;
+  }
+
+  .score {
+    position: relative;
+    margin: 18px 0;
+  }
+
+  .user-score {
+    color: grey;
+
+    .user-score-icon {
+      position: absolute;
+      top: -2px;
+      left: 0;
+      margin-top: 0;
+      color: #F44336;
+    }
+  }
+}

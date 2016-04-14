@@ -26,7 +26,7 @@ $hero-padding: 50px 16px 0;
 
 $app-menu-width: $sidenav-mobile-width;
 
-pronos-sidenav-layout {
+bets-sidenav-layout {
   height: 100%;
   min-height: 100%;
 
@@ -59,7 +59,7 @@ pronos-sidenav-layout {
     background-color: md-color($md-background, 100);
   }
 
-  md-content.examples {
+  md-content.content {
     background-color: transparent;
     width: 800px;
     @media screen and (min-width: $layout-breakpoint-lg - 1) {
@@ -153,21 +153,11 @@ pronos-sidenav-layout {
     }
   }
 
-  .seed-title {
-    padding-top: 80px;
-  }
-  .seed-intro {
-    highlight {
-      border-radius: 2px;
-      margin: $baseline-grid * 4 0;
-    }
-  }
-
-  .examples {
-    padding: 80px $baseline-grid;
+  .content {
+    padding: 20px $baseline-grid;
     min-height: 640px;
 
-    .examples-title {
+    .content-title {
       color: md-color($md-primary);
       font-size: rem(3.4);
       font-weight: 400;
@@ -175,7 +165,7 @@ pronos-sidenav-layout {
       margin-bottom: rem(4);
     }
 
-    .examples-intro {
+    .content-intro {
       font-size: rem(2);
       line-height: rem(3.2);
       margin-bottom: 0;
@@ -185,37 +175,7 @@ pronos-sidenav-layout {
         color: md-color($md-primary);
       }
     }
-    .heading-list-toc {
-      border-left: 5px solid md-color($md-primary);
-      padding-left: 20px;
-      h1 {
-        margin: 0;
-        font-size: rem(1.5);
-        line-height: rem(1.6);
-        padding-bottom: 12px;
-        font-weight: 400;
-        color: #757575
-      }
 
-      ul {
-        list-style: none;
-        margin-top: 0;
-        padding-left: 0
-      }
-
-      li {
-        font-size: 20px;
-        line-height: 40px;
-        a {
-          text-decoration: none;
-          color: md-color($md-primary);
-        }
-        &:last-child {
-          line-height: 20px;
-          padding-top: 10px
-        }
-      }
-    }
   }
 
 }

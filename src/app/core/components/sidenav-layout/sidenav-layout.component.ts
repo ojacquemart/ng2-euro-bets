@@ -8,7 +8,7 @@ import {UserAvatar} from '../user-avatar/user-avatar.component';
 import {UefaEuroLogoCmp} from '../uefa-euro-logo/uefa-euro-logo.component';
 
 @Component({
-  selector: 'pronos-sidenav-layout',
+  selector: 'bets-sidenav-layout',
   directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES, UserAvatar, UefaEuroLogoCmp],
   providers: [SidenavService],
   styles: [require('./sidenav-layout.scss')],
@@ -20,7 +20,7 @@ export class SidenavLayoutCmp {
   private fullPage = Media.hasMedia('gt-md');
 
   constructor(public media:Media, public sidenav:SidenavService, private auth: Auth) {
-    console.log('sidenav#init');
+    console.log('sidenav @ init');
   }
 
   logout() {

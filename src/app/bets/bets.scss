@@ -1,0 +1,14 @@
+md-toolbar.filter-not-bet {
+  background-color: transparent;
+  margin-bottom: 16px;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+
+  .material-icons {
+    color: #000;
+  }
+
+  .filter {
+    cursor: pointer;
+  }
+}

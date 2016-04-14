@@ -1,0 +1,105 @@
+<md-card>
+  <md-toolbar class="md-accent stadium" [ngClass]="match.stadium.code">
+    <div class="stadium-toolbar" layout="row" layout-align="space-between end">
+      <div>
+        <span>{{ match.hour }}</span>
+      </div>
+      <div>
+        <span>{{ match.stadium.name }} ({{ match.stadium.city }})</span>
+      </div>
+    </div>
+  </md-toolbar>
+
+  <md-card-title>
+    <md-card-title-text>
+      {{ match.phase }}
+    </md-card-title-text>
+  </md-card-title>
+
+  <md-card-content>
+    <div class="top">
+      <div layout="row" layout-align="space-between center">
+        <div flex="45">
+          <span class="flag-icon" [ngClass]="match.home.flag"></span>
+        </div>
+        <div flex></div>
+        <div flex="45">
+          <span class="flag-icon" [ngClass]="match.away.flag"></span>
+        </div>
+      </div>
+
+      <div layout="row" layout-align="space-between center">
+        <div flex="45">
+          <span [ngClass]="{win: match.home.winner}">{{ match.home.name }}</span>
+        </div>
+        <div flex>vs</div>
+        <div flex="45">
+          <span [ngClass]="{win: match.away.winner}">{{ match.away.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <form *ngIf="!match.finished" [ngFormModel]="form">
+      <div layout="row" layout-align="space-between center">
+
+        <div flex="45">
+          <div layout="column" layout-align="space-around center">
+            <md-input-container class="md-block">
+              <input type="number" min="0" max="10" md-input name="home" class="score-input"
+                     [value]="match.bet.homeGoals"
+                     [ngFormControl]="form.controls.home">
+            </md-input-container>
+
+            <div *ngIf="form.hasError('invalidScore')">Invalid score</div>
+          </div>
+        </div>
+        <div class="score-separator" flex><i md-icon>person</i></div>
+        <div flex="45">
+          <div layout="column" layout-align="space-around center">
+            <md-input-container class="md-block">
+              <input type="number" min="0" max="10" md-input class="score-input"
+                    [value]="match.bet.awayGoals"
+                     [ngFormControl]="form.controls.away">
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="match.finished">
+      <div layout="row" class="score" layout-align="space-between center">
+        <div flex="45">
+          <div layout="column" layout-align="space-around center">
+            <span [ngClass]="{win: match.home.winner}">{{ match.home.goals }}</span>
+          </div>
+        </div>
+        <div class="score-separator" flex>-</div>
+        <div flex="45">
+          <div layout="column" layout-align="space-around center">
+            <span [ngClass]="{win: match.away.winner}">{{ match.away.goals }}</span>
+          </div>
+        </div>
+      </div>
+      <div layout="row" class="score user-score" layout-align="space-between center">
+        <div flex="45">
+          <div layout="row" layout-align="space-around center">
+            <span>{{ match.bet.homeGoals }}</span>
+          </div>
+        </div>
+        <div class="score-separator" flex><i md-icon>person</i></div>
+        <div flex="45">
+          <div layout="column" layout-align="space-around center">
+            <span>{{ match.bet.awayGoals }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </md-card-content>
+
+  <md-card-actions layout="row" layout-align="end center">
+    <button md-button (click)="onFeelingLucky()" *ngIf="!match.finished">I'm feeling lucky</button>
+    <button md-button class="md-icon-button" aria-label="Video" *ngIf="match.finished">
+      <i md-icon>videocam</i>
+    </button>
+  </md-card-actions>
+</md-card>

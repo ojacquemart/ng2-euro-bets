@@ -9,7 +9,7 @@ import {Auth} from './core/services/firebase/auth.service';
 import {SidenavLayoutCmp} from './core/components/sidenav-layout/sidenav-layout.component';
 
 import {LoginCmp} from './login/login.component';
-import {PronosCmp} from './pronos/pronos.component';
+import {BetsCmp} from './bets/bets.component';
 import {TableCmp} from './table/table.component';
 
 /*
@@ -26,16 +26,16 @@ import {TableCmp} from './table/table.component';
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
-    <pronos-sidenav-layout *ngIf="authenticated">
+    <bets-sidenav-layout *ngIf="authenticated">
       <router-outlet></router-outlet>
-    </pronos-sidenav-layout>
+    </bets-sidenav-layout>
 
-    <pronos-login *ngIf="!authenticated "></pronos-login>
+    <bets-login *ngIf="!authenticated "></bets-login>
   `
 })
 @RouteConfig([
-  {path: '/', name: 'Index', component: PronosCmp, useAsDefault: true},
-  {path: '/pronos', name: 'Pronos', component: PronosCmp},
+  {path: '/', name: 'Index', component: BetsCmp, useAsDefault: true},
+  {path: '/bets', name: 'Bets', component: BetsCmp},
   {path: '/table', name: 'Table', component: TableCmp}
 ])
 export class App {
@@ -46,7 +46,7 @@ export class App {
   }
 
   ngOnInit() {
-    console.log('app#ngOnInit');
+    console.log('app @ ngOnInit');
 
     this.auth.authenticated$.subscribe(authenticated =>{
       this.authenticated = authenticated;

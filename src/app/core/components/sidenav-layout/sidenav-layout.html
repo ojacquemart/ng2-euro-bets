@@ -4,19 +4,19 @@
       <md-toolbar class="md-accent title" [routerLink]="['Index']">
         <div class="md-toolbar-tools name" layout="column" layout-align="center center" [routerLink]="['Index']">
           <div>
-            <h1>Euro 2016 Pronos</h1>
+            <h1>Euro 2016 Bets</h1>
           </div>
         </div>
         <span flex></span>
-        <pronos-user-avatar></pronos-user-avatar>
+        <bets-user-avatar></bets-user-avatar>
         <div class="user md-toolbar-tools-bottom inset" layout="row" layout-align="space-between center">
           <div><span>Rank: -</span></div>
-          <div><span>Precision: -</span></div>
+          <div><span>Points: -</span></div>
         </div>
       </md-toolbar>
       <md-list>
-        <md-list-item [routerLink]="['Pronos']" md-ink>
-          <span>Pronostics</span>
+        <md-list-item [routerLink]="['Bets']" md-ink>
+          <span>Bets</span>
         </md-list-item>
         <md-list-item md-ink [routerLink]="['Table']">
           <span>Table</span>
@@ -27,7 +27,7 @@
       </md-list>
       <div flex></div>
 
-      <pronos-uefa-euro-logo [size]="'md'"></pronos-uefa-euro-logo>
+      <bets-uefa-euro-logo [size]="'md'"></bets-uefa-euro-logo>
     </md-sidenav>
     <section class="app-content" layout="column" layout-align="start center" flex>
       <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo [break]="210" breakAction="show"></md-toolbar>
@@ -67,7 +67,7 @@
         </div>
       </md-toolbar>
 
-      <md-content class="examples" md-scroll-y layout-padding>
+      <md-content class="content" md-scroll-y layout-padding>
         <ng-content></ng-content>
       </md-content>
     </section>

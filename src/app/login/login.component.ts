@@ -7,7 +7,7 @@ import {UefaEuroLogoCmp} from '../core/components/uefa-euro-logo/uefa-euro-logo.
 import {LOGIN_PROVIDERS} from './login-providers.constants';
 
 @Component({
-  selector: 'pronos-login',
+  selector: 'bets-login',
   directives: [UefaEuroLogoCmp],
   template: require('./login.html'),
   styles: [require('./login.scss')]
