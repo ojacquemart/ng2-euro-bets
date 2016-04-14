@@ -1,0 +1,64 @@
+= Euro Bets
+
+This is a simple angular 2 app to bet on the UEFA Euro 2016.
+
+It is based on the great starter https://github.com/AngularClass/angular2-webpack-starter[angular2-webpack-starter]
+
+== Quick start
+
+**Make sure you have node version >= 4.0**
+
+```
+# clone the repo
+git clone https://github.com/ojacquemart/ng2-euro-bets.git
+
+# change directory to the repo
+cd ng2-euro-bets
+
+# add required global libraries
+npm install typings webpack-dev-server rimraf webpack -g
+
+# install the repo with npm
+npm install
+
+# start the server
+npm start
+
+# use Hot Module Replacement
+npm run server:dev:hmr
+
+# production
+npm run build:prod
+npm run server:prod
+```
+go to http://0.0.0.0:3000[http://0.0.0.0:3000] or http://localhost:3000[http://localhost:3000] in your browser
+
+== Dependencies
+
+Once you have those, you should install these globals with `npm install --global`:
+
+* `webpack` (`npm install --global webpack`)
+* `webpack-dev-server` (`npm install --global webpack-dev-server`)
+* `karma` (`npm install --global karma-cli`)
+* `protractor` (`npm install --global protractor`)
+* `typings` (`npm install --global typings`)
+* `typescript` (`npm install --global typescript`)
+
+== Installing
+
+* `fork` this repo
+* `clone` your fork
+* `npm install` to install all dependencies
+* `typings install` to install necessary typings
+
+== Configuration
+
+Configuration files live in `config/` we are currently using webpack, karma, and protractor for different stages of your application
+
+== Contributing
+
+Feel free to contribute!
+
+== License
+
+[Unlicense](/LICENSE)
