@@ -17,7 +17,7 @@ export class Auth {
   private ref:Firebase = new Firebase(FIREBASE_BASE_URL);
   private authData:FirebaseAuthData = null;
 
-  private authenticatedSource:Subject<boolean> = new Subject();
+  private authenticatedSource:Subject<boolean> = new Subject<boolean>();
   public authenticated$:Observable<boolean>;
 
   constructor(private router:Router, private onLoginLogger: OnLoginLogger) {
