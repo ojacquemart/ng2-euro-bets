@@ -17,7 +17,7 @@ export class LoginCmp {
   private providers;
 
   constructor(private auth:Auth) {
-    console.log('login#init');
+    console.log('login @ init');
 
     this.providers = LOGIN_PROVIDERS;
   }
@@ -27,7 +27,7 @@ export class LoginCmp {
   }
 
   ngOnInit() {
-    console.log('login#ngOnInit');
+    console.log('login @ ngOnInit');
   }
 
 }

@@ -12,10 +12,10 @@ import {Component} from 'angular2/core';
 export class TableCmp {
 
   constructor() {
-    console.log('table#init');
+    console.log('table @ init');
   }
 
   ngOnInit() {
-    console.log('table#ngOnInit');
+    console.log('table @ ngOnInit');
   }
 }

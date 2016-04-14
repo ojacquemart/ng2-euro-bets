@@ -13,7 +13,7 @@ export class OnLoginLogger {
   }
 
   log(connectionEntry: ConnectionEntry) {
-    console.log('connectionEntryStore#log', connectionEntry);
+    console.log('onLoginLogger @ log', connectionEntry);
 
     let ref = new Firebase(`${FIREBASE_BASE_URL}/users_connections/${connectionEntry.uid}`);
     ref.set(connectionEntry);
