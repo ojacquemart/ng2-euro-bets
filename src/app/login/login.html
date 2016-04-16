@@ -6,7 +6,9 @@
     <p class>Sign in</p>
 
     <div layout="column" layout-align="center center">
-      <button *ngFor="#provider of providers" [ngClass]="provider.code" (click)="login(provider.code)">
+      <button *ngFor="#provider of providers"
+              [ngClass]="provider.code"
+              (click)="auth.login(provider.authProvider)">
         {{ provider.name }}
       </button>
     </div>

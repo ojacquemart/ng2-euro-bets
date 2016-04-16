@@ -26,11 +26,11 @@ import {TableCmp} from './table/table.component';
   ],
   encapsulation: ViewEncapsulation.None,
   template: `
-    <bets-sidenav-layout *ngIf="authenticated">
+    <bets-sidenav-layout *ngIf="auth.authenticated">
       <router-outlet></router-outlet>
     </bets-sidenav-layout>
 
-    <bets-login *ngIf="!authenticated "></bets-login>
+    <bets-login *ngIf="!auth.authenticated "></bets-login>
   `
 })
 @RouteConfig([
@@ -40,14 +40,8 @@ import {TableCmp} from './table/table.component';
 ])
 export class App {
 
-  private authenticated:boolean;
-
-  constructor(private auth:Auth) {
+  constructor(private auth: Auth) {
     console.log('app @ init');
-
-    this.auth.subscribe((authenticated: boolean) => {
-      this.authenticated = authenticated;
-    });
   }
 
 }

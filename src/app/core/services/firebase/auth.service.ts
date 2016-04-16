@@ -1,12 +1,7 @@
 import {Inject, Injectable} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
-
-import * as Firebase from 'firebase';
-
-import {FIREBASE_BASE_URL} from './firebase.constants';
+import {AuthProviders, FirebaseAuth, FirebaseAuthState} from 'angularfire2/angularfire2';
 
 import {OnLoginLogger} from './on-login-logger.service';
 import {ConnectionEntry} from './connection-entry.model';
@@ -14,74 +9,50 @@ import {ConnectionEntry} from './connection-entry.model';
 @Injectable()
 export class Auth {
 
-  private ref:Firebase = new Firebase(FIREBASE_BASE_URL);
-  private authData:FirebaseAuthData = null;
+  private authState:FirebaseAuthState = null;
 
-  private authenticatedSource:Subject<boolean> = new Subject<boolean>();
-  private authenticated$:Observable<boolean>;
-
-  constructor(private router:Router, private onLoginLogger:OnLoginLogger) {
+  constructor(private auth$:FirebaseAuth, private onLoginLogger:OnLoginLogger) {
     console.log('aut @ init');
-    this.authenticated$ = this.authenticatedSource.asObservable();
+
+    auth$.subscribe((state:FirebaseAuthState) => {
+      if (!state) {
+        console.log('auth @ onAuth - ko');
+        return;
+      }
+
+      console.log('auth @ onAuth - ok');
+      this.authState = state;
+    });
   }
 
   get authenticated():boolean {
-    return this.authData != null;
+    return this.authState != null;
   }
 
   get uid():string {
-    return this.authData.uid;
-  }
-
-  subscribe(next:(authenticated:boolean) => void) {
-    this.authenticated$.subscribe(next);
-    this.onAuth();
-  }
-
-  private onAuth() {
-    let onAuthComplete = (authData:FirebaseAuthData) => {
-      if (authData) {
-        console.log('auth @ onAut - ok');
-        this.authData = authData;
-        this.publishAuthenticated();
-
-        return;
-      }
-
-      console.log('auth @ onAuth - ko');
-      this.publishUnauthenticated();
-    };
-
-    this.ref.onAuth(onAuthComplete);
+    return this.authState.uid;
   }
 
   get user():FirebaseAuthDataGoogle {
-    let provider = this.authData.provider;
+    let provider = AuthProviders[this.authState.provider].toLowerCase();
 
-    return this.authData[provider];
+    return this.authState[provider];
   }
 
-  login(provider:string) {
-    let authWithOAuthPopupComplete = (error:any, authData:FirebaseAuthData) => {
-      if (error) {
-        console.log('auth @ login ko', error);
-        // TODO: toast error message
-
-        return;
-      }
-
-      console.log('auth @ login ok', authData);
-
-      this.publishAuthenticated();
-      this.afterLogin();
-    };
-
-    console.log('auth @ login with', provider);
-
-    this.ref.authWithOAuthPopup(provider, authWithOAuthPopupComplete);
+  login(provider:AuthProviders):Promise<FirebaseAuthState> {
+    return this.auth$.login({
+      provider: provider
+    }).then((authState:FirebaseAuthState) => this.handleOnLogin(authState));
   }
 
-  private afterLogin() {
+  private handleOnLogin(authState:FirebaseAuthState) {
+    this.authState = authState;
+    this.onLogin();
+
+    return authState;
+  }
+
+  private onLogin() {
     console.log('auth @ after login');
 
     let connectionEntry:ConnectionEntry = {
@@ -93,18 +64,9 @@ export class Auth {
   }
 
   logout() {
-    this.ref.unauth();
-    this.authData = null;
-
-    this.publishUnauthenticated();
+    this.auth$.logout();
+    this.authState = null;
   }
 
-  private publishAuthenticated() {
-    this.authenticatedSource.next(true);
-  }
-
-  private publishUnauthenticated() {
-    this.authenticatedSource.next(false);
-  }
 
 }

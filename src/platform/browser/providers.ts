@@ -2,7 +2,6 @@
  * These are globally available services in any component or any other service
  */
 
-
 import {provide} from 'angular2/core';
 
 // Angular 2
@@ -31,6 +30,7 @@ export const APPLICATION_PROVIDERS = [
   ...HTTP_PROVIDERS,
   ...MATERIAL_PROVIDERS,
   ...ROUTER_PROVIDERS,
+
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
 ];
 

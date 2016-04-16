@@ -4,7 +4,7 @@ import {Auth} from '../core/services/firebase/auth.service';
 
 import {UefaEuroLogoCmp} from '../core/components/uefa-euro-logo/uefa-euro-logo.component';
 
-import {LOGIN_PROVIDERS} from './login-providers.constants';
+import {LOGIN_PROVIDERS, Provider} from './provider.model';
 
 @Component({
   selector: 'bets-login',
@@ -14,16 +14,12 @@ import {LOGIN_PROVIDERS} from './login-providers.constants';
 })
 export class LoginCmp {
 
-  private providers;
+  private providers: Array<Provider>;
 
   constructor(private auth:Auth) {
     console.log('login @ init');
 
     this.providers = LOGIN_PROVIDERS;
-  }
-
-  login(provider:string) {
-    this.auth.login(provider);
   }
 
   ngOnInit() {
