@@ -4,8 +4,9 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {MATERIAL_DIRECTIVES, Media, SidenavService} from 'ng2-material/all';
 
 import {Auth} from '../../services/firebase/auth.service';
-import {UserAvatar} from '../user-avatar/user-avatar.component';
+import {Page, PageTitle} from '../../services/page-title/index';
 import {UefaEuroLogoCmp} from '../uefa-euro-logo/uefa-euro-logo.component';
+import {UserAvatar} from '../user-avatar/user-avatar.component';
 
 @Component({
   selector: 'bets-sidenav-layout',
@@ -19,8 +20,13 @@ export class SidenavLayoutCmp {
   @Input()
   private fullPage = Media.hasMedia('gt-md');
 
-  constructor(public media:Media, public sidenav:SidenavService, private auth: Auth) {
-    console.log('sidenav @ init');
+  private page: Page;
+
+  constructor(private auth: Auth, public pageTitle: PageTitle, public media:Media, public sidenav:SidenavService) {
+    pageTitle.subscribe((page) => {
+      this.page = page;
+      console.log('sidenav @ change page', page);
+    });
   }
 
   logout() {

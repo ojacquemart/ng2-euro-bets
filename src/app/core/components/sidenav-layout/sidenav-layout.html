@@ -21,8 +21,8 @@
         <md-list-item md-ink [routerLink]="['Table']">
           <span>Table</span>
         </md-list-item>
-        <md-list-item md-ink>
-          <a (click)="logout()">Logout</a>
+        <md-list-item md-ink (click)="logout()">
+          <a>Logout</a>
         </md-list-item>
       </md-list>
       <div flex></div>
@@ -40,7 +40,7 @@
         <h1 md-peekaboo
             [breakMd]="72"
             [breakXs]="20"
-            breakAction="hide">TITLE</h1>
+            breakAction="hide">{{ page?.title }}</h1>
       </md-toolbar>
       <md-toolbar class="fixed-toolbar">
         <div class="md-toolbar-tools">
@@ -55,7 +55,7 @@
               [breakMd]="72"
               [breakXs]="20"
               breakAction="show">
-            <span>TITLE</span>
+            <span>{{ page?.title }}</span>
           </h2>
           <span flex></span>
           <a md-peekaboo

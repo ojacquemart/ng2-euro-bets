@@ -5,6 +5,10 @@ import {BetCardCmp} from './card/bet-card.component';
 import {BetsStore} from './services/bets.store.service';
 import {Match, MatchGroup} from './models/bets.models';
 
+import {Page, PageTitle} from '../core/services/page-title';
+
+const PAGE: Page = {title: 'Bets'};
+
 @Component({
   directives: [BetCardCmp],
   styles: [require('./bets.scss')],
@@ -14,8 +18,10 @@ export class BetsCmp {
 
   private matchesByDay: Array<MatchGroup> = null;
 
-  constructor() {
-    console.log('betsCmp @ init');
+  constructor(pageTitle: PageTitle) {
+    console.log('bets @ init');
+
+    pageTitle.emit(PAGE);
 
     this.matchesByDay = new BetsStore().getMatchesByDay();
     console.log(this.matchesByDay);

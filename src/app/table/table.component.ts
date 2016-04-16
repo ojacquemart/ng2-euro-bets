@@ -1,4 +1,9 @@
 import {Component} from 'angular2/core';
+import {RouteData} from "angular2/router";
+
+import {Page, PageTitle} from '../core/services/page-title';
+
+const PAGE: Page = {title: 'Table'};
 
 @Component({
   directives: [],
@@ -6,13 +11,14 @@ import {Component} from 'angular2/core';
       Table
 
       TODO
-
   `
 })
 export class TableCmp {
 
-  constructor() {
+  constructor(pageTitle: PageTitle) {
     console.log('table @ init');
+
+    pageTitle.emit(PAGE);
   }
 
   ngOnInit() {
