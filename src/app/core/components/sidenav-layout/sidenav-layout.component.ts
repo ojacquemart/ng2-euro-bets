@@ -18,7 +18,7 @@ import {UserAvatar} from '../user-avatar/user-avatar.component';
 export class SidenavLayoutCmp {
 
   @Input()
-  private fullPage = Media.hasMedia('gt-md');
+  private fullPage = this.media.hasMedia('gt-md');
 
   private page: Page;
 
@@ -34,7 +34,7 @@ export class SidenavLayoutCmp {
   }
 
   hasMedia(breakSize:string):boolean {
-    return Media.hasMedia(breakSize);
+    return this.media.hasMedia(breakSize);
   }
 
   open(name:string) {
