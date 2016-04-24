@@ -3,20 +3,9 @@ $login-background: #fff;
 $twitter: #55ACEE;
 $google: #DD4B39;
 
-.login-container {
-  background: $login-container-background;
-  height: 100%;
+.splash-container {
 
-  .login {
-    margin: 20px 0;
-    padding: 16px;
-    background: $login-background;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    border-radius: 2px;
-
-    p {
-      text-align: center;
-    }
+  .splash-item {
 
     button {
       margin-bottom: 20px;
