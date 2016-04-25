@@ -1,12 +1,12 @@
 export interface Stadium {
-  code: string;
+  id: number;
   name: string;
   city: string;
 }
 
 export interface Team {
   name: string;
-  flag: string;
+  isoAlpha2Code: string;
   goals: number;
   winner: boolean;
 }
@@ -17,13 +17,19 @@ export interface Bet {
   timestamp?: number;
 }
 
+export interface Phase {
+  code: string;
+}
+
 export interface Match {
-  phase: string;
+  number: number;
   day: string;
   hour: string;
+  timestamp: number;
   stadium: Stadium;
-  finished: boolean,
-  bet?: Bet,
+  phase: Phase;
+  status: number;
+  bet?: Bet;
   home: Team;
   away: Team;
 

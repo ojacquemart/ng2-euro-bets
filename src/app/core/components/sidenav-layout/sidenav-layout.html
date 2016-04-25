@@ -1,7 +1,7 @@
 <div layout="row" layout-align="center start">
   <md-sidenav-container layout="row" flex>
     <md-sidenav name="menu" layout="column" flex class="app-menu" [style]="fullPage ? 'side' : 'over'">
-      <md-toolbar class="md-accent title" [routerLink]="['Index']">
+      <md-toolbar class="md-accent title">
         <div class="md-toolbar-tools name" layout="column" layout-align="center center" [routerLink]="['Index']">
           <div>
             <h1>Euro 2016 Bets</h1>
@@ -14,20 +14,23 @@
           <div><span>Points: -</span></div>
         </div>
       </md-toolbar>
-      <md-list>
-        <md-list-item [routerLink]="['Bets']" md-ink>
-          <span>Bets</span>
-        </md-list-item>
-        <md-list-item md-ink [routerLink]="['Table']">
-          <span>Table</span>
-        </md-list-item>
-        <md-list-item md-ink (click)="logout()">
-          <a>Logout</a>
-        </md-list-item>
-      </md-list>
+      <div layout="row" layout-align="start start">
+        <md-list flex>
+          <md-list-item md-ink [routerLink]="['Bets']">
+            <span>Bets</span>
+          </md-list-item>
+          <md-list-item md-ink [routerLink]="['Table']">
+            <span>Table</span>
+          </md-list-item>
+          <md-list-item md-ink (click)="logout()">
+            <a>Logout</a>
+          </md-list-item>
+        </md-list>
+      </div>
       <div flex></div>
-
-      <bets-uefa-euro-logo [size]="'md'"></bets-uefa-euro-logo>
+      <div layout="row" layout-align="center end">
+        <bets-uefa-euro-logo flex [size]="'md'"></bets-uefa-euro-logo>
+      </div>
     </md-sidenav>
     <section class="app-content" layout="column" layout-align="start center" flex>
       <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo [break]="210" breakAction="show"></md-toolbar>
@@ -58,12 +61,6 @@
             <span>{{ page?.title }}</span>
           </h2>
           <span flex></span>
-          <a md-peekaboo
-             href="https://github.com/justindujardin/ng2-material/releases/tag/v{{version}}"
-             target="_blank"
-             [breakMd]="72"
-             breakAction="show"
-             *ngIf="version" class="md-caption">v&</a>
         </div>
       </md-toolbar>
 

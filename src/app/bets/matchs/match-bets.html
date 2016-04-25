@@ -1,0 +1,14 @@
+<div class="md-padding" layout="row" layout-wrap layout-align="left start">
+  <template ngFor #matchDay [ngForOf]="matchesByDay | async">
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ matchDay.day }}</h2>
+      </div>
+    </md-toolbar>
+
+    <template ngFor #match [ngForOf]="matchDay.items">
+      <bet-card flex="50" flex-xs="100" layout="column" [match]="match">
+      </bet-card>
+    </template>
+  </template>
+</div>

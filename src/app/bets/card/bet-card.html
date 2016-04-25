@@ -1,5 +1,5 @@
 <md-card>
-  <md-toolbar class="md-accent stadium" [ngClass]="match.stadium.code">
+  <md-toolbar class="md-accent stadium" [ngClass]="'stadium-' + match.stadium.id">
     <div class="stadium-toolbar" layout="row" layout-align="space-between end">
       <div>
         <span>{{ match.hour }}</span>
@@ -12,7 +12,7 @@
 
   <md-card-title>
     <md-card-title-text>
-      {{ match.phase }}
+      {{ match.phase.i18n.fr }}
     </md-card-title-text>
   </md-card-title>
 
@@ -20,26 +20,26 @@
     <div class="top">
       <div layout="row" layout-align="space-between center">
         <div flex="45">
-          <span class="flag-icon" [ngClass]="match.home.flag"></span>
+          <span class="flag-icon" [ngClass]="'flag-icon-' + match.home.isoAlpha2Code"></span>
         </div>
         <div flex></div>
         <div flex="45">
-          <span class="flag-icon" [ngClass]="match.away.flag"></span>
+          <span class="flag-icon" [ngClass]="'flag-icon-' + match.away.isoAlpha2Code"></span>
         </div>
       </div>
 
-      <div layout="row" layout-align="space-between center">
+      <div layout="row" layout-align="space-between center" class="team-names">
         <div flex="45">
-          <span [ngClass]="{win: match.home.winner}">{{ match.home.name }}</span>
+          <span class="name" [ngClass]="{win: match.home.winner}">{{ match.home.i18n.fr }}</span>
         </div>
         <div flex>vs</div>
         <div flex="45">
-          <span [ngClass]="{win: match.away.winner}">{{ match.away.name }}</span>
+          <span class="name" [ngClass]="{win: match.away.winner}">{{ match.away.i18n.fr }}</span>
         </div>
       </div>
     </div>
 
-    <form *ngIf="!match.finished" [ngFormModel]="form">
+    <form *ngIf="match.status == 0" [ngFormModel]="form">
       <div layout="row" layout-align="space-between center">
 
         <div flex="45">
@@ -66,7 +66,7 @@
       </div>
     </form>
 
-    <div *ngIf="match.finished">
+    <div *ngIf="match.status == 1">
       <div layout="row" class="score" layout-align="space-between center">
         <div flex="45">
           <div layout="column" layout-align="space-around center">

@@ -1,25 +1,21 @@
 <div class="md-padding" layout="row" layout-wrap layout-align="left start">
 
-  <md-toolbar class="md-hue-2 filter-not-bet">
-    <div class="md-toolbar-tools">
-      <span class="filter">
-        <button md-button class="md-icon-button" aria-label="Matchs not bet">
-          <i md-icon>filter_list</i>
-        </button>
-          Matchs not bet
-      </span>
+  <md-toolbar class="md-hue-2 tabs-toolbar">
+    <div class="tabs" flex layout="row" layout-align="space-around center">
+      <a class="tab" flex router-link-active  [routerLink]="['./Matchs']">
+        <span>Matchs</span>
+      </a>
+      <a class="tab" flex router-link-active [routerLink]="['./Groups']">
+        <span>Groups</span>
+      </a>
+      <a class="tab" flex router-link-active [routerLink]="['./Favorites']">
+        <span>Favorites</span>
+      </a>
     </div>
+    <md-progress-linear class="md-accent md-hue-3"  mode="indeterminate" [hidden]="!loading" ></md-progress-linear>
+
   </md-toolbar>
 
-  <template ngFor #matchDay [ngForOf]="matchesByDay">
-    <md-toolbar class="md-hue-2">
-      <div class="md-toolbar-tools">
-        <h2 class="md-flex">{{ matchDay.day }}</h2>
-      </div>
-    </md-toolbar>
+  <router-outlet></router-outlet>
 
-    <bet-card flex="50" flex-xs="100" layout="column"
-                *ngFor="#match of matchDay.items" [match]="match">
-    </bet-card>
-  </template>
 </div>

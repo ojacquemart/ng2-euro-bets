@@ -1,67 +1,82 @@
 import * as _ from 'lodash';
 
-import {Match, MatchGroup} from '../models/bets.models';
+import {Inject, Injectable, EventEmitter} from 'angular2/core';
+import {AngularFire} from 'angularfire2/angularfire2';
+import {FirebaseRef} from 'angularfire2/tokens';
 import Dictionary = _.Dictionary;
 
-const STADIUMS = [
-  'bordeaux', 'lille', 'lens', 'lyon', 'marseille',
-  'nice', 'paris-sdf', 'paris-parc', 'saintetienne', 'toulouse'];
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/zip';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
+import 'rxjs/Rx';
 
+import {Auth} from '../../core/services/firebase/auth.service';
+import {Bet, Match, MatchGroup} from '../models/bets.models';
+import {UserBetsStore} from './user-bets.store.service';
+
+@Injectable()
 export class BetsStore {
 
+  loading:boolean;
+  loading$:EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
-  getMatchesByDay() {
-    // TODO: fetch matches & user bets from firebase
+  constructor(private af:AngularFire, private userBetsStore:UserBetsStore) {
+  }
 
-    let matches:Array<Match> = [];
-    matches.push({
-      phase: 'GROUP A',
-      day: '2016-10-11',
-      hour: '21:00',
-      finished: false,
-      stadium: {code: 'lille', city: 'Lille', name: 'Pierre Mauroy'},
-      bet: {homeGoals: 1, awayGoals: 4},
-      home: {name: 'ENGLAND', flag: 'flag-icon-gb-eng', winner: false, goals: -1},
-      away: {name: 'RUSSIA', flag: 'flag-icon-ru', winner: false, goals: -1}
-    });
-    matches.push({
-      phase: 'GROUP A',
-      day: '2016-10-11',
-      hour: '17:00',
-      finished: false,
-      stadium: {code: 'marseille', city: 'Marseille', name: 'Vélodrome'},
-      bet: {homeGoals: 1, awayGoals: 4},
-      home: {name: 'ITALIA', flag: 'flag-icon-it', winner: false, goals: -1},
-      away: {name: 'ROMANIA', flag: 'flag-icon-ro', winner: false, goals: -1}
-    });
-    matches.push({
-      phase: 'GROUP B',
-      day: '2016-10-12',
-      hour: '18:00',
-      stadium: {code: 'bordeaux', city: '???', name: '....'},
-      finished: false,
-      bet: {homeGoals: null, awayGoals: null},
-      home: {name: 'SWEDEN', flag: 'flag-icon-se', winner: false, goals: -1},
-      away: {name: 'WALES', flag: 'flag-icon-gb-wls', winner: false, goals: -1}
-    });
+  subscribeLoadingState(fn:(loading:boolean) => void) {
+    return this.loading$.subscribe(fn);
+  }
 
-    STADIUMS.forEach(stadium => {
-      matches.push({
-        phase: 'GROUP A',
-        day: '2016-10-13',
-        hour: '15:00',
-        stadium: {code: stadium, city: '???', name: '???'},
-        finished: true,
-        bet: {homeGoals: 4, awayGoals: 2},
-        home: {name: 'FRANCE', flag: 'flag-icon-fr', goals: 1, winner: false},
-        away: {name: 'SWIZZ', flag: 'flag-icon-ch', goals: 2, winner: true}
+  getMatchesByDay():Observable<Array<MatchGroup>> {
+    this.startLoadingAndEmit();
+
+    let fixtures$ = this.af.object('/fixtures');
+    let userBets$ = this.userBetsStore.getBets$();
+
+    return Observable.zip(fixtures$, userBets$, (matches:Array<Match>, userBets) => {
+        userBets = userBets || {};
+
+        matches.forEach((match:Match) => {
+          var bet = userBets[match.number];
+          this.setBetIfNeeded(match, bet);
+        });
+
+        return matches;
+      })
+      .map((matches:Array<Match>) => {
+        return this.groupMatchesByDay(matches);
+      })
+      .catch((error:any) => {
+        console.log('bets store @ error', error);
+
+        return Observable.of([]);
+      })
+      .do(() => {
+        this.stopLoadingAndEmit();
       });
-    });
+  }
 
+  private setBetIfNeeded(match:Match, bet:Bet) {
+    if (bet) {
+      match.bet = bet;
+    }
+
+    if (!match.bet) {
+      match.bet = {
+        homeGoals: null,
+        awayGoals: null
+      };
+    }
+  }
+
+  private groupMatchesByDay(matches:Array<Match>):Array<MatchGroup> {
     return _.chain(matches)
-      .groupBy('day')
+      .filter((match) => {
+        return match.phase.code === 'group';
+      })
+      .groupBy('date')
       .toPairsIn()
-      .sortBy((keyValues) => keyValues[0])
       .map((keyValues) => {
         return <MatchGroup>{
           day: keyValues[0],
@@ -69,6 +84,20 @@ export class BetsStore {
         };
       })
       .value();
+  }
+
+  startLoadingAndEmit() {
+    this.loading = true;
+    this.emitLoading();
+  }
+
+  private stopLoadingAndEmit() {
+    this.loading = false;
+    this.emitLoading();
+  }
+
+  private emitLoading() {
+    this.loading$.emit(this.loading);
   }
 
 }

@@ -1,14 +1,16 @@
-md-toolbar.filter-not-bet {
+md-toolbar.tabs-toolbar {
   background-color: transparent;
-  margin-bottom: 16px;
-  color: #000;
-  border-bottom: 1px solid #ddd;
+  .tab {
+    padding: 16px;
+    color: #bbb;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
 
-  .material-icons {
-    color: #000;
-  }
-
-  .filter {
-    cursor: pointer;
+    &.router-link-active {
+      color: #F44336;
+      border-bottom: 1px solid #F44336;
+    }
   }
 }

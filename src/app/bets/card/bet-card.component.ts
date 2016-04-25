@@ -6,6 +6,7 @@ import {Bet, Match} from '../models/bets.models';
 import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/randomNumberGenerator';
 
 import {validateScore} from './score.validator';
+import {UserBetsStore} from '../services/user-bets.store.service';
 
 @Component({
   selector: 'bet-card',
@@ -18,7 +19,7 @@ export class BetCardCmp {
 
   private form;
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private userBetsStore: UserBetsStore, private formBuilder:FormBuilder) {
     this.form = this.formBuilder.group({
         home: [0, Validators.required],
         away: [0, Validators.required]
@@ -28,31 +29,27 @@ export class BetCardCmp {
   }
 
   ngOnInit() {
-    if (!this.match.finished) {
+    if (this.match.status === 0) {
       this.initForm();
     }
   }
 
   private initForm() {
-    console.log('bet @ init form', this.match);
-
     this.updateFormValue(this.match.bet);
 
     this.form
       .valueChanges
       .debounceTime(400)
       .distinctUntilChanged()
+      .filter(() => this.form.valid)
       .subscribe(data => {
-        if (this.form.valid) {
-          this.match.bet = {
-            homeGoals: data.home,
-            awayGoals: data.away
-          };
+        this.match.bet = {
+          homeGoals: data.home,
+          awayGoals: data.away
+        };
 
-          console.log('bet @ change', data, this.match.bet);
-
-          // TODO: save user bet to firebase
-        }
+        console.log('bet @ change', data, this.match.bet);
+        this.userBetsStore.save(this.match);
       });
   }
 

@@ -1,5 +1,7 @@
 $card-default-background: transparent;
 $card-stadium-height: 128px;
+$score-input-background: #eee;
+$score-input-width: 60px;
 
 md-toolbar.stadium {
   background: transparent;
@@ -29,14 +31,35 @@ md-card-content {
 
   .top {
     text-align: center;
+
+    .team-names {
+      margin-top: 1em;
+      min-height: 3em;
+
+      .name {
+        font-size: 1.2em;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .flag-icon {
+    font-size: 5em;
+    border: 1px solid #EFEBEB;
+  }
+
+  .flag-icon-gb-nir {
+    background-image: url('assets/img/flags/flag-gb-nir.svg');
   }
 
   .win {
     font-weight: 800;
+    font-size: 1.5em;
   }
 
   .score-input {
-    width: 60px;
+    background: $score-input-background;
+    width: $score-input-width;
     text-align: center;
   }
 
