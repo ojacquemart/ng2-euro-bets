@@ -195,6 +195,18 @@ module.exports = {
       to: 'assets'
     }]),
 
+    // Copies material-design-icons fonts
+    new CopyWebpackPlugin([{
+      from: 'node_modules/material-design-icons-iconfont/dist/fonts',
+      to: 'fonts'
+    }]),
+
+    // Copies material-design-icons css file
+    new CopyWebpackPlugin([{
+      from: 'node_modules/material-design-icons-iconfont/dist/material-design-icons.css',
+      to: '.'
+    }]),
+
     // Copies flag-icon-css
     new CopyWebpackPlugin([{
       from: 'node_modules/flag-icon-css/flags',
