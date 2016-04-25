@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="<%= webpackConfig.metadata.title %>">
 
+  <link rel="stylesheet" href="/assets/css/common.css">
+
   <!-- use http://www.favicon-generator.org/ to replace files in public/icon-->
   <link rel="apple-touch-icon" sizes="57x57" href="/assets/icon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/assets/icon/apple-icon-60x60.png">
@@ -33,44 +35,6 @@
 </head>
 
 <body>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
-    }
-
-    .splash-container {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      align-content: flex-start;
-      justify-content: center;
-      background: #E53935;
-      cursor: default;
-    }
-
-    .splash-item {
-      margin: 48px 0;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #fff;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-      border-radius: 2px;
-    }
-
-    .splash-item .uefa-euro-logo img {
-      width: 256px;
-      height: 256px;
-    }
-  </style>
-
   <app>
     <div class="splash-container">
       <div class="splash-item">
