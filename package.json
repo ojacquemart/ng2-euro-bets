@@ -1,10 +1,10 @@
 {
-  "name": "angular2-webpack-starter",
-  "version": "4.0.0",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
-  "license": "MIT",
+  "name": "ng2-euro-bets",
+  "version": "1.0.0",
+  "description": "An Angular 2 app basedz on the Angular 2 Webpack Starter kit",
+  "author": "Olivier Jacquemart>",
+  "homepage": "https://github.com/ojacquemart/ng2-euro-bets",
+  "license": "Unlicense",
   "scripts": {
     "rimraf": "rimraf",
     "tslint": "tslint",
@@ -115,10 +115,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
+    "url": "https://github.com/ojacquemart/ng2-euro-bets.git"
   },
   "bugs": {
-    "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
+    "url": "https://github.com/ojacquemart/ng2-euro-bets/issues"
   },
   "engines": {
     "node": ">= 4.2.1",
