@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteData} from "angular2/router";
+import {RouteData} from 'angular2/router';
 
 import {Page, PageTitle} from '../core/services/page-title';
 

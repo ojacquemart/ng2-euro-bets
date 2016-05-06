@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
-import {Auth} from "../../services/firebase/auth.service";
+
+import {Auth} from '../../services/firebase/auth.service';
 
 @Component({
   selector: 'bets-user-avatar',
