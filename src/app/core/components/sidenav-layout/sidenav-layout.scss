@@ -2,10 +2,35 @@ $title-text-color: #fff;
 $logo-width: 92px;
 $logo-height: 92px;
 
+.hero {
+  &:before {
+    background: url(assets/img/bg_pattern.png) top center #007cba;
+    background-size: 50%;
+    opacity: .2;
+    z-index: 1;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+
+  h1 {
+    z-index: 1;
+  }
+}
+
+.fixed-toolbar {
+  background: transparent;
+}
+
 .app-menu {
   md-toolbar {
     .title {
       color: $title-text-color;
+      z-index: 1;
     }
 
     .name {
