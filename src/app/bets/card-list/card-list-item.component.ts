@@ -7,6 +7,7 @@ import {MatchGroup} from '../models/bets.models';
 
 @Component({
   selector: 'bets-card-list',
+  styles: [require('./card-list.scss')],
   template: require('./card-list.html'),
   directives: [BetCardListItemCmp]
 })
