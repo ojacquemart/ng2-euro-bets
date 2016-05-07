@@ -5,9 +5,9 @@ import {Observable} from 'rxjs/Observable';
 
 import {Page, PageTitle} from '../core/services/page-title';
 
-import {MatchsBetsCmp} from './matchs/matchs-bets.component';
-import {GroupsBetsCmp} from './groups/groups-bets.component';
-import {FavoritesBetsCmp} from './favorites/favorites-bets.component';
+import {MatchesBetsCmp} from './matches/matches.component';
+import {GroupsBetsCmp} from './groups/groups.component';
+import {FavoritesBetsCmp} from './favorites/favorites.component';
 
 import {BetsStore} from './services/bets.store.service';
 import {Match, MatchGroup} from './models/bets.models';
@@ -15,7 +15,7 @@ import {Match, MatchGroup} from './models/bets.models';
 const PAGE:Page = {title: 'Bets'};
 
 @RouteConfig([
-  {path: '/matchs', as: 'Matchs', component: MatchsBetsCmp, useAsDefault: true},
+  {path: '/matchs', as: 'Matchs', component: MatchesBetsCmp, useAsDefault: true},
   {path: '/groups', as: 'Groups', component: GroupsBetsCmp},
   {path: '/favorites', as: 'Favorites', component: FavoritesBetsCmp}
 ])

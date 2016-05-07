@@ -10,10 +10,10 @@ import {UserBetsStore} from '../services/user-bets.store.service';
 
 @Component({
   selector: 'bet-card',
-  styles: [require('./bet-card.scss')],
-  template: require('./bet-card.html')
+  styles: [require('./card-list-item.scss')],
+  template: require('./card-list-item.html')
 })
-export class BetCardCmp {
+export class BetCardListItemCmp {
   @Input()
   private match:Match;
 

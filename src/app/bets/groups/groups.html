@@ -1,0 +1,52 @@
+<div class="groups" layout="row" layout-wrap layout-align="left start">
+
+  <template ngFor #groupTable [ngForOf]="groups | async">
+
+    <md-toolbar class="md-hue-2 md-accent group" [id]="groupTable.group.code">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ groupTable.group.i18n.fr }}</h2>
+        <span flex></span>
+
+        <button md-button aria-label="Show matches" (click)="groupTable.showMatches = !groupTable.showMatches">
+          Show matches
+        </button>
+      </div>
+    </md-toolbar>
+
+    <md-data-table layout-fill>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th class="md-text-cell">Team</th>
+        <th>P</th>
+        <th>W</th>
+        <th>L</th>
+        <th>D</th>
+        <th>F</th>
+        <th>A</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="#groupMember of groupTable.group.members">
+        <td>{{ groupMember.position }}</td>
+        <td class="md-text-cell">
+          <span flex-grow>
+            <span class="flag-icon" [ngClass]="'flag-icon-' + groupMember.isoAlpha2Code"></span>
+            {{ groupMember.i18n.fr }}
+          </span>
+        </td>
+        <td>{{ groupMember.points }}</td>
+        <td>{{ groupMember.win }}</td>
+        <td>{{ groupMember.lose }}</td>
+        <td>{{ groupMember.draw }}</td>
+        <td>{{ groupMember.goalsFor }}</td>
+        <td>{{ groupMember.goalsAgainst }}</td>
+      </tr>
+      </tbody>
+    </md-data-table>
+
+    <bets-card-list *ngIf="groupTable.showMatches" [matches]="groupTable.matches"></bets-card-list>
+  </template>
+</div>
+
+

@@ -12,7 +12,12 @@ import 'rxjs/add/observable/of';
 import 'rxjs/Rx';
 
 import {Auth} from '../../core/services/firebase/auth.service';
-import {Bet, Match, MatchGroup} from '../models/bets.models';
+import {
+  Bet,
+  Group,
+  Match,
+  MatchGroup,
+  GroupTable} from '../models/bets.models';
 import {UserBetsStore} from './user-bets.store.service';
 
 @Injectable()
@@ -28,22 +33,34 @@ export class BetsStore {
     return this.loading$.subscribe(fn);
   }
 
+  getGroups():Observable<Array<GroupTable>> {
+    this.startLoadingAndEmit();
+
+    let groups$ = this.af.object('/groups');
+    let matches = this.getMatchesBets$();
+
+    return Observable.zip(groups$, matches, (groups:Array<Group>, matches:Array<Match>) => {
+        let matchesByGroup = _.groupBy(matches, (match:Match) => match.phase.code);
+        return groups.map((group:Group) => {
+          let groupMatches = matchesByGroup[group.code];
+          let matchesByDay = this.groupMatchesByDay(groupMatches);
+
+          return {
+            group: group,
+            showMatches: false,
+            matches: matchesByDay
+          };
+        });
+      })
+      .do(() => {
+        this.stopLoadingAndEmit();
+      });
+  }
+
   getMatchesByDay():Observable<Array<MatchGroup>> {
     this.startLoadingAndEmit();
 
-    let fixtures$ = this.af.object('/fixtures');
-    let userBets$ = this.userBetsStore.getBets$();
-
-    return Observable.zip(fixtures$, userBets$, (matches:Array<Match>, userBets) => {
-        userBets = userBets || {};
-
-        matches.forEach((match:Match) => {
-          var bet = userBets[match.number];
-          this.setBetIfNeeded(match, bet);
-        });
-
-        return matches;
-      })
+    return this.getMatchesBets$()
       .map((matches:Array<Match>) => {
         return this.groupMatchesByDay(matches);
       })
@@ -55,6 +72,22 @@ export class BetsStore {
       .do(() => {
         this.stopLoadingAndEmit();
       });
+  }
+
+  private getMatchesBets$():Observable<Array<Match>> {
+    let fixtures$ = this.af.object('/fixtures');
+    let userBets$ = this.userBetsStore.getBets$();
+
+    return Observable.zip(fixtures$, userBets$, (matches:Array<Match>, userBets) => {
+      userBets = userBets || {};
+
+      matches.forEach((match:Match) => {
+        var bet = userBets[match.number];
+        this.setBetIfNeeded(match, bet);
+      });
+
+      return matches;
+    });
   }
 
   private setBetIfNeeded(match:Match, bet:Bet) {
@@ -73,7 +106,7 @@ export class BetsStore {
   private groupMatchesByDay(matches:Array<Match>):Array<MatchGroup> {
     return _.chain(matches)
       .filter((match) => {
-        return match.phase.code === 'group';
+        return match.phase.state === 'group';
       })
       .groupBy('date')
       .toPairsIn()

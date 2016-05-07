@@ -5,7 +5,7 @@ export interface Stadium {
 }
 
 export interface Team {
-  name: string;
+  i18n: I18n;
   isoAlpha2Code: string;
   goals: number;
   winner: boolean;
@@ -18,7 +18,9 @@ export interface Bet {
 }
 
 export interface Phase {
+  state: string;
   code: string;
+  i18n: I18n;
 }
 
 export interface Match {
@@ -36,7 +38,36 @@ export interface Match {
   videoUrl?: string;
 }
 
+export interface GroupTable {
+  group: Group;
+  showMatches: boolean;
+  matches: Array<MatchGroup>;
+}
+
+export interface Group {
+  code: string;
+  i18n: I18n;
+  members: Array<GroupMember>;
+}
+
+export interface GroupMember {
+  i18n: I18n;
+  isoAlpha2Code: String;
+  position: string;
+  points: string;
+  win: string;
+  lose: string;
+  draw: string;
+  goalsFor: string;
+  goalsAgainst: string;
+}
+
 export interface MatchGroup {
   day: string;
   items: Array<Match>;
+}
+
+export interface I18n {
+  fr: string;
+  en: string;
 }

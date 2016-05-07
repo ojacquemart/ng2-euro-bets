@@ -2,24 +2,24 @@ import {Component} from 'angular2/core';
 
 import {Observable} from 'rxjs/Observable';
 
-import {BetCardCmp} from '../card/bet-card.component';
+import {BetsCardListCmp} from '../card-list/card-list-item.component';
 import {BetsStore} from '../services/bets.store.service';
 import {MatchGroup} from '../models/bets.models';
 
 @Component({
-  directives: [BetCardCmp],
-  template: require('./match-bets.html')
+  directives: [BetsCardListCmp],
+  template: require('./matches.html')
 })
-export class MatchsBetsCmp {
+export class MatchesBetsCmp {
 
-  private matchesByDay:Observable<Array<MatchGroup>> = null;
+  private matches:Observable<Array<MatchGroup>> = null;
 
   constructor(private betsStore:BetsStore) {
     console.log('match bets @ init');
   }
 
   ngOnInit() {
-    this.matchesByDay = this.betsStore.getMatchesByDay();
+    this.matches = this.betsStore.getMatchesByDay();
   }
 
 }
