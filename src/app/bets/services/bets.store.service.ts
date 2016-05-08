@@ -14,6 +14,8 @@ import 'rxjs/Rx';
 import {Auth} from '../../core/services/firebase/auth.service';
 import {
   Bet,
+  Country,
+  CountryFavorite,
   Group,
   Match,
   MatchGroup,
@@ -72,6 +74,32 @@ export class BetsStore {
       .do(() => {
         this.stopLoadingAndEmit();
       });
+  }
+
+  getCountries(): Observable<CountryFavorite> {
+    this.startLoadingAndEmit();
+    let countries$ = this.af.object('/countries');
+    let userCountry$ = this.userBetsStore.getCountry();
+
+    return Observable.zip(countries$, userCountry$, (countries:Array<Country>, userCountry) => {
+      let favorite = this.getCountry(countries, userCountry);
+
+      return {
+        countries: countries,
+        favorite: favorite
+      };
+    })
+    .do(() => {
+      this.stopLoadingAndEmit();
+    });
+  }
+
+  private getCountry(countries: Array<Country>, userCountry: string) {
+    if (!userCountry) {
+      return null;
+    }
+
+    return countries.find((country: Country) => country.isoAlpha2Code === userCountry);
   }
 
   private getMatchesBets$():Observable<Array<Match>> {

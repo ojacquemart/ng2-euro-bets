@@ -1,0 +1,20 @@
+md-card {
+  md-card-title {
+    padding-top: 16px;
+
+    flag-icon {
+      font-size: 5em;
+    }
+  }
+
+  md-card-content {
+    height: 5em;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    text-align: center;
+
+    .country-name {
+      font-size: 1.2em;
+    }
+  }
+}

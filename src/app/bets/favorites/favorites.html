@@ -1,0 +1,27 @@
+<div layout="column" layout-padding>
+  <h2>Select your favorite team</h2>
+
+  <p>You could gain 50 points if the team you select win the tournament.</p>
+
+  <div layout="row" layout-align="center center" *ngIf="favorite">
+    <div flex="25" flex-md="30" flex-xs="50">
+      <favorite-country-card-item [country]="favorite" class="country-favorite">
+        <md-card-actions>
+          <button md-button class="md-icon-button" aria-label="Favorite">
+            <i class="country-favorite" md-icon>favorite</i>
+          </button>
+        </md-card-actions>
+      </favorite-country-card-item>
+    </div>
+  </div>
+</div>
+
+<div layout="row" layout-wrap layout-align="center start" class="country-cards">
+  <template ngFor #country [ngForOf]="countries">
+    <div flex="25" flex-md="30" flex-xs="50" layout="column">
+      <favorite-country-card-item [country]="country" class="country-card"
+                                  (click)="saveCountry(country)">
+      </favorite-country-card-item>
+    </div>
+  </template>
+</div>

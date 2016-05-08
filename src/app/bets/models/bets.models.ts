@@ -1,3 +1,13 @@
+export interface Country {
+  i18n: I18n;
+  isoAlpha2Code: string;
+}
+
+export interface CountryFavorite {
+  countries: Array<Country>
+  favorite: Country;
+}
+
 export interface Stadium {
   id: number;
   name: string;

@@ -25,7 +25,7 @@ const PAGE:Page = {title: 'Bets'};
 })
 export class BetsCmp {
 
-  private loading = true;
+  private loading = false;
   private loadingStateSubscription;
 
   constructor(private betsStore:BetsStore, pageTitle:PageTitle) {
