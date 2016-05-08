@@ -3,6 +3,12 @@ $logo-width: 92px;
 $logo-height: 92px;
 
 .hero {
+  h1 {
+    margin: 0 64px;
+  }
+}
+
+.hero, .fixed-toolbar.md-peekaboo-active  {
   &:before {
     background: url(assets/img/bg_pattern.png) top center #007cba;
     background-size: 50%;
@@ -17,9 +23,13 @@ $logo-height: 92px;
     left: 0;
   }
 
-  h1 {
+  h1, h2 {
     z-index: 1;
   }
+}
+
+.fixed-toolbar.md-peekaboo-active {
+  background: #03a9f4;
 }
 
 .fixed-toolbar {
