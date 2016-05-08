@@ -36,7 +36,8 @@ import {TableCmp} from './table/table.component';
 @RouteConfig([
   {path: '/', name: 'Index', redirectTo: ['/Bets']},
   {path: '/bets/...', component: BetsCmp, as: 'Bets'},
-  {path: '/table', name: 'Table', component: TableCmp}
+  {path: '/table', name: 'Table', component: TableCmp},
+  {path: '/**', redirectTo: ['/Bets']}
 ])
 export class App {
 
