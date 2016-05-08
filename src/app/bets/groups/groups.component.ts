@@ -2,14 +2,15 @@ import {Component} from 'angular2/core';
 
 import {Observable} from 'rxjs/Observable';
 
+import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
 import {BetsStore} from '../services/bets.store.service';
 import {GroupTable} from '../models/bets.models';
 import {BetsCardListCmp} from '../card-list/card-list-item.component';
 
 @Component({
-  directives: [BetsCardListCmp],
+  directives: [BetsCardListCmp, FlagIcon],
   styles: [require('./groups.scss')],
-  template: require('./groups.html')
+  template: require('./groups.html'),
 })
 export class GroupsBetsCmp {
 

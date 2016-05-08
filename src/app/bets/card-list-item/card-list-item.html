@@ -20,11 +20,11 @@
     <div class="top">
       <div layout="row" layout-align="space-between center">
         <div flex="45">
-          <span class="flag-icon" [ngClass]="'flag-icon-' + match.home.isoAlpha2Code"></span>
+          <flag-icon [code]="match.home.isoAlpha2Code"></flag-icon>
         </div>
         <div flex></div>
         <div flex="45">
-          <span class="flag-icon" [ngClass]="'flag-icon-' + match.away.isoAlpha2Code"></span>
+          <flag-icon [code]="match.away.isoAlpha2Code"></flag-icon>
         </div>
       </div>
 

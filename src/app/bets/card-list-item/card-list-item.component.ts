@@ -7,11 +7,13 @@ import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/randomNumberGene
 
 import {validateScore} from './score.validator';
 import {UserBetsStore} from '../services/user-bets.store.service';
+import {FlagIcon} from "../../core/components/flag-icon/flag-icon.component";
 
 @Component({
   selector: 'bet-card',
   styles: [require('./card-list-item.scss')],
-  template: require('./card-list-item.html')
+  template: require('./card-list-item.html'),
+  directives: [FlagIcon]
 })
 export class BetCardListItemCmp {
   @Input()

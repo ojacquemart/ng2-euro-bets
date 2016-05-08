@@ -31,7 +31,7 @@
         <td>{{ groupMember.position }}</td>
         <td class="md-text-cell">
           <span flex-grow>
-            <span class="flag-icon" [ngClass]="'flag-icon-' + groupMember.isoAlpha2Code"></span>
+            <flag-icon [code]="groupMember.isoAlpha2Code"></flag-icon>
             {{ groupMember.i18n.fr }}
           </span>
         </td>
