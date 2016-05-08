@@ -15,7 +15,7 @@ import {Match, MatchGroup} from './models/bets.models';
 const PAGE:Page = {title: 'Bets'};
 
 @RouteConfig([
-  {path: '/matchs', as: 'Matchs', component: MatchesBetsCmp, useAsDefault: true},
+  {path: '/matches', as: 'Matches', component: MatchesBetsCmp, useAsDefault: true},
   {path: '/groups', as: 'Groups', component: GroupsBetsCmp},
   {path: '/favorites', as: 'Favorites', component: FavoritesBetsCmp}
 ])
