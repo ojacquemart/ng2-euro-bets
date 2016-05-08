@@ -11,9 +11,9 @@ import {FlagIcon} from "../../core/components/flag-icon/flag-icon.component";
 
 @Component({
   selector: 'bet-card',
-  styles: [require('./card-list-item.scss')],
+  directives: [FlagIcon],
   template: require('./card-list-item.html'),
-  directives: [FlagIcon]
+  styles: [require('./card-list-item.scss')]
 })
 export class BetCardListItemCmp {
   @Input()

@@ -12,8 +12,8 @@ import {UserAvatar} from '../user-avatar/user-avatar.component';
   selector: 'bets-sidenav-layout',
   directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES, UserAvatar, UefaEuroLogoCmp],
   providers: [SidenavService],
-  styles: [require('./sidenav-layout.scss')],
-  template: require('./sidenav-layout.html')
+  template: require('./sidenav-layout.html'),
+  styles: [require('./sidenav-layout.scss')]
 })
 export class SidenavLayoutCmp {
 

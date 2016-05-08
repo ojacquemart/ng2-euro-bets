@@ -2,6 +2,7 @@ import {Component, Input} from 'angular2/core';
 
 @Component({
   selector: 'flag-icon',
+  template: `<span class="flag-icon" [ngClass]="'flag-icon-' + code"></span>`,
   styles: [
     `
     .flag-icon {
@@ -13,7 +14,6 @@ import {Component, Input} from 'angular2/core';
     }
   `
   ],
-  template: `<span class="flag-icon" [ngClass]="'flag-icon-' + code"></span>`
 })
 export class FlagIcon {
   @Input()

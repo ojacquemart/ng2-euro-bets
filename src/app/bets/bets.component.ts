@@ -20,8 +20,8 @@ const PAGE:Page = {title: 'Bets'};
   {path: '/favorites', as: 'Favorites', component: FavoritesBetsCmp}
 ])
 @Component({
-  styles: [require('./bets.scss')],
-  template: require('./bets.html')
+  template: require('./bets.html'),
+  styles: [require('./bets.scss')]
 })
 export class BetsCmp {
 

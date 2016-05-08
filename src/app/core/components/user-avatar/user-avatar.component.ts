@@ -4,8 +4,8 @@ import {Auth} from '../../services/firebase/auth.service';
 
 @Component({
   selector: 'bets-user-avatar',
-  styles: [require('./user-avatar.scss')],
-  template: require('./user-avatar.html')
+  template: require('./user-avatar.html'),
+  styles: [require('./user-avatar.scss')]
 })
 export class UserAvatar {
 

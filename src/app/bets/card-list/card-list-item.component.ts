@@ -8,9 +8,9 @@ import {MatchGroup} from '../models/bets.models';
 
 @Component({
   selector: 'bets-card-list',
-  styles: [require('./card-list.scss')],
+  directives: [BetCardListItemCmp, FlagIcon],
   template: require('./card-list.html'),
-  directives: [BetCardListItemCmp, FlagIcon]
+  styles: [require('./card-list.scss')]
 })
 export class BetsCardListCmp {
   @Input()

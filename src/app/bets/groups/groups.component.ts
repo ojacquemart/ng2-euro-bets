@@ -9,8 +9,8 @@ import {BetsCardListCmp} from '../card-list/card-list-item.component';
 
 @Component({
   directives: [BetsCardListCmp, FlagIcon],
-  styles: [require('./groups.scss')],
   template: require('./groups.html'),
+  styles: [require('./groups.scss')]
 })
 export class GroupsBetsCmp {
 
