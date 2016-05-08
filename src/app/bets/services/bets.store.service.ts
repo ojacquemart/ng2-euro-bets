@@ -85,7 +85,7 @@ export class BetsStore {
       let favorite = this.getCountry(countries, userCountry);
 
       return {
-        countries: countries,
+        countries: _.sortBy(countries, (country: Country) => country.i18n.fr),
         favorite: favorite
       };
     })
