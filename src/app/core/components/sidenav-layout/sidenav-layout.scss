@@ -2,6 +2,10 @@ $title-text-color: #fff;
 $logo-width: 92px;
 $logo-height: 92px;
 
+md-list-item.divider {
+  border-top: 1px solid #ddd;
+}
+
 .hero {
   h1 {
     margin: 0 64px;

@@ -1,72 +1,69 @@
-<div layout="row" layout-align="center start">
-  <md-sidenav-container layout="row" flex>
-    <md-sidenav name="menu" layout="column" flex class="app-menu" [style]="fullPage ? 'side' : 'over'">
-      <md-toolbar class="md-accent title">
-        <div class="md-toolbar-tools name" layout="column" layout-align="center center" [routerLink]="['Bets']">
-          <div>
-            <h1>Euro 2016 Bets</h1>
-          </div>
+<md-sidenav-container layout="row" flex>
+  <md-sidenav name="menu" layout="column" flex class="app-menu" [style]="fullPage ? 'side' : 'over'">
+    <md-toolbar class="md-accent title">
+      <div class="md-toolbar-tools name" layout="column" layout-align="center center" [routerLink]="['Bets']">
+        <div>
+          <h1>Euro 2016 Bets</h1>
         </div>
-        <span flex></span>
-        <bets-user-avatar></bets-user-avatar>
-        <div class="user md-toolbar-tools-bottom inset" layout="row" layout-align="space-between center">
-          <div><span>Rank: -</span></div>
-          <div><span>Points: -</span></div>
-        </div>
-      </md-toolbar>
-      <div layout="row" layout-align="start start">
-        <md-list flex>
-          <md-list-item md-ink [routerLink]="['Bets']">
-            <span>Bets</span>
-          </md-list-item>
-          <md-list-item md-ink [routerLink]="['Table']">
-            <span>Table</span>
-          </md-list-item>
-          <md-list-item md-ink (click)="logout()">
-            <a>Logout</a>
-          </md-list-item>
-        </md-list>
       </div>
-      <div flex></div>
-      <div layout="row" layout-align="center end">
-        <bets-uefa-euro-logo flex [size]="'md'"></bets-uefa-euro-logo>
+      <span flex></span>
+      <bets-user-avatar></bets-user-avatar>
+      <div class="user md-toolbar-tools-bottom inset" layout="row" layout-align="space-between center">
+        <div><span>Rank: -</span></div>
+        <div><span>Points: -</span></div>
       </div>
-    </md-sidenav>
-    <section class="app-content" layout="column" layout-align="start center" flex>
-      <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo [break]="210" breakAction="show"></md-toolbar>
-      <md-toolbar class="fixed-toolbar"
-                  md-peekaboo
-                  [break]="190"
-                  breakAction="show">
-      </md-toolbar>
-      <md-toolbar class="hero">
-        <h1 md-peekaboo
+    </md-toolbar>
+    <div layout="row" layout-align="start start">
+      <md-list flex>
+        <md-list-item *ngFor="#mainItem of mainItems"
+                      md-ink [class.md-active]="mainItem.title === page?.title"
+                      (inked)="navigate(mainItem.linkParams)">
+          {{mainItem.title}}
+        </md-list-item>
+        <md-list-item md-ink router-link-active class="divider" (inked)="logout()">
+          <a>Logout</a>
+        </md-list-item>
+      </md-list>
+    </div>
+    <div flex></div>
+    <div layout="row" layout-align="center end">
+      <bets-uefa-euro-logo flex [size]="'md'"></bets-uefa-euro-logo>
+    </div>
+  </md-sidenav>
+  <section class="app-content" layout="column" layout-align="start center" flex>
+    <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo [break]="210" breakAction="show"></md-toolbar>
+    <md-toolbar class="fixed-toolbar"
+                md-peekaboo
+                [break]="140"
+                breakAction="show">
+    </md-toolbar>
+    <md-toolbar class="hero">
+      <h1 md-peekaboo
+          [breakMd]="72"
+          [breakXs]="20"
+          breakAction="hide">{{ page?.title }}</h1>
+    </md-toolbar>
+    <md-toolbar class="fixed-toolbar">
+      <div class="md-toolbar-tools">
+        <button md-button
+                class="md-hamburger md-icon-button"
+                hide-gt-lg
+                (click)="showMenu($event)"
+                aria-label="Home">
+          <i md-icon class="md-dark">menu</i>
+        </button>
+        <h2 md-peekaboo
             [breakMd]="72"
             [breakXs]="20"
-            breakAction="hide">{{ page?.title }}</h1>
-      </md-toolbar>
-      <md-toolbar class="fixed-toolbar">
-        <div class="md-toolbar-tools">
-          <button md-button
-                  class="md-hamburger md-icon-button"
-                  hide-gt-lg
-                  (click)="showMenu($event)"
-                  aria-label="Home">
-            <i md-icon class="md-dark">menu</i>
-          </button>
-          <h2 md-peekaboo
-              [breakMd]="72"
-              [breakXs]="20"
-              breakAction="show">
-            <span>{{ page?.title }}</span>
-          </h2>
-          <span flex></span>
-        </div>
-      </md-toolbar>
+            breakAction="show">
+          <span>{{ page?.title }}</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
 
-      <md-content class="content" md-scroll-y layout-padding>
-        <ng-content></ng-content>
-      </md-content>
-    </section>
-  </md-sidenav-container>
-</div>
+    <md-content class="content" md-scroll-y layout-padding>
+      <ng-content></ng-content>
+    </md-content>
+  </section>
+</md-sidenav-container>
