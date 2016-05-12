@@ -59,6 +59,20 @@ bets-sidenav-layout {
     background-color: md-color($md-background, 100);
   }
 
+  md-data-table.euro {
+    th {
+      padding: 24px 6px;
+    }
+
+    td {
+      padding: 14px 6px;
+    }
+
+    th, td {
+      font-size: 1rem;
+    }
+  }
+
   md-content.content {
     background-color: transparent;
     width: 800px;

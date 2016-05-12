@@ -1,0 +1,12 @@
+md-toolbar {
+  background: transparent;
+  color: #F44336;
+  border-bottom: 1px solid #F44336;
+  text-transform: uppercase;
+
+  .fixed-fab {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+  }
+}

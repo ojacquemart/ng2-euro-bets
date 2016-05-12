@@ -27,7 +27,9 @@ export class SidenavLayoutCmp {
   private mainItems:Array<SidenavItem> = [
     {pathStart: 'bets', linkParams: ['Bets'], title: 'Bets'},
     {pathStart: 'table', linkParams: ['Table'], title: 'Table'},
+    {pathStart: 'leagues', linkParams:['Leagues'], title: 'Leagues'}
   ];
+
   private page:Page;
 
   constructor(private auth:Auth, private router:Router,
@@ -49,7 +51,7 @@ export class SidenavLayoutCmp {
       this.sidenav.hide('menu');
     }
   }
-  
+
   logout() {
     this.auth.logout();
   }

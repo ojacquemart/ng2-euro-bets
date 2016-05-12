@@ -1,0 +1,71 @@
+<div class="md-padding" layout="column" layout-wrap layout-align="left start">
+  <md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+      <h2><span>Leagues</span></h2>
+      <span flex></span>
+      <button md-fab class="md-fab" aria-label="Create a league" (click)="showingForm = !showingForm">
+        <i md-icon>add</i>
+      </button>
+    </div>
+  </md-toolbar>
+
+  <div flex *ngIf="showingForm">
+    <md-card >
+      <md-card-title>
+        Create your league
+      </md-card-title>
+      <md-card-content>
+        <div layout-padding>
+          <form [ngFormModel]="projectForm">
+            <md-input-container class="md-block">
+              <label for="name">Name</label>
+              <input md-input ngControl="name" id="name">
+              <div md-messages="name" role="alert">
+                <div md-message="required">This is required.</div>
+                <div md-message="invalidName">This is invalid.</div>
+                <div md-message="nameTaken">Name taken.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label for="description">Description</label>
+              <input md-input ngControl="description" id="description">
+              <div md-messages="description">
+                <div md-message="required">This is required.</div>
+                <div md-message="maxlength">The name has to be less than 30 characters long.</div>
+              </div>
+            </md-input-container>
+          </form>
+        </div>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <button md-raised-button class="md-raised md-hue-1 md-primary"
+          [disabled]="!projectForm.valid" (click)="save()">Post</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+  <div flex>
+    <md-data-table class="euro" layout-fill>
+      <thead>
+      <tr>
+        <th class="md-text-cell">Name</th>
+        <th class="md-text-cell">Description</th>
+        <th hide-xs>Members</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="#leagueHolder of leagues$ | async">
+        <td class="md-text-cell">{{ leagueHolder.league.name }}</td>
+        <td class="md-text-cell">{{ leagueHolder.league.description }}</td>
+        <td hide-xs>{{ leagueHolder.membersCount }}</td>
+        <td>
+          <button *ngIf="leagueHolder.actions.canJoin" md-button aria-label="Join" (click)="join(leagueHolder.league)">Join</button>
+          <button *ngIf="leagueHolder.actions.canLeave" md-button aria-label="Leave" (click)="leave(leagueHolder.league)">Leave</button>
+          <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Delete" (click)="showDeleteConfirm(leagueHolder.league, $event)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </md-data-table>
+  </div>
+
+</div>

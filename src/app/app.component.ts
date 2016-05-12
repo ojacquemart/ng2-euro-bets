@@ -11,6 +11,7 @@ import {SidenavLayoutCmp} from './core/components/sidenav-layout/sidenav-layout.
 import {LoginCmp} from './login/login.component';
 import {BetsCmp} from './bets/bets.component';
 import {TableCmp} from './table/table.component';
+import {LeaguesCmp} from './leagues/leagues.component';
 
 /*
  * App Component
@@ -37,6 +38,7 @@ import {TableCmp} from './table/table.component';
   {path: '/', name: 'Index', redirectTo: ['/Bets']},
   {path: '/bets/...', component: BetsCmp, as: 'Bets'},
   {path: '/table', name: 'Table', component: TableCmp},
+  {path: '/leagues', name: 'Leagues', component: LeaguesCmp},
   {path: '/**', redirectTo: ['/Bets']}
 ])
 export class App {
