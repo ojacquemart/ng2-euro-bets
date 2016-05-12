@@ -13,10 +13,9 @@
       </div>
     </md-toolbar>
 
-    <md-data-table layout-fill>
+    <md-data-table class="euro" layout-fill>
       <thead>
       <tr>
-        <th>#</th>
         <th class="md-text-cell">Team</th>
         <th>P</th>
         <th>W</th>
@@ -28,7 +27,6 @@
       </thead>
       <tbody>
       <tr *ngFor="#groupMember of groupTable.group.members">
-        <td>{{ groupMember.position }}</td>
         <td class="md-text-cell">
           <span flex-grow>
             <flag-icon [code]="groupMember.isoAlpha2Code"></flag-icon>
