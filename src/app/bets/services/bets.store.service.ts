@@ -12,6 +12,8 @@ import 'rxjs/add/observable/of';
 import 'rxjs/Rx';
 
 import {Auth} from '../../core/services/firebase/auth.service';
+import {LoadingState} from '../../core/services/loading-state/loading-state.service';
+
 import {
   Bet,
   Country,
@@ -25,18 +27,11 @@ import {UserBetsStore} from './user-bets.store.service';
 @Injectable()
 export class BetsStore {
 
-  loading:boolean;
-  loading$:EventEmitter<Boolean> = new EventEmitter<Boolean>();
-
-  constructor(private af:AngularFire, private userBetsStore:UserBetsStore) {
-  }
-
-  subscribeLoadingState(fn:(loading:boolean) => void) {
-    return this.loading$.subscribe(fn);
+  constructor(private af:AngularFire, private loadingState: LoadingState, private userBetsStore:UserBetsStore) {
   }
 
   getGroups():Observable<Array<GroupTable>> {
-    this.startLoadingAndEmit();
+    this.loadingState.start();
 
     let groups$ = this.af.object('/groups');
     let matches = this.getMatchesBets$();
@@ -55,12 +50,12 @@ export class BetsStore {
         });
       })
       .do(() => {
-        this.stopLoadingAndEmit();
+        this.loadingState.stop();
       });
   }
 
   getMatchesByDay():Observable<Array<MatchGroup>> {
-    this.startLoadingAndEmit();
+    this.loadingState.start();
 
     return this.getMatchesBets$()
       .map((matches:Array<Match>) => {
@@ -72,12 +67,12 @@ export class BetsStore {
         return Observable.of([]);
       })
       .do(() => {
-        this.stopLoadingAndEmit();
+        this.loadingState.stop();
       });
   }
 
   getCountries(): Observable<CountryFavorite> {
-    this.startLoadingAndEmit();
+    this.loadingState.stop();
     let countries$ = this.af.object('/countries');
     let userCountry$ = this.userBetsStore.getCountry();
 
@@ -90,7 +85,7 @@ export class BetsStore {
       };
     })
     .do(() => {
-      this.stopLoadingAndEmit();
+      this.loadingState.stop();
     });
   }
 
@@ -145,20 +140,6 @@ export class BetsStore {
         };
       })
       .value();
-  }
-
-  startLoadingAndEmit() {
-    this.loading = true;
-    this.emitLoading();
-  }
-
-  private stopLoadingAndEmit() {
-    this.loading = false;
-    this.emitLoading();
-  }
-
-  private emitLoading() {
-    this.loading$.emit(this.loading);
   }
 
 }

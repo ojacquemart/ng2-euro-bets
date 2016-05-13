@@ -1,4 +1,4 @@
-import {Inject, Injectable, EventEmitter} from 'angular2/core';
+import {Injectable, EventEmitter} from 'angular2/core';
 
 @Injectable()
 export class LoadingState {
@@ -6,8 +6,25 @@ export class LoadingState {
   loading:boolean;
   loading$:EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
-  public subscribe(fn:(loading:boolean) => void) {
+  subscribe(fn:(loading:boolean) => void) {
     return this.loading$.subscribe(fn);
+  }
+
+  start() {
+    this.loading = true;
+    this.emitLoading();
+  }
+
+  stop() {
+    this.loading = false;
+    this.emitLoading();
+  }
+
+  private stopLoadingAndEmit() {
+  }
+
+  private emitLoading() {
+    this.loading$.emit(this.loading);
   }
 
 }

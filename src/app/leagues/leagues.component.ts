@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 
 import {MdDialog, MdDialogRef, Media} from 'ng2-material/all';
 
+import {LoadingState} from '../core/services/loading-state/loading-state.service';
 import {Page} from '../core/services/page-title/page.model';
 import {PageTitle} from '../core/services/page-title/page-title.service';
 import {League} from '../leagues/models/league.models';
@@ -24,13 +25,22 @@ const TIMEOUT_VALIDATION_LEAGUE_NAME = 750;
 })
 export class LeaguesCmp {
 
-  projectForm:ControlGroup;
-  showingForm:boolean;
+  private loading = false;
+  private loadingStateSubscription;
 
-  leagues$:Observable<Array<LeagueHolder>>;
+  private projectForm:ControlGroup;
+  private showingForm:boolean;
 
-  constructor(public dialog:MdDialog, public element:ElementRef, private leaguesStore:LeaguesStore, pageTitle:PageTitle, fb:FormBuilder) {
+  private leagues$:Observable<Array<LeagueHolder>>;
+
+  constructor(public dialog:MdDialog, public element:ElementRef,
+              private leaguesStore:LeaguesStore, loadingState:LoadingState,
+              pageTitle:PageTitle, fb:FormBuilder) {
     console.log('leagues @ init');
+
+    this.loadingStateSubscription = loadingState.subscribe((loading:boolean) => {
+      this.loading = loading;
+    });
 
     pageTitle.emit(PAGE);
 
@@ -45,7 +55,7 @@ export class LeaguesCmp {
           });
         }
       ],
-      description: ['', Validators.required, Validators.maxLength(30)]
+      description: ['', Validators.compose([Validators.required, Validators.maxLength(30)])]
     });
   }
 
@@ -104,6 +114,12 @@ export class LeaguesCmp {
     console.log('leagues @ ngOnInit');
 
     this.leagues$ = this.leaguesStore.list();
+  }
+
+  ngOnDestroy() {
+    if (this.loadingStateSubscription) {
+      this.loadingStateSubscription.unsubscribe();
+    }
   }
 
 }

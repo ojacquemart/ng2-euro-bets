@@ -4,6 +4,7 @@ import {RouteConfig} from 'angular2/router';
 import {Observable} from 'rxjs/Observable';
 
 import {Page, PageTitle} from '../core/services/page-title';
+import {LoadingState} from '../core/services/loading-state/loading-state.service';
 
 import {MatchesBetsCmp} from './matches/matches.component';
 import {GroupsBetsCmp} from './groups/groups.component';
@@ -28,7 +29,7 @@ export class BetsCmp {
   private loading = false;
   private loadingStateSubscription;
 
-  constructor(private betsStore:BetsStore, pageTitle:PageTitle) {
+  constructor(private betsStore:BetsStore, private loadingState: LoadingState, pageTitle:PageTitle) {
     console.log('bets @ init');
 
     pageTitle.emit(PAGE);
@@ -37,7 +38,7 @@ export class BetsCmp {
   ngOnInit() {
     console.log('betsCmp @ ngOnInit');
 
-    this.loadingStateSubscription = this.betsStore.subscribeLoadingState((loading: boolean) => {
+    this.loadingStateSubscription = this.loadingState.subscribe((loading: boolean) => {
       this.loading = loading;
     });
   }

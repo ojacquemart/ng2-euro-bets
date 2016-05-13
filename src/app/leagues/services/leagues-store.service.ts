@@ -6,17 +6,20 @@ import {FirebaseRef} from 'angularfire2/tokens';
 import 'rxjs/add/operator/map';
 
 import {Auth} from '../../core/services/firebase/auth.service';
+import {LoadingState} from '../../core/services/loading-state/loading-state.service';
 import {Slugifier} from '../../core/services/util/slugifer.service';
 import {League, LeagueHolder, Members} from '../models/league.models';
 
 @Injectable()
 export class LeaguesStore {
 
-  constructor(private auth:Auth, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
+  constructor(private auth:Auth, private loadingState: LoadingState, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
   }
 
   list() {
     let userUid = this.auth.uid;
+
+    this.loadingState.start();
 
     return this.af.list('/leagues')
       .map((leagues:Array<League>) => {
@@ -37,7 +40,8 @@ export class LeaguesStore {
       })
       .map((leagues:Array<LeagueHolder>) => {
         return _.sortBy(leagues, (leagueHolder:LeagueHolder) => leagueHolder.league.name);
-      });
+      })
+      .do(() => this.loadingState.stop());
   }
 
   validateExists(leagueName:string, resolve:any) {

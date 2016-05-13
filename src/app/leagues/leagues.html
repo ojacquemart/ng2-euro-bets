@@ -8,6 +8,7 @@
       </button>
     </div>
   </md-toolbar>
+  <md-progress-linear class="md-accent md-hue-3"  mode="indeterminate" [hidden]="!loading" ></md-progress-linear>
 
   <div flex *ngIf="showingForm">
     <md-card >
