@@ -17,6 +17,8 @@ $primary-text-color:   #212121;
 $secondary-text-color: #727272;
 $divider-color:        #B6B6B6;
 
+$page-title-color: #F44336;
+
 $app-content-lg: 940px;
 $app-content-md: 580px;
 $app-content-sm: 360px;
@@ -57,6 +59,13 @@ bets-sidenav-layout {
 
   .app-content {
     background-color: md-color($md-background, 100);
+  }
+
+  md-toolbar.page-title {
+    background: transparent;
+    color: $page-title-color;
+    border-bottom: 1px solid $page-title-color;
+    text-transform: uppercase;
   }
 
   md-data-table.euro {

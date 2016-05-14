@@ -7,11 +7,8 @@ const PAGE: Page = {title: 'Table'};
 
 @Component({
   directives: [],
-  template: `
-      Table
-
-      TODO
-  `
+  template: require('./table.html'),
+  styles: [require('./table.scss')]
 })
 export class TableCmp {
 
