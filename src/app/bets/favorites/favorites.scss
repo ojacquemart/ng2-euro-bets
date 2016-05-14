@@ -1,10 +1,26 @@
-i.country-favorite {
-  color: #D52B1E;
-}
-
 .country-cards {
+  background: #029FE8;
+
+  md-card-content {
+    height: 5em;
+  }
+
   .country-card {
     cursor: pointer;
+  }
+}
+
+favorite-country-card-item.country-favorite  {
+  md-card {
+    background: #FFA000;
+
+    md-card-content {
+      height: 2em;
+    }
+
+    md-card-actions {
+      padding-bottom: 8px;
+    }
   }
 }
 
