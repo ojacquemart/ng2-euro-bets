@@ -10,7 +10,7 @@ import {FORM_PROVIDERS} from 'angular2/common';
 // Angular 2 Http
 import {HTTP_PROVIDERS} from 'angular2/http';
 // Angular 2 Router
-import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from 'angular2/router';
+import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
 // Ng Material 2 while Angular Material 2 provides more features
 import {MATERIAL_PROVIDERS} from 'ng2-material/all';
@@ -31,7 +31,7 @@ export const APPLICATION_PROVIDERS = [
   ...MATERIAL_PROVIDERS,
   ...ROUTER_PROVIDERS,
 
-  provide(LocationStrategy, {useClass: PathLocationStrategy}),
+  provide(LocationStrategy, {useClass: HashLocationStrategy}),
 ];
 
 export const PROVIDERS = [
