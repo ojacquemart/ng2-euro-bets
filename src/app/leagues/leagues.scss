@@ -4,9 +4,9 @@ md-toolbar {
   border-bottom: 1px solid #F44336;
   text-transform: uppercase;
 
-  .fixed-fab {
-    position: fixed;
-    bottom: 5%;
-    right: 5%;
+  .fab {
+    position: absolute;
+    top: 55%;
+    right: 0;
   }
 }
