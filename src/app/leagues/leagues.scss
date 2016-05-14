@@ -1,7 +1,10 @@
 md-toolbar {
   .fab {
     position: absolute;
-    top: 55%;
+    top: 0;
     right: 0;
+    @media (max-width: 599px) {
+      top: -10%;
+    }
   }
 }
