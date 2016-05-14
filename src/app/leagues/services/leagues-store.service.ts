@@ -69,10 +69,24 @@ export class LeaguesStore {
     });
   }
 
+  update(league:League, previousLeague: League, onSuccess:() => void) {
+    console.log('leagues store @', league, 'will replace', previousLeague);
+    delete league['$key'];
+
+    let onDeleteComplete = () => {
+      league.members = previousLeague.members;
+      this.save(league, onSuccess);
+    };
+    this.ref.child('/leagues').child(previousLeague.slug).remove(onDeleteComplete);
+  }
+
   save(league:League, onSuccess:() => void) {
     league.slug = Slugifier.slugify(league.name);
     league.owner = this.auth.uid;
-    league.members = {[`${league.owner}`]: true};
+    if (!league.members) {
+      league.members = {};
+    }
+    league.members[`${league.owner}`] = true;
 
     var leagueRef = this.ref.child('/leagues').child(league.slug);
     leagueRef.set(league)

@@ -20,7 +20,7 @@
           <form [ngFormModel]="projectForm">
             <md-input-container class="md-block">
               <label for="name">Name</label>
-              <input md-input ngControl="name" id="name">
+              <input md-input ngControl="name" [(ngModel)]="league.name" id="name">
               <div md-messages="name" role="alert">
                 <div md-message="required">This is required.</div>
                 <div md-message="invalidName">This is invalid.</div>
@@ -29,7 +29,7 @@
             </md-input-container>
             <md-input-container class="md-block">
               <label for="description">Description</label>
-              <input md-input ngControl="description" id="description">
+              <input md-input ngControl="description" [(ngModel)]="league.description" id="description">
               <div md-messages="description">
                 <div md-message="required">This is required.</div>
                 <div md-message="maxlength">The name has to be less than 30 characters long.</div>
@@ -39,8 +39,10 @@
         </div>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
-        <button md-raised-button class="md-raised md-hue-1 md-primary"
-          [disabled]="!projectForm.valid" (click)="save()">Post</button>
+        <button md-button aria-label="Cancel" class="md-primary"
+                (click)="cancel()">Cancel</button>
+        <button md-raised-button aria-label="Save" class="md-raised md-hue-1 md-primary"
+                [disabled]="!projectForm.valid" (click)="persist()">Save</button>
       </md-card-actions>
     </md-card>
   </div>
@@ -60,9 +62,14 @@
         <td class="md-text-cell">{{ leagueHolder.league.description }}</td>
         <td hide-xs>{{ leagueHolder.membersCount }}</td>
         <td>
-          <button *ngIf="leagueHolder.actions.canJoin" md-button aria-label="Join" (click)="join(leagueHolder.league)">Join</button>
-          <button *ngIf="leagueHolder.actions.canLeave" md-button aria-label="Leave" (click)="leave(leagueHolder.league)">Leave</button>
-          <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Delete" (click)="showDeleteConfirm(leagueHolder.league, $event)">Delete</button>
+          <button *ngIf="leagueHolder.actions.canJoin" md-button aria-label="Join"
+            (click)="join(leagueHolder.league)">Join</button>
+          <button *ngIf="leagueHolder.actions.canLeave" md-button aria-label="Leave"
+            (click)="leave(leagueHolder.league)">Leave</button>
+          <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Edit"
+            (click)="edit(leagueHolder.league)">Edit</button>
+          <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Delete"
+            (click)="deleteConfirm(leagueHolder.league, $event)">Delete</button>
         </td>
       </tr>
       </tbody>

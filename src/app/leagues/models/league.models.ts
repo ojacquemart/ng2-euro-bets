@@ -1,9 +1,8 @@
-export interface League {
+export class League {
   slug: string;
   name: string;
   description: string;
   owner: string;
-  img?: string;
   members: Members;
 }
 

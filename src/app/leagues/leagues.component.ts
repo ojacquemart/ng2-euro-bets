@@ -1,4 +1,4 @@
-import {Component, Input, ElementRef} from 'angular2/core';
+import {ApplicationRef, Component, Input, ElementRef} from 'angular2/core';
 import {FORM_DIRECTIVES, Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
 
 import {Observable} from 'rxjs/Observable';
@@ -28,14 +28,19 @@ export class LeaguesCmp {
   private loading = false;
   private loadingStateSubscription;
 
+  private league = new League();
+
   private projectForm:ControlGroup;
   private showingForm:boolean;
+  private editingForm:boolean;
+  private editingLeague:League;
 
   private leagues$:Observable<Array<LeagueHolder>>;
 
   constructor(public dialog:MdDialog, public element:ElementRef,
-              private leaguesStore:LeaguesStore, loadingState:LoadingState,
-              pageTitle:PageTitle, fb:FormBuilder) {
+              private appRef:ApplicationRef,
+              private leaguesStore:LeaguesStore,
+              loadingState:LoadingState, pageTitle:PageTitle, fb:FormBuilder) {
     console.log('leagues @ init');
 
     this.loadingStateSubscription = loadingState.subscribe((loading:boolean) => {
@@ -50,6 +55,13 @@ export class LeaguesCmp {
           return new Promise((resolve) => {
             setTimeout(() => {
               let leagueName = control.value;
+              console.log('leagues @ validating league name:', leagueName);
+
+              if (this.editingForm && this.editingLeague.name === leagueName) {
+                resolve(null);
+                return;
+              }
+
               leaguesStore.validateExists(leagueName, resolve);
             }, TIMEOUT_VALIDATION_LEAGUE_NAME);
           });
@@ -59,23 +71,48 @@ export class LeaguesCmp {
     });
   }
 
-  save() {
-    let league:League = this.projectForm.value;
-    console.log('leagues @ save', league);
+  cancel() {
+    this.resetForm();
+  }
 
-    let self = this;
-    this.leaguesStore.save(league, () => self.resetForm());
+  persist() {
+    console.log('leagues @ save', this.league);
+
+    let doResetForm = () => this.resetForm();
+
+    if (this.editingForm) {
+      this.leaguesStore.update(this.league, this.editingLeague, doResetForm);
+    } else {
+      this.leaguesStore.save(this.league, doResetForm);
+    }
+  }
+
+  edit(league:League) {
+    console.log('leagues @ edit', league);
+    this.showingForm = false;
+    this.appRef.tick();
+
+    this.league = _.clone(league);
+    this.editingLeague = league;
+    this.editingForm = true;
+    this.showingForm = true;
   }
 
   private resetForm() {
-    _.each(this.projectForm.controls, (control:Control)=> {
-      control.updateValue('');
-      control.setErrors(null);
-    });
+    this.league = new League();
+    this.editingForm = false;
     this.showingForm = false;
   }
 
-  showDeleteConfirm(league:League, ev) {
+  leave(league:League) {
+    console.log('leagues @ leave', league);
+
+    this.leaguesStore.leave(league);
+  }
+
+  deleteConfirm(league:League, ev) {
+    console.log('leagues @ delete', league);
+
     let config = new LeagueDeleteDialogConfig()
       .leagueName(league.name)
       .clickOutsideToClose(true)
@@ -90,18 +127,6 @@ export class LeaguesCmp {
           }
         })
       });
-  }
-
-  leave(league:League) {
-    console.log('leagues @ leave', league);
-
-    this.leaguesStore.leave(league);
-  }
-
-  delete(league:League) {
-    console.log('leagues @ delete', league);
-
-    this.leaguesStore.delete(league);
   }
 
   join(league:League) {
