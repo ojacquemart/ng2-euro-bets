@@ -72,7 +72,7 @@ export class BetsStore {
   }
 
   getCountries(): Observable<CountryFavorite> {
-    this.loadingState.stop();
+    this.loadingState.start();
     let countries$ = this.af.object('/countries');
     let userCountry$ = this.userBetsStore.getCountry();
 
