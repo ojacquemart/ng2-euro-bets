@@ -1,2 +1,70 @@
 {
+  "SIDENAV": {
+    "LOGOUT": "Logout",
+    "PAGES": {
+      "BETS": "Bets",
+      "TABLES": "Table",
+      "LEAGUES": "Leagues"
+    },
+    "USER": {
+      "RANK": "Rank",
+      "POINTS": "Points"
+    }
+  },
+  "BETS": {
+    "TABS": {
+      "MATCHES": "Matches",
+      "GROUPS": "Groups",
+      "WINNER": "Winner"
+    },
+    "MATCHES": {
+      "IM_FEELING_LUCKY": "I'm feeling lucky",
+      "INVALID_SCORE": "Invalid score"
+    },
+    "GROUPS": {
+      "SHOW_MATCHES": "Show matches",
+      "TABLE": {
+        "TEAM": "Team",
+        "POINTS": "P",
+        "WIN": "W",
+        "LOSE": "L",
+        "DRAW": "D",
+        "FOR": "F",
+        "AGAINST": "A"
+      }
+    },
+    "WINNER": {
+      "TITLE": "Select your favorite team",
+      "DESCRIPTION": "You could gain 50 points if the team you select win the tournament.",
+      "USER_SELECTION": "Your winner's team",
+      "TEAM_SELECTION": "Select a team"
+    }
+  },
+  "TABLES": {
+    "TITLE": "Table",
+    "NOT_AVAILABLE": "Available after the 1st match..."
+  },
+  "LEAGUES": {
+    "TITLE": "Leagues",
+    "ATTRS": {
+      "NAME": "Name",
+      "DESCRIPTION": "Description",
+      "MEMBERS": "Members",
+      "ERRORS": {
+        "REQUIRED": "This is required",
+        "INVALID": "This is invalid",
+        "NAME_TAKEN": "Name taken",
+        "DESCRIPTION_MAX_LENGTH": "The description has be to less than 30 characters long"
+      }
+    },
+    "ACTIONS": {
+      "SAVE": "Save",
+      "EDIT": "Edit",
+      "CANCEL": "Cancel",
+      "JOIN": "Join",
+      "LEAVE": "Leave",
+      "DELETE": "Delete"
+    },
+    "CREATE": "Your team"
+  }
 }

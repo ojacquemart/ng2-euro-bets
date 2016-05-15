@@ -7,7 +7,7 @@
     </md-toolbar>
 
     <template ngFor #match [ngForOf]="match.items">
-      <bet-card flex="50" flex-xs="100" layout="column" [match]="match">
+      <bet-card flex="50" flex-xs="100" layout="column" [lang]="lang" [match]="match">
       </bet-card>
     </template>
   </template>

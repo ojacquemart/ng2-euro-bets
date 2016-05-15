@@ -4,11 +4,11 @@
 
     <md-toolbar class="md-hue-2 md-accent group" [id]="groupTable.group.code">
       <div class="md-toolbar-tools">
-        <h2 class="md-flex">{{ groupTable.group.i18n.fr }}</h2>
+        <h2 class="md-flex">{{ groupTable.group.i18n[lang] }}</h2>
         <span flex></span>
 
         <button md-button aria-label="Show matches" (click)="groupTable.showMatches = !groupTable.showMatches">
-          Show matches
+          {{ 'BETS.GROUPS.SHOW_MATCHES' | translate }}
         </button>
       </div>
     </md-toolbar>
@@ -16,13 +16,13 @@
     <md-data-table class="euro" layout-fill>
       <thead>
       <tr>
-        <th class="md-text-cell">Team</th>
-        <th>P</th>
-        <th>W</th>
-        <th>L</th>
-        <th>D</th>
-        <th>F</th>
-        <th>A</th>
+        <th class="md-text-cell">{{ 'BETS.GROUPS.TABLE.TEAM' | translate }}</th>
+        <th>{{ 'BETS.GROUPS.TABLE.POINTS' | translate }}</th>
+        <th>{{ 'BETS.GROUPS.TABLE.WIN' | translate }}</th>
+        <th>{{ 'BETS.GROUPS.TABLE.LOSE' | translate }}</th>
+        <th>{{ 'BETS.GROUPS.TABLE.DRAW' | translate }}</th>
+        <th>{{ 'BETS.GROUPS.TABLE.FOR' | translate }}</th>
+        <th>{{ 'BETS.GROUPS.TABLE.AGAINST' | translate }}</th>
       </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@
         <td class="md-text-cell">
           <span flex-grow>
             <flag-icon [code]="groupMember.isoAlpha2Code"></flag-icon>
-            {{ groupMember.i18n.fr }}
+            {{ groupMember.i18n[lang] }}
           </span>
         </td>
         <td>{{ groupMember.points }}</td>

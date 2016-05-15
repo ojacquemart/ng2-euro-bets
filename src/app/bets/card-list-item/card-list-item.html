@@ -12,7 +12,7 @@
 
   <md-card-title>
     <md-card-title-text>
-      {{ match.phase.i18n.fr }}
+      {{ match.phase.i18n[lang] }}
     </md-card-title-text>
   </md-card-title>
 
@@ -30,11 +30,11 @@
 
       <div layout="row" layout-align="space-between center" class="team-names">
         <div flex="45">
-          <span class="name" [ngClass]="{win: match.home.winner}">{{ match.home.i18n.fr }}</span>
+          <span class="name" [ngClass]="{win: match.home.winner}">{{ match.home.i18n[lang] }}</span>
         </div>
         <div flex>vs</div>
         <div flex="45">
-          <span class="name" [ngClass]="{win: match.away.winner}">{{ match.away.i18n.fr }}</span>
+          <span class="name" [ngClass]="{win: match.away.winner}">{{ match.away.i18n[lang] }}</span>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@
                      [ngFormControl]="form.controls.home">
             </md-input-container>
 
-            <div *ngIf="form.hasError('invalidScore')">Invalid score</div>
+            <div *ngIf="form.hasError('invalidScore')">{{ 'BETS.MATCHES.INVALID_SCORE' | translate }}</div>
           </div>
         </div>
         <div class="score-separator" flex><i md-icon>person</i></div>
@@ -97,7 +97,7 @@
   </md-card-content>
 
   <md-card-actions layout="row" layout-align="end center">
-    <button md-button (click)="onFeelingLucky()" *ngIf="!match.finished">I'm feeling lucky</button>
+    <button md-button (click)="onFeelingLucky()" *ngIf="!match.finished">{{ 'BETS.MATCHES.IM_FEELING_LUCKY' | translate }}</button>
     <button md-button class="md-icon-button" aria-label="Video" *ngIf="match.finished">
       <i md-icon>videocam</i>
     </button>

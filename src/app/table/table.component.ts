@@ -1,9 +1,8 @@
 import {Component} from 'angular2/core';
 import {RouteData} from 'angular2/router';
 
-import {Page, PageTitle} from '../core/services/page-title';
-
-const PAGE: Page = {title: 'Table'};
+import {Pages} from "../core/services/navigation/pages.service";
+import {Page} from "../core/services/navigation/pages.service";
 
 @Component({
   directives: [],
@@ -12,10 +11,10 @@ const PAGE: Page = {title: 'Table'};
 })
 export class TableCmp {
 
-  constructor(pageTitle: PageTitle) {
+  constructor(pages: Pages) {
     console.log('table @ init');
 
-    pageTitle.emit(PAGE);
+    pages.emit(Page.TABLE);
   }
 
   ngOnInit() {

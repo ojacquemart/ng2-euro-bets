@@ -3,13 +3,13 @@
   <md-toolbar class="md-hue-2 tabs-toolbar">
     <div class="tabs" flex layout="row" layout-align="space-around center">
       <a class="tab" flex router-link-active  [routerLink]="['./Matches']">
-        <span>Matches</span>
+        <span>{{ 'BETS.TABS.MATCHES' | translate }}</span>
       </a>
       <a class="tab" flex router-link-active [routerLink]="['./Groups']">
-        <span>Groups</span>
+        <span>{{ 'BETS.TABS.GROUPS' | translate }}</span>
       </a>
       <a class="tab" flex router-link-active [routerLink]="['./Favorites']">
-        <span>Favorites</span>
+        <span>{{ 'BETS.TABS.WINNER' | translate }}</span>
       </a>
     </div>
     <md-progress-linear class="md-accent md-hue-3"  mode="indeterminate" [hidden]="!loading" ></md-progress-linear>

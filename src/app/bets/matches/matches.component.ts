@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 
 import {Observable} from 'rxjs/Observable';
 
-import {BetsCardListCmp} from '../card-list/card-list-item.component';
+import {BetsCardListCmp} from '../card-list/card-list.component';
 import {BetsStore} from '../services/bets.store.service';
 import {MatchGroup} from '../models/bets.models';
 

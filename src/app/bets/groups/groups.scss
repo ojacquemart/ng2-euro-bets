@@ -1,3 +1,18 @@
 md-toolbar.group {
   margin-top: 1em;
 }
+
+md-data-table.euro {
+  tr th:first-child {
+    width: 50%;
+  }
+
+  tr th:last-child, tr th:last-of-type {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  tr td:last-child, tr td:last-of-type {
+    padding: 16px 6px;
+  }
+}

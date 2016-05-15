@@ -4,10 +4,13 @@ import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {MATERIAL_DIRECTIVES, Media, SidenavService} from 'ng2-material/all';
 
 import {Auth} from '../../services/firebase/auth.service';
-import {Page, PageTitle} from '../../services/page-title/index';
 import {UefaEuroLogoCmp} from '../uefa-euro-logo/uefa-euro-logo.component';
 import {UserAvatar} from '../user-avatar/user-avatar.component';
 import {SidenavItem} from './sidenav-item.model';
+import {TranslateService} from "ng2-translate/ng2-translate";
+import {Pages} from "../../services/navigation/pages.service";
+import {Observable} from "rxjs/Observable";
+import {PageComponent} from "../../services/navigation/pages.service";
 
 @Component({
   selector: 'bets-sidenav-layout',
@@ -24,19 +27,15 @@ export class SidenavLayoutCmp {
   @Input()
   private fullPage = this.media.hasMedia('gt-md');
 
-  private mainItems:Array<SidenavItem> = [
-    {pathStart: 'bets', linkParams: ['Bets'], title: 'Bets'},
-    {pathStart: 'table', linkParams: ['Table'], title: 'Table'},
-    {pathStart: 'leagues', linkParams:['Leagues'], title: 'Leagues'}
-  ];
+  private pages$: Observable<Array<PageComponent>>;
 
-  private page:Page;
+  private pageTitle:string;
 
   constructor(private auth:Auth, private router:Router,
+              private pages: Pages,
               public appRef:ApplicationRef,
-              public pageTitle:PageTitle,
               public media:Media, public sidenav:SidenavService) {
-
+    this.pages$ = this.pages.getPages();
   }
 
   navigate(linkParams:any) {
@@ -81,11 +80,11 @@ export class SidenavLayoutCmp {
       console.log('sidenav @ media listen', this.fullPage);
     });
 
-    this.pageTitle.subscribe((page) => {
-      this.page = page;
+    this.pages.subscribe((pageTitle: string) => {
+      this.pageTitle = pageTitle;
       this.appRef.tick();
 
-      console.log('sidenav @ change page', page);
+      console.log('sidenav @ change page', pageTitle);
     });
   }
 

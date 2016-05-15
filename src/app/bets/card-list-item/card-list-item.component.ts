@@ -18,10 +18,12 @@ import {FlagIcon} from "../../core/components/flag-icon/flag-icon.component";
 export class BetCardListItemCmp {
   @Input()
   private match:Match;
+  @Input()
+  private lang:string;
 
   private form;
 
-  constructor(private userBetsStore: UserBetsStore, private formBuilder:FormBuilder) {
+  constructor(private userBetsStore:UserBetsStore, private formBuilder:FormBuilder) {
     this.form = this.formBuilder.group({
         home: [0, Validators.required],
         away: [0, Validators.required]

@@ -1,11 +1,18 @@
 export const DEFAULT_LANG = 'en';
 
+let lang = null;
+
 export class UserLang {
 
   static getLang() {
-    var userLang = navigator.language.split('-')[0];
+    if (lang) {
+      return lang;
+    }
 
-    return /(fr|en)/gi.test(userLang) ? userLang : DEFAULT_LANG;
+    var userLang = navigator.language.split('-')[0];
+    lang = /(fr|en)/gi.test(userLang) ? userLang : DEFAULT_LANG;
+
+    return lang;
   }
 
 }

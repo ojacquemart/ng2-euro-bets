@@ -9,19 +9,19 @@
       <span flex></span>
       <bets-user-avatar></bets-user-avatar>
       <div class="user md-toolbar-tools-bottom inset" layout="row" layout-align="space-between center">
-        <div><span>Rank: -</span></div>
-        <div><span>Points: -</span></div>
+        <div><span>{{ 'SIDENAV.USER.RANK' | translate }}: -</span></div>
+        <div><span>{{ 'SIDENAV.USER.POINTS' | translate }}: -</span></div>
       </div>
     </md-toolbar>
     <div layout="row" layout-align="start start">
       <md-list flex>
-        <md-list-item *ngFor="#mainItem of mainItems"
-                      md-ink [class.md-active]="mainItem.title === page?.title"
-                      (inked)="navigate(mainItem.linkParams)">
-          {{mainItem.title}}
+        <md-list-item *ngFor="#sidenavItem of pages$ | async "
+                      md-ink [class.md-active]="sidenavItem.title === pageTitle"
+                      (inked)="navigate(sidenavItem.linkParams)">
+          {{sidenavItem.title}}
         </md-list-item>
         <md-list-item md-ink router-link-active class="divider" (inked)="logout()">
-          <a>Logout</a>
+          <a>{{ 'SIDENAV.LOGOUT' | translate }}</a>
         </md-list-item>
       </md-list>
     </div>
@@ -41,7 +41,7 @@
       <h1 md-peekaboo
           [breakMd]="50"
           [breakXs]="20"
-          breakAction="hide">{{ page?.title }}</h1>
+          breakAction="hide">{{ pageTitle }}</h1>
     </md-toolbar>
     <md-toolbar class="fixed-toolbar">
       <div class="md-toolbar-tools">
@@ -56,7 +56,7 @@
             [breakMd]="50"
             [breakXs]="20"
             breakAction="show">
-          <span>{{ page?.title }}</span>
+          <span>{{ pageTitle }}</span>
         </h2>
         <span flex></span>
       </div>

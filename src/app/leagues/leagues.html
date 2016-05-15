@@ -1,7 +1,7 @@
 <div class="md-padding" layout="column" layout-wrap layout-align="left start">
   <md-toolbar class="md-hue-2 page-title">
     <div class="md-toolbar-tools">
-      <h2><span>Leagues</span></h2>
+      <h2><span>{{ 'LEAGUES.TITLE' | translate }}</span></h2>
       <span flex></span>
       <button md-fab class="md-fab fab" aria-label="Create a league" (click)="showingForm = !showingForm">
         <i md-icon>add</i>
@@ -13,26 +13,26 @@
   <div flex *ngIf="showingForm">
     <md-card >
       <md-card-title>
-        Create your league
+        {{ 'LEAGUES.CREATE' | translate }}
       </md-card-title>
       <md-card-content>
         <div layout-padding>
           <form [ngFormModel]="projectForm">
             <md-input-container class="md-block">
-              <label for="name">Name</label>
+              <label for="name">{{ 'LEAGUES.ATTRS.NAME' | translate }}</label>
               <input md-input ngControl="name" [(ngModel)]="league.name" id="name">
               <div md-messages="name" role="alert">
-                <div md-message="required">This is required.</div>
-                <div md-message="invalidName">This is invalid.</div>
-                <div md-message="nameTaken">Name taken.</div>
+                <div md-message="required">{{ 'LEAGUES.ATTRS.ERRORS.REQUIRED' | translate }}</div>
+                <div md-message="invalidName">{{ 'LEAGUES.ATTRS.ERRORS.INVALID' | translate }}</div>
+                <div md-message="nameTaken">{{ 'LEAGUES.ATTRS.ERRORS.NAME_TAKEN' | translate }}</div>
               </div>
             </md-input-container>
             <md-input-container class="md-block">
-              <label for="description">Description</label>
+              <label for="description">{{ 'LEAGUES.ATTRS.DESCRIPTION' | translate }}</label>
               <input md-input ngControl="description" [(ngModel)]="league.description" id="description">
               <div md-messages="description">
-                <div md-message="required">This is required.</div>
-                <div md-message="maxlength">The name has to be less than 30 characters long.</div>
+                <div md-message="required">{{ 'LEAGUES.ATTRS.ERRORS.REQUIRED' | translate }}</div>
+                <div md-message="maxlength">{{ 'LEAGUES.ATTRS.ERRORS.DESCRIPTION_MAX_LENGTH' | translate }}</div>
               </div>
             </md-input-container>
           </form>
@@ -40,7 +40,7 @@
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
         <button md-button aria-label="Cancel" class="md-primary"
-                (click)="cancel()">Cancel</button>
+                (click)="cancel()">{{ 'LEAGUES.ACTIONS.CANCEL' | translate }}</button>
         <button md-raised-button aria-label="Save" class="md-raised md-hue-1 md-primary"
                 [disabled]="!projectForm.valid" (click)="persist()">Save</button>
       </md-card-actions>
@@ -50,9 +50,9 @@
     <md-data-table class="euro" layout-fill>
       <thead>
       <tr>
-        <th class="md-text-cell">Name</th>
-        <th class="md-text-cell">Description</th>
-        <th hide-xs>Members</th>
+        <th class="md-text-cell">{{ 'LEAGUES.ATTRS.NAME' | translate }}</th>
+        <th class="md-text-cell">{{ 'LEAGUES.ATTRS.DESCRIPTION' | translate }}</th>
+        <th hide-xs>{{ 'LEAGUES.ATTRS.MEMBERS' | translate }}</th>
         <th></th>
       </tr>
       </thead>
@@ -63,13 +63,13 @@
         <td hide-xs>{{ leagueHolder.membersCount }}</td>
         <td>
           <button *ngIf="leagueHolder.actions.canJoin" md-button aria-label="Join"
-            (click)="join(leagueHolder.league)">Join</button>
+            (click)="join(leagueHolder.league)">{{ 'LEAGUES.ACTIONS.JOIN' | translate }}</button>
           <button *ngIf="leagueHolder.actions.canLeave" md-button aria-label="Leave"
-            (click)="leave(leagueHolder.league)">Leave</button>
+            (click)="leave(leagueHolder.league)">{{ 'LEAGUES.ACTIONS.LEAVE' | translate }}</button>
           <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Edit"
-            (click)="edit(leagueHolder.league)">Edit</button>
+            (click)="edit(leagueHolder.league)">{{ 'LEAGUES.ACTIONS.EDIT' | translate }}</button>
           <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Delete"
-            (click)="deleteConfirm(leagueHolder.league, $event)">Delete</button>
+            (click)="deleteConfirm(leagueHolder.league, $event)">{{ 'LEAGUES.ACTIONS.DELETE' | translate }}</button>
         </td>
       </tr>
       </tbody>

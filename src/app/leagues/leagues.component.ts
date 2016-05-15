@@ -6,15 +6,13 @@ import {Observable} from 'rxjs/Observable';
 import {MdDialog, MdDialogRef, Media} from 'ng2-material/all';
 
 import {LoadingState} from '../core/services/loading-state/loading-state.service';
-import {Page} from '../core/services/page-title/page.model';
-import {PageTitle} from '../core/services/page-title/page-title.service';
 import {League} from '../leagues/models/league.models';
 import {LeaguesStore} from './services/leagues-store.service';
 import {LeagueHolder} from './models/league.models';
 import {LeagueDeleteDialogCmp} from './delete-dialog/delete-dialog.component';
 import {LeagueDeleteDialogConfig} from './delete-dialog/delete-dialog-config.model';
+import {Pages, Page} from "../core/services/navigation/pages.service";
 
-const PAGE:Page = {title: 'Leagues'};
 const TIMEOUT_VALIDATION_LEAGUE_NAME = 750;
 
 @Component({
@@ -40,14 +38,14 @@ export class LeaguesCmp {
   constructor(public dialog:MdDialog, public element:ElementRef,
               private appRef:ApplicationRef,
               private leaguesStore:LeaguesStore,
-              loadingState:LoadingState, pageTitle:PageTitle, fb:FormBuilder) {
+              loadingState:LoadingState, pages:Pages, fb:FormBuilder) {
     console.log('leagues @ init');
 
     this.loadingStateSubscription = loadingState.subscribe((loading:boolean) => {
       this.loading = loading;
     });
 
-    pageTitle.emit(PAGE);
+    pages.emit(Page.LEAGUES);
 
     this.projectForm = fb.group({
       name: ['', Validators.required,

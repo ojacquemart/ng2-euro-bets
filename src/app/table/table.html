@@ -1,15 +1,13 @@
 <div class="md-padding" layout="column" layout-wrap layout-align="left start">
   <md-toolbar class="md-hue-2 page-title">
     <div class="md-toolbar-tools">
-      <h2><span>Table</span></h2>
+      <h2><span>{{ 'TABLES.TITLE' | translate }}</span></h2>
     </div>
   </md-toolbar>
   <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
 
   <div flex>
-    <p>
-      Available after the 1st match...
-    </p>
+    <p>{{ 'TABLES.NOT_AVAILABLE' | translate }}</p>
   </div>
 
 </div>

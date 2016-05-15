@@ -1,2 +1,70 @@
 {
+  "SIDENAV": {
+    "LOGOUT": "Déconnexion",
+    "PAGES": {
+      "BETS": "Pronostics",
+      "TABLES": "Classement",
+      "LEAGUES": "Equipes"
+    },
+    "USER": {
+      "RANK": "Position",
+      "POINTS": "Points"
+    }
+  },
+  "BETS": {
+    "TABS": {
+      "MATCHES": "Matchs",
+      "GROUPS": "Groupes",
+      "WINNER": "Vainqueur"
+    },
+    "MATCHES": {
+      "IM_FEELING_LUCKY": "J'ai de la chance",
+      "INVALID_SCORE": "Score invalide"
+    },
+    "GROUPS": {
+      "SHOW_MATCHES": "Voir les matchs",
+      "TABLE": {
+        "TEAM": "Equipe",
+        "POINTS": "Pts",
+        "WIN": "G",
+        "LOSE": "P",
+        "DRAW": "N",
+        "FOR": "p",
+        "AGAINST": "c"
+      }
+    },
+    "WINNER": {
+      "TITLE": "Sélectionne ton équipe favorite",
+      "DESCRIPTION": "Tu peux gagner 50 points si tu sélectionnes l'équipe vainqueur de l'Euro.",
+      "USER_SELECTION": "Ton équipe vainqueur",
+      "TEAM_SELECTION": "Sélectionne une équipe"
+    }
+  },
+  "TABLES": {
+    "TITLE": "Classement",
+    "NOT_AVAILABLE": "Disponible après le premier match..."
+  },
+  "LEAGUES": {
+    "TITLE": "Equipes",
+    "ATTRS": {
+      "NAME": "Nom",
+      "DESCRIPTION": "Description",
+      "MEMBERS": "Membres",
+      "ERRORS": {
+        "REQUIRED": "Ce champ est obligatoire",
+        "INVALID": "Ce champ est invalide",
+        "NAME_TAKEN": "Ce nom d'équipe est déjà pris",
+        "DESCRIPTION_MAX_LENGTH": "La description ne peut dépasser 30 caractères"
+      }
+    },
+    "ACTIONS": {
+      "SAVE": "Sauvegarder",
+      "EDIT": "Editer",
+      "CANCEL": "Annuler",
+      "JOIN": "Rejoindre",
+      "LEAVE": "Quitter",
+      "DELETE": "Supprimer"
+    },
+    "CREATE": "Ton équipe"
+  }
 }

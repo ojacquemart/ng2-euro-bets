@@ -2,11 +2,12 @@ import {Component, ViewEncapsulation} from 'angular2/core';
 
 import {Observable} from 'rxjs/Observable';
 
+import {UserLang} from '../../core/services/util/user-lang.service';
 import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
 import {UefaEuroLogoCmp} from '../../core/components/uefa-euro-logo/uefa-euro-logo.component';
 import {BetsStore} from '../services/bets.store.service';
 import {UserBetsStore} from '../services/user-bets.store.service';
-import {Country, CountryFavorite} from "../models/bets.models";
+import {Country, CountryFavorite} from '../models/bets.models';
 import {FavoriteCountryCardItemCmp} from './card/country-card-item.component';
 
 @Component({
@@ -19,9 +20,12 @@ export class FavoritesBetsCmp {
 
   private countries:Array<Country>;
   private favorite:Country;
+  private lang;
 
   constructor(private betsStore:BetsStore, private userBetsStore:UserBetsStore) {
     console.log('favorites bets @ init');
+
+    this.lang = UserLang.getLang();
   }
 
   ngOnInit() {

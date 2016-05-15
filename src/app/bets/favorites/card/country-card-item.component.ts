@@ -14,5 +14,8 @@ import {Country} from "../../models/bets.models";
 export class FavoriteCountryCardItemCmp {
 
   @Input()
+  private lang: string;
+
+  @Input()
   private country: Country;
 }
