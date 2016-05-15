@@ -4,8 +4,10 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
-import {Auth} from './core/services/firebase/auth.service';
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
+import {Auth} from './core/services/firebase/auth.service';
+import {DEFAULT_LANG, UserLang} from './core/services/util/user-lang.service';
 import {SidenavLayoutCmp} from './core/components/sidenav-layout/sidenav-layout.component';
 
 import {LoginCmp} from './login/login.component';
@@ -43,8 +45,17 @@ import {LeaguesCmp} from './leagues/leagues.component';
 ])
 export class App {
 
-  constructor(private auth: Auth) {
+  constructor(private auth:Auth, translate:TranslateService) {
     console.log('app @ init');
+
+    this.configureI18n(translate);
+  }
+
+  private configureI18n(translate) {
+    translate.setDefaultLang(DEFAULT_LANG);
+
+    var userLang = UserLang.getLang();
+    translate.use(userLang);
   }
 
 }
