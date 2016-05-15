@@ -16,7 +16,7 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
  * Webpack Constants
  */
 const METADATA = {
-  title: 'Euro 2016 Bets',
+  title: 'Euro 2016 Pronos',
   baseUrl: '/'
 };
 
