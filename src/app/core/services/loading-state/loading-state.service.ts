@@ -20,9 +20,6 @@ export class LoadingState {
     this.emitLoading();
   }
 
-  private stopLoadingAndEmit() {
-  }
-
   private emitLoading() {
     this.loading$.emit(this.loading);
   }
