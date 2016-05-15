@@ -1,8 +1,9 @@
-import {EventEmitter, Injectable} from "angular2/core";
-import {TranslateService} from "ng2-translate/ng2-translate";
-import {Observable} from "rxjs/Observable";
+import {EventEmitter, Injectable} from 'angular2/core';
 
-export const PAGES: Array<PageComponent> = [
+import {TranslateService} from 'ng2-translate/ng2-translate';
+import {Observable} from 'rxjs/Observable';
+
+export const PAGES:Array<PageComponent> = [
   {key: 'BETS', pathStart: 'bets', linkParams: ['Bets']},
   {key: 'TABLES', pathStart: 'table', linkParams: ['Table']},
   {key: 'LEAGUES', pathStart: 'leagues', linkParams: ['Leagues']}
@@ -29,7 +30,7 @@ export class Pages {
   constructor(private translate:TranslateService) {
   }
 
-  getPage(pageComponent: PageComponent) {
+  getPage(pageComponent:PageComponent) {
     return this.translate.get('SIDENAV.PAGES')
       .map((translations) => {
         return translations[pageComponent.key];
@@ -50,8 +51,8 @@ export class Pages {
   }
 
   emit(page:Page) {
-    this.getPage(PAGES[page] )
-      .subscribe((pageTitle: string) =>  {
+    this.getPage(PAGES[page])
+      .subscribe((pageTitle:string) => {
         this.page$.emit(pageTitle);
       });
   }

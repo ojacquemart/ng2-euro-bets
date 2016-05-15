@@ -3,7 +3,8 @@ import {Component, Input} from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
 
 import {FlagIcon} from '../../../core/components/flag-icon/flag-icon.component';
-import {Country} from "../../models/bets.models";
+
+import {Country} from '../../models/bets.models';
 
 @Component({
   selector: 'favorite-country-card-item',
@@ -14,8 +15,8 @@ import {Country} from "../../models/bets.models";
 export class FavoriteCountryCardItemCmp {
 
   @Input()
-  private lang: string;
+  private lang:string;
 
   @Input()
-  private country: Country;
+  private country:Country;
 }

@@ -1,13 +1,12 @@
 import {Component, Input} from 'angular2/core';
 import {Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
 
-import {Bet, Match} from '../models/bets.models';
-
+import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
 import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/randomNumberGenerator';
 
-import {validateScore} from './score.validator';
 import {UserBetsStore} from '../services/user-bets.store.service';
-import {FlagIcon} from "../../core/components/flag-icon/flag-icon.component";
+import {Bet, Match} from '../models/bets.models';
+import {validateScore} from './score.validator';
 
 @Component({
   selector: 'bet-card',

@@ -6,12 +6,13 @@ import {Observable} from 'rxjs/Observable';
 import {MdDialog, MdDialogRef, Media} from 'ng2-material/all';
 
 import {LoadingState} from '../core/services/loading-state/loading-state.service';
+import {Pages, Page} from '../core/services/navigation/pages.service';
+
 import {League} from '../leagues/models/league.models';
 import {LeaguesStore} from './services/leagues-store.service';
 import {LeagueHolder} from './models/league.models';
 import {LeagueDeleteDialogCmp} from './delete-dialog/delete-dialog.component';
 import {LeagueDeleteDialogConfig} from './delete-dialog/delete-dialog-config.model';
-import {Pages, Page} from "../core/services/navigation/pages.service";
 
 const TIMEOUT_VALIDATION_LEAGUE_NAME = 750;
 

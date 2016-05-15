@@ -3,12 +3,12 @@ import {Component} from 'angular2/core';
 import {Auth} from '../core/services/firebase/auth.service';
 
 import {UefaEuroLogoCmp} from '../core/components/uefa-euro-logo/uefa-euro-logo.component';
+import {UserLang} from '../core/services/util/user-lang.service';
 
 import {LOGIN_PROVIDERS, Provider} from './provider.model';
-import {UserLang} from "../core/services/util/user-lang.service";
 
 const SIGN_IN_LABELS = {
-  fr:  'Se connecter',
+  fr: 'Se connecter',
   en: 'Sign in'
 };
 
@@ -20,7 +20,7 @@ const SIGN_IN_LABELS = {
 })
 export class LoginCmp {
 
-  private providers: Array<Provider>;
+  private providers:Array<Provider>;
   private signInLabel;
 
   constructor(private auth:Auth) {
