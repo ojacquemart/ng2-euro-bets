@@ -24,6 +24,7 @@ export interface Team {
 export interface Bet {
   homeGoals: number;
   awayGoals: number;
+  feelingLucky?: boolean;
   timestamp?: number;
 }
 

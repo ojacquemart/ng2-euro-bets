@@ -21,6 +21,7 @@ export class BetCardListItemCmp {
   @Input()
   private lang:string;
 
+  private feelingLucky;
   private form;
 
   constructor(private userBetsStore:UserBetsStore, private formBuilder:FormBuilder) {
@@ -49,15 +50,20 @@ export class BetCardListItemCmp {
       .subscribe(data => {
         this.match.bet = {
           homeGoals: data.home,
-          awayGoals: data.away
+          awayGoals: data.away,
+          feelingLucky: this.feelingLucky,
+          timestamp: Firebase.ServerValue.TIMESTAMP
         };
 
         console.log('bet @ change', data, this.match.bet);
-        this.userBetsStore.save(this.match);
+        this.userBetsStore.save(this.match, () => {
+          this.feelingLucky = false;
+        });
       });
   }
 
   onFeelingLucky() {
+    this.feelingLucky = true;
     this.updateFormValue({
       homeGoals: RANDOM_NUMBER_GENERATOR.generate(),
       awayGoals: RANDOM_NUMBER_GENERATOR.generate()
