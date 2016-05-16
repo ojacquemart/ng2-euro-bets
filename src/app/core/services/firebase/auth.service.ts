@@ -41,7 +41,8 @@ export class Auth {
 
   login(provider:AuthProviders):Promise<FirebaseAuthState> {
     return this.auth$.login({
-      provider: provider
+      provider: provider,
+      scope: ['email']
     }).then((authState:FirebaseAuthState) => this.handleOnLogin(authState));
   }
 
@@ -58,6 +59,8 @@ export class Auth {
     let connectionEntry:ConnectionEntry = {
       uid: this.uid,
       name: this.user.displayName,
+      email: this.user.email || '',
+      profileImageURL: this.user.profileImageURL,
       timestamp: Firebase.ServerValue.TIMESTAMP
     };
     this.onLoginLogger.log(connectionEntry);
