@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 
 import {Observable} from 'rxjs/Observable';
 
-import {UserLang} from '../../core/services/util/user-lang.service';
+import {UserLang} from '../../core/services/util/user-lang.helper';
 import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
 import {BetsStore} from '../services/bets.store.service';
 import {GroupTable} from '../models/bets.models';

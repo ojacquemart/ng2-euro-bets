@@ -3,7 +3,7 @@ import {Component} from 'angular2/core';
 import {Auth} from '../core/services/firebase/auth.service';
 
 import {UefaEuroLogoCmp} from '../core/components/uefa-euro-logo/uefa-euro-logo.component';
-import {UserLang} from '../core/services/util/user-lang.service';
+import {UserLang} from '../core/services/util/user-lang.helper';
 
 import {LOGIN_PROVIDERS, Provider} from './provider.model';
 

@@ -7,7 +7,7 @@ import {RouteConfig, Router} from 'angular2/router';
 import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {Auth} from './core/services/firebase/auth.service';
-import {DEFAULT_LANG, UserLang} from './core/services/util/user-lang.service';
+import {DEFAULT_LANG, UserLang} from './core/services/util/user-lang.helper';
 import {SidenavLayoutCmp} from './core/components/sidenav-layout/sidenav-layout.component';
 
 import {LoginCmp} from './login/login.component';

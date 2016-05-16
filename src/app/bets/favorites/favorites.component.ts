@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation} from 'angular2/core';
 
 import {Observable} from 'rxjs/Observable';
 
-import {UserLang} from '../../core/services/util/user-lang.service';
+import {UserLang} from '../../core/services/util/user-lang.helper';
 import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
 import {UefaEuroLogoCmp} from '../../core/components/uefa-euro-logo/uefa-euro-logo.component';
 import {BetsStore} from '../services/bets.store.service';

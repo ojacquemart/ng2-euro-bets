@@ -2,7 +2,7 @@ import {Component, Input} from 'angular2/core';
 import {Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
 
 import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
-import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/randomNumberGenerator';
+import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/random-number-generator.helper';
 
 import {UserBetsStore} from '../services/user-bets.store.service';
 import {Bet, Match} from '../models/bets.models';

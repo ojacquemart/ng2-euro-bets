@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 import {Auth} from '../../core/services/firebase/auth.service';
 import {LoadingState} from '../../core/services/loading-state/loading-state.service';
-import {Slugifier} from '../../core/services/util/slugifer.service';
+import {Slugifier} from '../../core/services/util/slugifer.helper';
 import {League, LeagueHolder, Members} from '../models/league.models';
 
 @Injectable()
