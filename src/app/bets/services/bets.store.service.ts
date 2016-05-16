@@ -98,7 +98,7 @@ export class BetsStore {
   }
 
   private getMatchesBets$():Observable<Array<Match>> {
-    let fixtures$ = this.af.object('/fixtures');
+    let fixtures$ = this.af.list('/fixtures');
     let userBets$ = this.userBetsStore.getBets$();
 
     return Observable.zip(fixtures$, userBets$, (matches:Array<Match>, userBets) => {
