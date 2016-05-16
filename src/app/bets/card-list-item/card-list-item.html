@@ -50,7 +50,6 @@
                      [ngFormControl]="form.controls.home">
             </md-input-container>
 
-            <div *ngIf="form.hasError('invalidScore')">{{ 'BETS.MATCHES.INVALID_SCORE' | translate }}</div>
           </div>
         </div>
         <div class="score-separator" flex><i md-icon>person</i></div>
@@ -61,6 +60,17 @@
                     [value]="match.bet.awayGoals"
                      [ngFormControl]="form.controls.away">
             </md-input-container>
+          </div>
+        </div>
+      </div>
+
+      <div layout="row" layout-align="center center" *ngIf="form.hasError('invalidScore')">
+        <div layout="column" layout-align="end end">
+          <bets-score-invalid-img></bets-score-invalid-img>
+        </div>
+        <div layout="column" layout-align="start start">
+          <div flex>
+            <span class="bubble left">{{ 'BETS.MATCHES.INVALID_SCORE' | translate }}</span>
           </div>
         </div>
       </div>

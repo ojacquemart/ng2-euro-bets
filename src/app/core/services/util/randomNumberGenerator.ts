@@ -2,8 +2,8 @@ const MAX_RNG_VALUE = 6;
 
 export class RandomNumberGenerator {
 
-  generate() {
-    return Math.floor(Math.random() * MAX_RNG_VALUE);
+  generate(bound: number = MAX_RNG_VALUE) {
+    return Math.floor(Math.random() * bound);
   }
 }
 

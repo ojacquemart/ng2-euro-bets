@@ -6,11 +6,12 @@ import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/randomNumberGene
 
 import {UserBetsStore} from '../services/user-bets.store.service';
 import {Bet, Match} from '../models/bets.models';
+import {InvalidScorepicture} from './score-invalid-img.component';
 import {validateScore} from './score.validator';
 
 @Component({
   selector: 'bet-card',
-  directives: [FlagIcon],
+  directives: [InvalidScorepicture, FlagIcon],
   template: require('./card-list-item.html'),
   styles: [require('./card-list-item.scss')]
 })
