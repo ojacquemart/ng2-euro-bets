@@ -1,5 +1,6 @@
 $login-container-background: #E53935;
 $login-background: #fff;
+$facebook: #3B5998;
 $twitter: #55ACEE;
 $google: #DD4B39;
 
@@ -18,6 +19,10 @@ $google: #DD4B39;
       font-weight: 500;
       transition: 0.2s ease;
       cursor: pointer;
+    }
+
+    & .facebook {
+      background: $facebook;
     }
 
     & .twitter {

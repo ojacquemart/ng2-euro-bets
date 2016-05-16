@@ -7,6 +7,7 @@ export interface Provider {
 }
 
 export const LOGIN_PROVIDERS: Array<Provider> = [
+  {name: 'Facebook', code: 'facebook', authProvider: AuthProviders.Facebook},
   {name: 'Twitter', code: 'twitter', authProvider: AuthProviders.Twitter},
   {name: 'Google', code: 'google', authProvider: AuthProviders.Google}
 ];
