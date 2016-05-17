@@ -11,6 +11,10 @@
       "POINTS": "Points"
     }
   },
+
+  "COMMON": {
+    "ERROR_OCCURRED": "Une erreur est survenue"
+  },
   "BETS": {
     "TABS": {
       "MATCHES": "Matchs",

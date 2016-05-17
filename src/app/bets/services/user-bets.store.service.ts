@@ -14,18 +14,19 @@ export class UserBetsStore {
   constructor(private auth:Auth, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
   }
 
-  save(match:Match, onSucces: () => void) {
+  save(match:Match, onSuccess: () => void, onError: () => void) {
     console.log('bets @ save', match);
 
     this.ref.child(`/bets/${this.auth.uid}`).child(`/matches/${match.number}`)
       .set(match.bet, (error:any) => {
         if (!error) {
           console.log('bets @ save successful');
-          onSucces();
+          onSuccess();
           return;
         }
 
         console.log('bets @ save error:', error);
+        onError();
       });
   }
 

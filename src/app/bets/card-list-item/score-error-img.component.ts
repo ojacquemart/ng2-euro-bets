@@ -4,18 +4,18 @@ import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/random-number-ge
 const PLAYERS = ['benzema', 'valbuena', 'ribery', 'deschamps', 'zidane'];
 
 @Component({
-  selector: 'bets-score-invalid-img',
+  selector: 'bets-score-error-img',
   template: '<img [src]="imgUrl" />'
 })
-export class InvalidScorepicture {
+export class ScoreErrorImg {
 
   private imgUrl: string;
 
   constructor() {
-    let rndIndex = RANDOM_NUMBER_GENERATOR.generate(PLAYERS.length);
-    let playerImg = PLAYERS[rndIndex];
+    let playerIndex = RANDOM_NUMBER_GENERATOR.generate(PLAYERS.length);
+    let playerName = PLAYERS[playerIndex];
 
-    this.imgUrl = `assets/img/players/${playerImg}.png`;
+    this.imgUrl = `assets/img/players/${playerName}.png`;
   }
 
 }

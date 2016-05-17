@@ -6,12 +6,12 @@ import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/random-number-ge
 
 import {UserBetsStore} from '../services/user-bets.store.service';
 import {Bet, Match} from '../models/bets.models';
-import {InvalidScorepicture} from './score-invalid-img.component';
+import {ScoreErrorMessage} from './score-error-message.component';
 import {validateScore} from './score.validator';
 
 @Component({
   selector: 'bet-card',
-  directives: [InvalidScorepicture, FlagIcon],
+  directives: [FlagIcon, ScoreErrorMessage],
   template: require('./card-list-item.html'),
   styles: [require('./card-list-item.scss')]
 })
@@ -22,6 +22,8 @@ export class BetCardListItemCmp {
   private lang:string;
 
   private feelingLucky;
+  private showingError;
+
   private form;
 
   constructor(private userBetsStore:UserBetsStore, private formBuilder:FormBuilder) {
@@ -51,14 +53,21 @@ export class BetCardListItemCmp {
         this.match.bet = {
           homeGoals: data.home,
           awayGoals: data.away,
-          feelingLucky: this.feelingLucky,
+          feelingLucky: !!this.feelingLucky,
           timestamp: Firebase.ServerValue.TIMESTAMP
         };
 
         console.log('bet @ change', data, this.match.bet);
-        this.userBetsStore.save(this.match, () => {
+
+        let onSuccess = () => {
+          this.showingError = false;
           this.feelingLucky = false;
-        });
+        };
+        let onError = () => {
+          this.showingError = true;
+        };
+
+        this.userBetsStore.save(this.match, onSuccess, onError);
       });
   }
 

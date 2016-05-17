@@ -2,7 +2,6 @@ $card-default-background: transparent;
 $card-stadium-height: 128px;
 $score-input-background: #eee;
 $score-input-width: 60px;
-$score-invalid-color: #f44336;
 
 md-toolbar.stadium {
   background: transparent;
@@ -79,28 +78,4 @@ md-card-content {
       color: #F44336;
     }
   }
-}
-
-.bubble {
-  color: #fff;
-  padding: 1em;
-  margin-left: 1.5em;
-  position: relative;
-  width: 90px;
-  height: 25px;
-  background: $score-invalid-color;
-  border-radius: 5px;
-}
-
-.bubble:after {
-  content: "";
-  position: absolute;
-  top: 15px;
-  left: -15px;
-  border-style: solid;
-  border-width: 9px 19px 9px 0;
-  border-color: transparent $score-invalid-color;
-  display: block;
-  width: 0;
-  z-index: 1;
 }
