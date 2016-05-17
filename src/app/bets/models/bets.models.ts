@@ -50,6 +50,11 @@ export interface Match {
   videoUrl?: string;
 }
 
+export enum Status {
+  TO_PLAY,
+  PLAYED
+}
+
 export interface GroupTable {
   group: Group;
   showMatches: boolean;
@@ -77,6 +82,11 @@ export interface GroupMember {
 export interface MatchGroup {
   day: string;
   items: Array<Match>;
+}
+
+export interface Matches {
+  current: Array<MatchGroup>;
+  history: Array<MatchGroup>;
 }
 
 export interface I18n {

@@ -22,7 +22,8 @@
     },
     "MATCHES": {
       "IM_FEELING_LUCKY": "I'm feeling lucky",
-      "INVALID_SCORE": "Invalid score"
+      "INVALID_SCORE": "Invalid score",
+      "SHOW_HISTORY": "Show history"
     },
     "GROUPS": {
       "SHOW_MATCHES": "Show matches",

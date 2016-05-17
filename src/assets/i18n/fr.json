@@ -23,7 +23,8 @@
     },
     "MATCHES": {
       "IM_FEELING_LUCKY": "J'ai de la chance",
-      "INVALID_SCORE": "Score invalide"
+      "INVALID_SCORE": "Score invalide",
+      "SHOW_HISTORY": "Voir l'historique"
     },
     "GROUPS": {
       "SHOW_MATCHES": "Voir les matchs",

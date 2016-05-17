@@ -1,1 +1,14 @@
-<bets-card-list [matches]="matches | async"></bets-card-list>
+<bets-card-list [matches]="current"></bets-card-list>
+
+<div class="history" *ngIf="history && history.length > 0">
+  <md-toolbar class="md-accent">
+    <div class="md-toolbar-tools">
+      <button (click)="showingHistory = !showingHistory" md-button>
+        {{ 'BETS.MATCHES.SHOW_HISTORY' | translate }}
+      </button>
+    </div>
+  </md-toolbar>
+
+  <bets-card-list [matches]="history" *ngIf="showingHistory"></bets-card-list>
+</div>
+

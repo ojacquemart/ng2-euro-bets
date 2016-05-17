@@ -20,9 +20,12 @@ import {
   Country,
   CountryFavorite,
   Group,
+  GroupTable,
   Match,
   MatchGroup,
-  GroupTable} from '../models/bets.models';
+  Matches,
+  Status
+} from '../models/bets.models';
 import {UserBetsStore} from './user-bets.store.service';
 import {Settings} from "../../core/services/settings/settings.service";
 
@@ -31,7 +34,7 @@ const FIXTURE_DAY_PATTERN = 'dddd DD MMMM';
 @Injectable()
 export class BetsStore {
 
-  constructor(private af:AngularFire, private loadingState:LoadingState, private settings: Settings, private userBetsStore:UserBetsStore) {
+  constructor(private af:AngularFire, private loadingState:LoadingState, private settings:Settings, private userBetsStore:UserBetsStore) {
   }
 
   getGroups():Observable<Array<GroupTable>> {
@@ -58,17 +61,27 @@ export class BetsStore {
       });
   }
 
-  getMatchesByDay():Observable<Array<MatchGroup>> {
+  getMatchesByDay():Observable<Matches> {
     this.loadingState.start();
 
     return this.getMatchesBets$()
       .map((matches:Array<Match>) => {
-        return this.groupMatchesByDay(matches);
+        let matchesByStatusToPlay = _.partition(matches, (match:Match) => {
+          return match.status === Status.TO_PLAY;
+        });
+
+        return {
+          current: this.groupMatchesByDay(matchesByStatusToPlay[0]),
+          history: this.groupMatchesByDay(matchesByStatusToPlay[1])
+        };
       })
       .catch((error:any) => {
         console.log('bets store @ error', error);
 
-        return Observable.of([]);
+        return Observable.of({
+          current: [],
+          history: []
+        });
       })
       .do(() => {
         this.loadingState.stop();
@@ -114,7 +127,7 @@ export class BetsStore {
         this.setBetIfNeeded(match, bet);
       });
 
-      return matches.filter((match: Match) => match.dayId <= settings.dayId);
+      return matches.filter((match:Match) => match.dayId <= settings.dayId);
     })
   }
 
