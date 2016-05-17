@@ -99,7 +99,7 @@
   </md-card-content>
 
   <md-card-actions layout="row" layout-align="end center">
-    <button md-button (click)="onFeelingLucky()" *ngIf="!match.finished">{{ 'BETS.MATCHES.IM_FEELING_LUCKY' | translate }}</button>
+    <button md-button (click)="onFeelingLucky()" *ngIf="match.status === 0">{{ 'BETS.MATCHES.IM_FEELING_LUCKY' | translate }}</button>
     <button md-button class="md-icon-button" aria-label="Video" *ngIf="match.finished">
       <i md-icon>videocam</i>
     </button>
