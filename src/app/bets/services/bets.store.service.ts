@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as moment from 'moment/moment';
 
 import {Inject, Injectable, EventEmitter} from 'angular2/core';
 import {AngularFire} from 'angularfire2/angularfire2';
@@ -23,6 +24,8 @@ import {
   MatchGroup,
   GroupTable} from '../models/bets.models';
 import {UserBetsStore} from './user-bets.store.service';
+
+const FIXTURE_DAY_PATTERN = 'dddd DD MMMM';
 
 @Injectable()
 export class BetsStore {
@@ -131,11 +134,11 @@ export class BetsStore {
       .filter((match) => {
         return match.phase.state === 'group';
       })
-      .groupBy('date')
+      .groupBy('dateTimestamp')
       .toPairsIn()
       .map((keyValues) => {
         return <MatchGroup>{
-          day: keyValues[0],
+          day: moment(parseInt(keyValues[0])).format(FIXTURE_DAY_PATTERN).toUpperCase(),
           items: _.sortBy<Match>(<Array<Match>> keyValues[1], ['hour'])
         };
       })

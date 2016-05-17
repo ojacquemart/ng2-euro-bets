@@ -5,6 +5,7 @@ import {Component, ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
 import {TranslateService} from 'ng2-translate/ng2-translate';
+import * as moment from 'moment/moment';
 
 import {Auth} from './core/services/firebase/auth.service';
 import {DEFAULT_LANG, UserLang} from './core/services/util/user-lang.helper';
@@ -56,6 +57,8 @@ export class App {
 
     var userLang = UserLang.getLang();
     translate.use(userLang);
+
+    moment.lang(userLang);
   }
 
 }
