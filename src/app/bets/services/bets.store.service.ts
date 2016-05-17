@@ -30,7 +30,7 @@ const FIXTURE_DAY_PATTERN = 'dddd DD MMMM';
 @Injectable()
 export class BetsStore {
 
-  constructor(private af:AngularFire, private loadingState: LoadingState, private userBetsStore:UserBetsStore) {
+  constructor(private af:AngularFire, private loadingState:LoadingState, private userBetsStore:UserBetsStore) {
   }
 
   getGroups():Observable<Array<GroupTable>> {
@@ -74,30 +74,30 @@ export class BetsStore {
       });
   }
 
-  getCountries(): Observable<CountryFavorite> {
+  getCountries():Observable<CountryFavorite> {
     this.loadingState.start();
     let countries$ = this.af.object('/countries');
     let userCountry$ = this.userBetsStore.getCountry();
 
     return Observable.zip(countries$, userCountry$, (countries:Array<Country>, userCountry) => {
-      let favorite = this.getCountry(countries, userCountry);
+        let favorite = this.getCountry(countries, userCountry);
 
-      return {
-        countries: _.sortBy(countries, (country: Country) => country.i18n.fr),
-        favorite: favorite
-      };
-    })
-    .do(() => {
-      this.loadingState.stop();
-    });
+        return {
+          countries: _.sortBy(countries, (country:Country) => country.i18n.fr),
+          favorite: favorite
+        };
+      })
+      .do(() => {
+        this.loadingState.stop();
+      });
   }
 
-  private getCountry(countries: Array<Country>, userCountry: string) {
+  private getCountry(countries:Array<Country>, userCountry:string) {
     if (!userCountry) {
       return null;
     }
 
-    return countries.find((country: Country) => country.isoAlpha2Code === userCountry);
+    return countries.find((country:Country) => country.isoAlpha2Code === userCountry);
   }
 
   private getMatchesBets$():Observable<Array<Match>> {
@@ -137,8 +137,10 @@ export class BetsStore {
       .groupBy('dateTimestamp')
       .toPairsIn()
       .map((keyValues) => {
+        let dayFormatted = moment(parseInt(<string>keyValues[0])).format(FIXTURE_DAY_PATTERN).toUpperCase();
+
         return <MatchGroup>{
-          day: moment(parseInt(keyValues[0])).format(FIXTURE_DAY_PATTERN).toUpperCase(),
+          day: <string>dayFormatted,
           items: _.sortBy<Match>(<Array<Match>> keyValues[1], ['hour'])
         };
       })
