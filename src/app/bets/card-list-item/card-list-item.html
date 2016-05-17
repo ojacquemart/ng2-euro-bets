@@ -1,6 +1,9 @@
 <md-card>
   <md-toolbar class="md-accent stadium" [ngClass]="'stadium-' + match.stadium.id">
-    <div class="stadium-toolbar" layout="row" layout-align="space-between end">
+    <div class="stadium-toolbar"
+      layout-sm="column" layout-align-sm="space-between start"
+      layout-gt-sm="column" layout-align-gt-sm="space-between start"
+      layout-gt-md="row" layout-align-gt-md="space-between end">
       <div>
         <span>{{ match.hour }}</span>
       </div>
