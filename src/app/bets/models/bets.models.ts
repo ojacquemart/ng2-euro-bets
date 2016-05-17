@@ -36,6 +36,7 @@ export interface Phase {
 
 export interface Match {
   number: number;
+  dayId: number;
   day: string;
   hour: string;
   timestamp: number;

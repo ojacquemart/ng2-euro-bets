@@ -24,13 +24,14 @@ import {
   MatchGroup,
   GroupTable} from '../models/bets.models';
 import {UserBetsStore} from './user-bets.store.service';
+import {Settings} from "../../core/services/settings/settings.service";
 
 const FIXTURE_DAY_PATTERN = 'dddd DD MMMM';
 
 @Injectable()
 export class BetsStore {
 
-  constructor(private af:AngularFire, private loadingState:LoadingState, private userBetsStore:UserBetsStore) {
+  constructor(private af:AngularFire, private loadingState:LoadingState, private settings: Settings, private userBetsStore:UserBetsStore) {
   }
 
   getGroups():Observable<Array<GroupTable>> {
@@ -101,10 +102,11 @@ export class BetsStore {
   }
 
   private getMatchesBets$():Observable<Array<Match>> {
-    let fixtures$ = this.af.list('/fixtures');
+    let settings$ = this.settings.getSetings$();
+    let fixtures$ = this.af.object('/fixtures');
     let userBets$ = this.userBetsStore.getBets$();
 
-    return Observable.zip(fixtures$, userBets$, (matches:Array<Match>, userBets) => {
+    return Observable.zip(settings$, fixtures$, userBets$, (settings, matches:Array<Match>, userBets) => {
       userBets = userBets || {};
 
       matches.forEach((match:Match) => {
@@ -112,8 +114,8 @@ export class BetsStore {
         this.setBetIfNeeded(match, bet);
       });
 
-      return matches;
-    });
+      return matches.filter((match: Match) => match.dayId <= settings.dayId);
+    })
   }
 
   private setBetIfNeeded(match:Match, bet:Bet) {
@@ -131,9 +133,6 @@ export class BetsStore {
 
   private groupMatchesByDay(matches:Array<Match>):Array<MatchGroup> {
     return _.chain(matches)
-      .filter((match) => {
-        return match.phase.state === 'group';
-      })
       .groupBy('dateTimestamp')
       .toPairsIn()
       .map((keyValues) => {
