@@ -15,6 +15,7 @@ import {LoginCmp} from './login/login.component';
 import {BetsCmp} from './bets/bets.component';
 import {TableCmp} from './table/table.component';
 import {LeaguesCmp} from './leagues/leagues.component';
+import {Foo} from "./leagues/leagues.component";
 
 /*
  * App Component

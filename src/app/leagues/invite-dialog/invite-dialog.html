@@ -1,0 +1,29 @@
+<form>
+  <h2 class="md-title">{{ league.name}}</h2>
+  <div>
+    <p>{{ 'LEAGUES.INVITE_MODAL.MSG_1' | translate }}</p>
+
+    <div layout="row" layout-align="center center">
+      <div>
+        <button md-raised-button class="md-raised md-primary" (click)="generateInvitationCode()">{{ 'LEAGUES.INVITE_MODAL.MSG_BUTTON' | translate }}</button>
+      </div>
+    </div>
+
+    <div *ngIf="invitationLink">
+      <div layout="column" layout-align="center center" class="link">
+        <p>{{ invitationLink }}</p>
+      </div>
+
+      <div>
+        <span class="note">{{ 'LEAGUES.INVITE_MODAL.NOTE' | translate }}</span>
+      </div>
+    </div>
+
+  </div>
+  <md-dialog-actions>
+    <span flex></span>
+    <button md-button class="md-primary" (click)="dialog.close(false)">
+      <span>{{ 'LEAGUES.ACTIONS.CLOSE' | translate }}</span>
+    </button>
+  </md-dialog-actions>
+</form>

@@ -7,6 +7,7 @@ export class League {
   slug:string;
   name:string;
   description:string;
+  invitationCode:string;
   owner:string;
   ownerDisplayName:string;
   ownerProfileImageURL:string;

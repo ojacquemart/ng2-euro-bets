@@ -13,15 +13,15 @@ import {LeaguesStore} from './services/leagues-store.service';
 import {PictureReader} from './services/picture.reader.helper';
 import {LeagueHolder} from './models/league.models';
 import {LeagueDeleteDialogCmp} from './delete-dialog/delete-dialog.component';
-import {LeagueDeleteDialogConfig} from './delete-dialog/delete-dialog-config.model';
+import {LeagueDialogConfig} from './delete-dialog/dialog-config.model';
+import {LeagueInviteDialogCmp} from './invite-dialog/invite-dialog.component';
 
 const TIMEOUT_VALIDATION_LEAGUE_NAME = 750;
 
 @Component({
   template: require('./leagues.html'),
   styles: [require('./leagues.scss')],
-  directives: [FORM_DIRECTIVES],
-  providers: [LeaguesStore]
+  directives: [FORM_DIRECTIVES]
 })
 export class LeaguesCmp {
 
@@ -133,6 +133,24 @@ export class LeaguesCmp {
     this.imageSrc = null;
   }
 
+  invite(league:League, ev) {
+    console.log('leagues @ invite', league);
+
+    let config = new LeagueDialogConfig()
+      .league(league)
+      .clickOutsideToClose(true)
+      .targetEvent(ev);
+
+
+    this.dialog.open(LeagueInviteDialogCmp, this.element, config)
+      .then((ref:MdDialogRef) => {
+        ref.whenClosed.then(() => {
+          console.log('close');
+        })
+      });
+
+  }
+
   leave(league:League) {
     console.log('leagues @ leave', league);
 
@@ -142,8 +160,8 @@ export class LeaguesCmp {
   deleteConfirm(league:League, ev) {
     console.log('leagues @ delete', league);
 
-    let config = new LeagueDeleteDialogConfig()
-      .leagueName(league.name)
+    let config = new LeagueDialogConfig()
+      .league(league)
       .clickOutsideToClose(true)
       .targetEvent(ev);
 

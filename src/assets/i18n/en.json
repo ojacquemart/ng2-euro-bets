@@ -73,6 +73,7 @@
       "SAVE": "Save",
       "EDIT": "Edit",
       "CANCEL": "Cancel",
+      "CLOSE": "Close",
       "JOIN": "Join",
       "LEAVE": "Leave",
       "DELETE": "Delete",
@@ -84,6 +85,12 @@
       "MSG_1": "This action CANNOT be undone",
       "MSG_2" :"This will permanently delete the league.",
       "MSG_3": "Please type in the name of the repository to confirm..."
+    },
+    "INVITE_MODAL": {
+      "TITLE": "Invitation",
+      "MSG_1": "Invite a friend, a colleague in your team",
+      "MSG_BUTTON": "Generate an invitation link",
+      "NOTE": "Send the link by email, chat..."
     }
   }
 }

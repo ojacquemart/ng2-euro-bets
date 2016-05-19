@@ -87,6 +87,9 @@
                 <span class="members-count">{{ leagueHolder.membersCount }}</span>
                 <i md-icon>person</i>
               </button>
+              <button md-button class="md-icon-button" (click)="invite(leagueHolder.league, $event)">
+                <i md-icon>person_add</i>
+              </button>
 
               <span flex></span>
 

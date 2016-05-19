@@ -5,6 +5,7 @@ import {Control} from 'angular2/common';
 
 import {AngularFire} from 'angularfire2/angularfire2';
 import {FirebaseRef} from 'angularfire2/tokens';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import {Auth} from '../../core/services/firebase/auth.service';
@@ -18,6 +19,10 @@ const DATE_PATTERN_LEAGUE_CREATED_AT = 'dddd DD MMMM';
 export class LeaguesStore {
 
   constructor(private auth:Auth, private loadingState:LoadingState, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
+  }
+
+  find(leagueSlug:string): Observable<League> {
+    return this.af.object(`/leagues/${leagueSlug}`);
   }
 
   list() {
@@ -47,6 +52,12 @@ export class LeaguesStore {
         return _.sortBy(leagues, (leagueHolder:LeagueHolder) => leagueHolder.league.name);
       })
       .do(() => this.loadingState.stop());
+  }
+
+  attachInvitationCode(league:League, invitationCode, onComplete:() => void) {
+    console.log('leagues store @ attach invitation code', league, invitationCode);
+
+    this.ref.child('/leagues').child(league.slug).update({invitationCode: invitationCode}, onComplete);
   }
 
   validateExists(leagueName:string, resolve:any) {
