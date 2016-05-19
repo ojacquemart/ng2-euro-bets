@@ -76,8 +76,15 @@
       "CANCEL": "Annuler",
       "JOIN": "Rejoindre",
       "LEAVE": "Quitter",
-      "DELETE": "Supprimer"
+      "DELETE": "Supprimer",
+      "DELETE_LEAGUE": "Supprimer l'équipe"
     },
-    "CREATE": "Ton équipe"
+    "CREATE": "Ton équipe",
+    "DELETE_MODAL": {
+      "TITLE": "T'es sûr?",
+      "MSG_1": "Cette action ne peut être annulée",
+      "MSG_2": "Ton équipe sera définitivement supprimée.",
+      "MSG_3": "Tape le nom de ton équipe..."
+    }
   }
 }

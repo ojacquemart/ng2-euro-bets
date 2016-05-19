@@ -1,13 +1,9 @@
 <form>
-  <h2 class="md-title">Are you sure?</h2>
+  <h2 class="md-title">{{ 'LEAGUES.DELETE_MODAL.TITLE' | translate }}</h2>
   <div>
-    <p>
-      This action CANNOT be undone.
-      This will permanently delete the league <span class="league-name">{{ leagueName }}</span>.
-    </p>
-    <p>
-      Please type in the name of the repository to confirm.
-    </p>
+    <p>{{ 'LEAGUES.DELETE_MODAL.MSG_1' | translate }}: <span class="league-name">{{ leagueName}}</span>.</p>
+    <p>{{ 'LEAGUES.DELETE_MODAL.MSG_2' | translate }}</p>
+    <p>{{ 'LEAGUES.DELETE_MODAL.MSG_3' | translate }}</p>
     <p class="league-name-confirm-container">
       <md-input-container class="md-block" flex-gt-sm>
         <input md-input [(value)]="leagueNameConfirm" class="league-name-confirm"/>
@@ -17,10 +13,10 @@
   <md-dialog-actions>
     <span flex></span>
     <button md-button class="md-primary" (click)="dialog.close(false)">
-      <span>Cancel</span>
+      <span>{{ 'LEAGUES.ACTIONS.CANCEL' | translate }}</span>
     </button>
     <button md-button class="md-accent" [disabled]="leagueName !== leagueNameConfirm" (click)="dialog.close(true)">
-      <span class="league-name-delete">Delete the league</span>
+      <span class="league-name-delete">{{ 'LEAGUES.ACTIONS.DELETE_LEAGUE' | translate }}</span>
     </button>
   </md-dialog-actions>
 </form>
