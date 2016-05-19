@@ -53,8 +53,12 @@ export class Pages {
   emit(page:Page) {
     this.getPage(PAGES[page])
       .subscribe((pageTitle:string) => {
-        this.page$.emit(pageTitle);
+        this.emitPageTitle(pageTitle);
       });
+  }
+
+  emitPageTitle(pageTitle:string) {
+    this.page$.emit(pageTitle);
   }
 
   subscribe(subscriber:(pageTitle:string) => void) {

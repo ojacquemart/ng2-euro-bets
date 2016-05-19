@@ -15,7 +15,7 @@ import {LoginCmp} from './login/login.component';
 import {BetsCmp} from './bets/bets.component';
 import {TableCmp} from './table/table.component';
 import {LeaguesCmp} from './leagues/leagues.component';
-import {Foo} from "./leagues/leagues.component";
+import {LeagueInvitationCmp} from './leagues/invitation/league-invitation.component';
 
 /*
  * App Component
@@ -43,6 +43,7 @@ import {Foo} from "./leagues/leagues.component";
   {path: '/bets/...', component: BetsCmp, as: 'Bets'},
   {path: '/table', name: 'Table', component: TableCmp},
   {path: '/leagues', name: 'Leagues', component: LeaguesCmp},
+  {path: '/leagues/:leagueSlug/invitations/:invitationCode', name: 'LeaguesInvitation', component: LeagueInvitationCmp},
   {path: '/**', redirectTo: ['/Bets']}
 ])
 export class App {

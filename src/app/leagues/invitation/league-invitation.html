@@ -1,0 +1,17 @@
+<div class="md-padding" layout="column" layout-wrap layout-align="left start">
+  <md-toolbar class="md-hue-2 page-title">
+    <div class="md-toolbar-tools">
+      <h2 *ngIf="loading"><span>{{ 'COMMON.LOADING' | translate }}</span></h2>
+      <h2 *ngIf="!loading"><span>{{ league.name }}</span></h2>
+    </div>
+  </md-toolbar>
+  <md-progress-linear class="md-accent md-hue-3"  mode="indeterminate" [hidden]="!loading" ></md-progress-linear>
+
+  <div *ngIf="!loading">
+    <p>{{ 'LEAGUES.INVITATION.INVITED_BY' | translate }} <span class="owner">{{ league.ownerDisplayName }}</span></p>
+    <p>
+      <button md-raised-button class="md-raised md-primary" (click)="join()">{{ 'LEAGUES.INVITATION.JOIN' | translate }}</button>
+    </p>
+  </div>
+
+</div>

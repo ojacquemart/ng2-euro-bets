@@ -11,9 +11,9 @@
       "POINTS": "Points"
     }
   },
-
   "COMMON": {
-    "ERROR_OCCURRED": "Une erreur est survenue"
+    "ERROR_OCCURRED": "Une erreur est survenue",
+    "LOADING": "Chargement..."
   },
   "BETS": {
     "TABS": {
@@ -74,6 +74,7 @@
       "SAVE": "Sauvegarder",
       "EDIT": "Editer",
       "CANCEL": "Annuler",
+      "CLOSE": "Close",
       "JOIN": "Rejoindre",
       "LEAVE": "Quitter",
       "DELETE": "Supprimer",
@@ -85,6 +86,16 @@
       "MSG_1": "Cette action ne peut être annulée",
       "MSG_2": "Ton équipe sera définitivement supprimée.",
       "MSG_3": "Tape le nom de ton équipe..."
+    },
+    "INVITATION": {
+      "INVITED_BY": "Vous avez été(e) invité(e) par",
+      "JOIN": "Rejoindre l'équipe"
+    },
+    "INVITE_MODAL": {
+      "TITLE": "Invitation",
+      "MSG_1": "Invite un ami, un collègue dans ton équipe",
+      "MSG_BUTTON": "Génére un lien d'invitation",
+      "NOTE": "Envoie le lien par mail, chat, slack..."
     }
   }
 }

@@ -13,8 +13,6 @@ import {LoadingState} from '../../core/services/loading-state/loading-state.serv
 import {Slugifier} from '../../core/services/util/slugifer.helper';
 import {League, LeagueHolder, Members} from '../models/league.models';
 
-const DATE_PATTERN_LEAGUE_CREATED_AT = 'dddd DD MMMM';
-
 @Injectable()
 export class LeaguesStore {
 
@@ -22,7 +20,10 @@ export class LeaguesStore {
   }
 
   find(leagueSlug:string): Observable<League> {
-    return this.af.object(`/leagues/${leagueSlug}`);
+    this.loadingState.start();
+
+    return this.af.object(`/leagues/${leagueSlug}`)
+      .do(() => this.loadingState.stop());
   }
 
   list() {

@@ -12,7 +12,8 @@
     }
   },
   "COMMON": {
-    "ERROR_OCCURRED": "An error occurred"
+    "ERROR_OCCURRED": "An error occurred",
+    "LOADING": "Loading..."
   },
   "BETS": {
     "TABS": {
@@ -86,11 +87,15 @@
       "MSG_2" :"This will permanently delete the league.",
       "MSG_3": "Please type in the name of the repository to confirm..."
     },
+    "INVITATION": {
+      "INVITED_BY": "You were invited by",
+      "JOIN": "Join the team"
+    },
     "INVITE_MODAL": {
       "TITLE": "Invitation",
       "MSG_1": "Invite a friend, a colleague in your team",
       "MSG_BUTTON": "Generate an invitation link",
-      "NOTE": "Send the link by email, chat..."
+      "NOTE": "Send the link by email, chat, slack..."
     }
   }
 }
