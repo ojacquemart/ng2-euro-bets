@@ -54,6 +54,7 @@
     "ATTRS": {
       "NAME": "Nom",
       "DESCRIPTION": "Description",
+      "IMG": "Bannière",
       "MEMBERS": "Membres",
       "ERRORS": {
         "REQUIRED": "Ce champ est obligatoire",
@@ -61,6 +62,13 @@
         "NAME_TAKEN": "Ce nom d'équipe est déjà pris",
         "DESCRIPTION_MAX_LENGTH": "La description ne peut dépasser 30 caractères"
       }
+    },
+    "IMG": {
+      "REMOVE": "Supprimer la bannière",
+      "VALIDATION_NECESSARY": "La bannière ne sera visible qu'après modération",
+      "INVALID_MIME_TYPE": "Le format n'est pas supporté",
+      "INVALID_FILE_SIZE": "La taille du fichier est invalide (> 128 ko)",
+      "INVALID_DIMENSION": "La taille de l'image doit être au minimum de 400x150"
     },
     "ACTIONS": {
       "SAVE": "Sauvegarder",

@@ -53,6 +53,7 @@
     "ATTRS": {
       "NAME": "Name",
       "DESCRIPTION": "Description",
+      "IMG": "Banner",
       "MEMBERS": "Members",
       "ERRORS": {
         "REQUIRED": "This is required",
@@ -60,6 +61,13 @@
         "NAME_TAKEN": "Name taken",
         "DESCRIPTION_MAX_LENGTH": "The description has be to less than 30 characters long"
       }
+    },
+    "IMG": {
+      "REMOVE": "Remove the banner",
+      "VALIDATION_NECESSARY": "The image will be visible by everyone after a moderator validation",
+      "INVALID_MIME_TYPE": "The format is not supported",
+      "INVALID_FILE_SIZE": "The file size is invalid (> 128 kb)",
+      "INVALID_DIMENSION": "The image dimension should be at least 400x150"
     },
     "ACTIONS": {
       "SAVE": "Save",

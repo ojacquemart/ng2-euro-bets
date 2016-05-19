@@ -11,9 +11,9 @@
   <md-progress-linear class="md-accent md-hue-3"  mode="indeterminate" [hidden]="!loading" ></md-progress-linear>
 
   <div flex *ngIf="showingForm">
-    <md-card >
+    <md-card class="form-league-card">
       <md-card-title>
-        {{ 'LEAGUES.CREATE' | translate }}
+        <h3>{{ 'LEAGUES.CREATE' | translate }}</h3>
       </md-card-title>
       <md-card-content>
         <div layout-padding>
@@ -35,6 +35,20 @@
                 <div md-message="maxlength">{{ 'LEAGUES.ATTRS.ERRORS.DESCRIPTION_MAX_LENGTH' | translate }}</div>
               </div>
             </md-input-container>
+            <md-input-container class="md-block picture-container">
+              <label id="picture">{{ 'LEAGUES.ATTRS.IMG' | translate }}</label>
+              <input type="file" name="picture" (change)="previewBanner(input)" #input>
+              <div *ngIf="imageError">
+                <p>{{ imageError | translate }}</p>
+              </div>
+              <div class="preview" *ngIf="imageSrc">
+                <p *ngIf="!league.imageModerated">{{ 'LEAGUES.IMG.VALIDATION_NECESSARY' | translate }}</p>
+                <img [src]="imageSrc" class="preview-banner">
+                <div>
+                  <button md-button (click)="removeBanner()">{{ 'LEAGUES.IMG.REMOVE' | translate }}</button>
+                </div>
+              </div>
+            </md-input-container>
           </form>
         </div>
       </md-card-content>
@@ -46,34 +60,61 @@
       </md-card-actions>
     </md-card>
   </div>
-  <div flex>
-    <md-data-table class="euro" layout-fill>
-      <thead>
-      <tr>
-        <th class="md-text-cell">{{ 'LEAGUES.ATTRS.NAME' | translate }}</th>
-        <th class="md-text-cell">{{ 'LEAGUES.ATTRS.DESCRIPTION' | translate }}</th>
-        <th hide-xs>{{ 'LEAGUES.ATTRS.MEMBERS' | translate }}</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="#leagueHolder of leagues$ | async">
-        <td class="md-text-cell">{{ leagueHolder.league.name }}</td>
-        <td class="md-text-cell">{{ leagueHolder.league.description }}</td>
-        <td hide-xs>{{ leagueHolder.membersCount }}</td>
-        <td>
-          <button *ngIf="leagueHolder.actions.canJoin" md-button aria-label="Join"
-            (click)="join(leagueHolder.league)">{{ 'LEAGUES.ACTIONS.JOIN' | translate }}</button>
-          <button *ngIf="leagueHolder.actions.canLeave" md-button aria-label="Leave"
-            (click)="leave(leagueHolder.league)">{{ 'LEAGUES.ACTIONS.LEAVE' | translate }}</button>
-          <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Edit"
-            (click)="edit(leagueHolder.league)">{{ 'LEAGUES.ACTIONS.EDIT' | translate }}</button>
-          <button *ngIf="leagueHolder.actions.canAlter" md-button aria-label="Delete"
-            (click)="deleteConfirm(leagueHolder.league, $event)">{{ 'LEAGUES.ACTIONS.DELETE' | translate }}</button>
-        </td>
-      </tr>
-      </tbody>
-    </md-data-table>
+  <div class="card-list" layout="row" layout-wrap layout-align="left start">
+    <template ngFor #leagueHolder [ngForOf]="leagues$ | async">
+      <div flex="50" flex-xs="100" layout="column">
+        <md-card class="league-card">
+          <md-card-header>
+            <md-card-avatar>
+              <img class="md-user-avatar" [src]="leagueHolder.league.ownerProfileImageURL"/>
+            </md-card-avatar>
+            <md-card-header-text>
+              <span class="md-title">{{ leagueHolder.league.ownerDisplayName }}</span>
+            </md-card-header-text>
+          </md-card-header>
+          <img [src]="leagueHolder.league.image" class="md-card-image banner" *ngIf="leagueHolder.canShowBanner">
+          <div class="md-card-image banner" [style.background]="leagueHolder.league.background" *ngIf="!leagueHolder.canShowBanner">
+          </div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{ leagueHolder.league.name }}</span>
+              <span class="md-subhead">{{ leagueHolder.league.description }}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="start center">
+            <md-card-icon-actions>
+              <button md-button class="md-icon-button members-count-button">
+                <span class="members-count">{{ leagueHolder.membersCount }}</span>
+                <i md-icon>person</i>
+              </button>
+
+              <span flex></span>
+
+              <button md-button class="md-icon-button leave-button"
+                *ngIf="leagueHolder.actions.canLeave"
+                (click)="leave(leagueHolder.league)">
+                <i md-icon class="leave">input</i>
+              </button>
+              <button md-button class="md-icon-button"
+                *ngIf="leagueHolder.actions.canJoin"
+                (click)="join(leagueHolder.league)">
+                <i md-icon>input</i>
+              </button>
+              <button md-button class="md-icon-button"
+                *ngIf="leagueHolder.actions.canAlter"
+                (click)="edit(leagueHolder.league)">
+                <i md-icon>create</i>
+              </button>
+              <button md-button class="md-icon-button"
+                *ngIf="leagueHolder.actions.canAlter"
+                (click)="deleteConfirm(leagueHolder.league, $event)">
+                <i md-icon>delete</i>
+              </button>
+            </md-card-icon-actions>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </template>
   </div>
 
 </div>

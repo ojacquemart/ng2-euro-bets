@@ -10,6 +10,7 @@ import {Pages, Page} from '../core/services/navigation/pages.service';
 
 import {League} from '../leagues/models/league.models';
 import {LeaguesStore} from './services/leagues-store.service';
+import {PictureReader} from './services/picture.reader.helper';
 import {LeagueHolder} from './models/league.models';
 import {LeagueDeleteDialogCmp} from './delete-dialog/delete-dialog.component';
 import {LeagueDeleteDialogConfig} from './delete-dialog/delete-dialog-config.model';
@@ -33,6 +34,8 @@ export class LeaguesCmp {
   private showingForm:boolean;
   private editingForm:boolean;
   private editingLeague:League;
+  private imageSrc;
+  private imageError;
 
   private leagues$:Observable<Array<LeagueHolder>>;
 
@@ -70,6 +73,27 @@ export class LeaguesCmp {
     });
   }
 
+  previewBanner(input) {
+    console.log('leagues @ preview banner');
+
+    let pictureReader = new PictureReader(input);
+    pictureReader.read()
+      .subscribe(imageSrc => {
+        this.imageSrc = imageSrc;
+        this.imageError = null;
+        this.league.imageModerated = false;
+      }, error => {
+        this.imageSrc = null;
+        this.imageError = error;
+      });
+  }
+
+  removeBanner() {
+    console.log('leagues @ remove banner');
+
+    this.imageSrc = null;
+  }
+
   cancel() {
     this.resetForm();
   }
@@ -78,6 +102,7 @@ export class LeaguesCmp {
     console.log('leagues @ save', this.league);
 
     let doResetForm = () => this.resetForm();
+    this.league.image = this.imageSrc || '';
 
     if (this.editingForm) {
       this.leaguesStore.update(this.league, this.editingLeague, doResetForm);
@@ -92,15 +117,20 @@ export class LeaguesCmp {
     this.appRef.tick();
 
     this.league = _.clone(league);
+    if (!_.isEmpty(this.league.image)) {
+      this.imageSrc = this.league.image;
+    }
     this.editingLeague = league;
     this.editingForm = true;
     this.showingForm = true;
+    window.scrollTo(0, 0);
   }
 
   private resetForm() {
     this.league = new League();
     this.editingForm = false;
     this.showingForm = false;
+    this.imageSrc = null;
   }
 
   leave(league:League) {

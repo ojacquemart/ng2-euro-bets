@@ -1,3 +1,5 @@
+import * as moment from 'moment/moment';
+
 import {Inject,Injectable} from 'angular2/core';
 import {Control} from 'angular2/common';
 
@@ -10,10 +12,12 @@ import {LoadingState} from '../../core/services/loading-state/loading-state.serv
 import {Slugifier} from '../../core/services/util/slugifer.helper';
 import {League, LeagueHolder, Members} from '../models/league.models';
 
+const DATE_PATTERN_LEAGUE_CREATED_AT = 'dddd DD MMMM';
+
 @Injectable()
 export class LeaguesStore {
 
-  constructor(private auth:Auth, private loadingState: LoadingState, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
+  constructor(private auth:Auth, private loadingState:LoadingState, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
   }
 
   list() {
@@ -29,6 +33,7 @@ export class LeaguesStore {
 
           return {
             league: league,
+            canShowBanner: !_.isEmpty(league.image) && league.imageModerated,
             membersCount: _.keys(league.members).length,
             actions: {
               canJoin: !isInLeague,
@@ -69,9 +74,11 @@ export class LeaguesStore {
     });
   }
 
-  update(league:League, previousLeague: League, onSuccess:() => void) {
+  update(league:League, previousLeague:League, onSuccess:() => void) {
     console.log('leagues store @', league, 'will replace', previousLeague);
     delete league['$key'];
+    league.imageModerated = league.image !== previousLeague.image;
+    league.updatedAt = Date.now();
 
     let onDeleteComplete = () => {
       league.members = previousLeague.members;
@@ -83,6 +90,11 @@ export class LeaguesStore {
   save(league:League, onSuccess:() => void) {
     league.slug = Slugifier.slugify(league.name);
     league.owner = this.auth.uid;
+    league.ownerDisplayName = this.auth.user.displayName;
+    league.ownerProfileImageURL = this.auth.user.profileImageURL;
+    league.imageModerated = false;
+    league.createdAt = Date.now();
+
     if (!league.members) {
       league.members = {};
     }
