@@ -22,8 +22,8 @@
               <label for="name">{{ 'LEAGUES.ATTRS.NAME' | translate }}</label>
               <input md-input ngControl="name" [(ngModel)]="league.name" id="name">
               <div md-messages="name" role="alert">
-                <div md-message="required">{{ 'LEAGUES.ATTRS.ERRORS.REQUIRED' | translate }}</div>
-                <div md-message="invalidName">{{ 'LEAGUES.ATTRS.ERRORS.INVALID' | translate }}</div>
+                <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
+                <div md-message="invalidName">{{ 'COMMON.ERRORS.INVALID' | translate }}</div>
                 <div md-message="nameTaken">{{ 'LEAGUES.ATTRS.ERRORS.NAME_TAKEN' | translate }}</div>
               </div>
             </md-input-container>
@@ -31,7 +31,7 @@
               <label for="description">{{ 'LEAGUES.ATTRS.DESCRIPTION' | translate }}</label>
               <input md-input ngControl="description" [(ngModel)]="league.description" id="description">
               <div md-messages="description">
-                <div md-message="required">{{ 'LEAGUES.ATTRS.ERRORS.REQUIRED' | translate }}</div>
+                <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
                 <div md-message="maxlength">{{ 'LEAGUES.ATTRS.ERRORS.DESCRIPTION_MAX_LENGTH' | translate }}</div>
               </div>
             </md-input-container>

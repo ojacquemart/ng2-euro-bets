@@ -14,7 +14,21 @@
   "COMMON": {
     "ERROR_OCCURRED": "An error occurred",
     "LOADING": "Loading...",
-    "IM_FEELING_LUCKY": "I'm feeling lucky"
+    "IM_FEELING_LUCKY": "I'm feeling lucky",
+    "ERRORS": {
+      "REQUIRED": "This is required",
+      "INVALID": "This is invalid",
+      "INVALID_EMAIL": "This is an invalid email",
+      "PASSWORD": "Restart with at least 8 characters"
+    }
+  },
+  "LOGIN": {
+    "ERRORS": {
+      "INVALID_CREDENTIALS": "Invalid credentials",
+      "ACCOUNT_ALREADY_EXISTS": "Email already used",
+      "NAME_MIN_LENGTH": "Restart with at least 5 characters",
+      "NAME_MAX_LENGTH": "Restart with at most 50 characters"
+    }
   },
   "BETS": {
     "TABS": {
@@ -57,8 +71,6 @@
       "IMG": "Banner",
       "MEMBERS": "Members",
       "ERRORS": {
-        "REQUIRED": "This is required",
-        "INVALID": "This is invalid",
         "NAME_TAKEN": "Name taken",
         "DESCRIPTION_MAX_LENGTH": "The description has be to less than 30 characters long"
       }
@@ -85,7 +97,7 @@
     "DELETE_MODAL": {
       "TITLE": "Are you sure?",
       "MSG_1": "This action CANNOT be undone",
-      "MSG_2" :"This will permanently delete the league.",
+      "MSG_2": "This will permanently delete the league.",
       "MSG_3": "Please type in the name of the repository to confirm..."
     },
     "INVITATION": {

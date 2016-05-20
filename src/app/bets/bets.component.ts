@@ -34,7 +34,7 @@ export class BetsCmp {
   }
 
   ngOnInit() {
-    console.log('betsCmp @ ngOnInit');
+    console.log('bets @ ngOnInit');
 
     this.loadingStateSubscription = this.loadingState.subscribe((loading: boolean) => {
       this.loading = loading;

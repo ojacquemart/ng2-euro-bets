@@ -1,13 +1,13 @@
 import {Component} from 'angular2/core';
-import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/random-number-generator.helper';
+import {RANDOM_NUMBER_GENERATOR} from '../../services/util/random-number-generator.helper';
 
 const PLAYERS = ['benzema', 'valbuena', 'ribery', 'deschamps', 'zidane'];
 
 @Component({
-  selector: 'bets-score-error-img',
+  selector: 'bets-error-img',
   template: '<img [src]="imgUrl" />'
 })
-export class ScoreErrorImg {
+export class ErrorImg {
 
   private imgUrl: string;
 

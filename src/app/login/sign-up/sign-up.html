@@ -1,0 +1,32 @@
+<div layout="column" layout-align="center center" class="form">
+  <form [ngFormModel]="form">
+    <md-input-container class="md-block">
+      <label for="name">{{ LABELS.NAME }}</label>
+      <input md-input ngControl="name" [(ngModel)]="userCredentials.displayName" id="name">
+      <div md-messages="name" role="alert">
+      <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
+      <div md-message="minlength">{{ 'LOGIN.ERRORS.NAME_MIN_LENGTH' | translate }}</div>
+      <div md-message="minlength">{{ 'LOGIN.ERRORS.NAME_MAX_LENGTH' | translate }}</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="email">{{ LABELS.EMAIL }}</label>
+      <input md-input  ngControl="email" [(ngModel)]="userCredentials.credentials.email" id="email">
+      <div md-messages="email" role="alert">
+        <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
+        <div md-message="invalidemail">{{ 'COMMON.ERRORS.INVALID_EMAIL' | translate }}</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block password">
+      <label for="password">{{ LABELS.PASSWORD }}</label>
+      <input md-input ngControl="password" [(ngModel)]="userCredentials.credentials.password" type="password" id="password">
+      <div md-messages="password">
+        <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
+        <div md-message="minlength">{{ 'COMMON.ERRORS.PASSWORD' | translate }}</div>
+      </div>
+    </md-input-container>
+  </form>
+  <bets-error-bubble *ngIf="error">{{ 'LOGIN.ERRORS.ACCOUNT_ALREADY_EXISTS' | translate }}</bets-error-bubble>
+
+  <button md-raised-button class="md-primary" [disabled]="!form.valid" (click)="createUser()">{{ LABELS.SIGN_UP }}</button>
+</div>

@@ -1,33 +1,27 @@
 import {Component} from 'angular2/core';
 
-import {Auth} from '../core/services/firebase/auth.service';
-
 import {UefaEuroLogoCmp} from '../core/components/uefa-euro-logo/uefa-euro-logo.component';
 import {UserLang} from '../core/services/util/user-lang.helper';
 
-import {LOGIN_PROVIDERS, Provider} from './provider.model';
-
-const SIGN_IN_LABELS = {
-  fr: 'Se connecter',
-  en: 'Sign in'
-};
+import {LoginLabels} from './services/login-labels.helper';
+import {SignInCmp} from './sign-in/sign-in.component';
+import {SignUpCmp} from './sign-up/sign-up.compoment';
 
 @Component({
   selector: 'bets-login',
-  directives: [UefaEuroLogoCmp],
+  directives: [UefaEuroLogoCmp, SignInCmp, SignUpCmp],
   template: require('./login.html'),
   styles: [require('./login.scss')]
 })
 export class LoginCmp {
 
-  private providers:Array<Provider>;
-  private signInLabel;
+  private LABELS;
+  private showingSignIn = true;
 
-  constructor(private auth:Auth) {
+  constructor() {
     console.log('login @ init');
 
-    this.providers = LOGIN_PROVIDERS;
-    this.signInLabel = SIGN_IN_LABELS[UserLang.getLang()];
+    this.LABELS = LoginLabels.getLabels();
   }
 
   ngOnInit() {

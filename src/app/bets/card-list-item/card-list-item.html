@@ -67,8 +67,8 @@
         </div>
       </div>
 
-      <bets-score-error-message *ngIf="form.hasError('invalidScore')">{{ 'BETS.MATCHES.INVALID_SCORE' | translate}}</bets-score-error-message>
-      <bets-score-error-message *ngIf="showingError">{{ 'COMMON.ERROR_OCCURRED' | translate}}</bets-score-error-message>
+      <bets-error-bubble *ngIf="form.hasError('invalidScore')">{{ 'BETS.MATCHES.INVALID_SCORE' | translate}}</bets-error-bubble>
+      <bets-error-bubble *ngIf="showingError">{{ 'COMMON.ERROR_OCCURRED' | translate}}</bets-error-bubble>
     </form>
 
     <div *ngIf="match.status == 1">

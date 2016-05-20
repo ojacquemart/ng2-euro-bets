@@ -1,0 +1,31 @@
+<div layout="row" layout-align="center center" class="providers">
+  <button md-raised-button *ngFor="#provider of providers"
+          [ngClass]="provider.code"
+          (click)="loginWithProvider(provider.authProvider)">
+    {{ provider.name }}
+  </button>
+</div>
+
+<div layout="column" layout-align="center center" class="form">
+  <form [ngFormModel]="form">
+    <md-input-container class="md-block">
+      <label for="email">{{ LABELS.EMAIL }}</label>
+      <input md-input ngControl="email" [(ngModel)]="credentials.email" id="email">
+      <div md-messages="email" role="alert">
+        <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
+        <div md-message="invalidemail">{{ 'COMMON.ERRORS.INVALID_EMAIL' | translate }}</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block password">
+      <label for="password">{{ LABELS.PASSWORD }}</label>
+      <input md-input ngControl="password" [(ngModel)]="credentials.password" type="password" id="password">
+      <div md-messages="password">
+        <span md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</span>
+        <span md-message="minlength">{{ 'COMMON.ERRORS.PASSWORD' | translate }}</span>
+      </div>
+    </md-input-container>
+  </form>
+  <bets-error-bubble *ngIf="error">{{ 'LOGIN.ERRORS.INVALID_CREDENTIALS' | translate }}</bets-error-bubble>
+
+  <button md-raised-button class="md-primary" [disabled]="!form.valid" (click)="loginWithCredentials()">{{ LABELS.SIGN_IN }}</button>
+</div>

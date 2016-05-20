@@ -20,4 +20,5 @@ export class TableCmp {
   ngOnInit() {
     console.log('table @ ngOnInit');
   }
+
 }

@@ -14,7 +14,21 @@
   "COMMON": {
     "ERROR_OCCURRED": "Une erreur est survenue",
     "LOADING": "Chargement...",
-    "IM_FEELING_LUCKY": "J'ai de la chance"
+    "IM_FEELING_LUCKY": "J'ai de la chance",
+    "ERRORS": {
+      "REQUIRED": "Ce champ est obligatoire",
+      "INVALID": "Ce champ est invalide",
+      "INVALID_EMAIL": "Cet email est invalide",
+      "PASSWORD": "Un effort, au moins 8 caractères..."
+    }
+  },
+  "LOGIN": {
+    "ERRORS": {
+      "INVALID_CREDENTIALS": "Identifiants invalides",
+      "ACCOUNT_ALREADY_EXISTS": "Email déjà utilisé",
+      "NAME_MIN_LENGTH": "Tapez au moins 5 caractères",
+      "NAME_MAX_LENGTH": "Tapez au plus 50 caractères"
+    }
   },
   "BETS": {
     "TABS": {
@@ -57,8 +71,6 @@
       "IMG": "Bannière",
       "MEMBERS": "Membres",
       "ERRORS": {
-        "REQUIRED": "Ce champ est obligatoire",
-        "INVALID": "Ce champ est invalide",
         "NAME_TAKEN": "Ce nom d'équipe est déjà pris",
         "DESCRIPTION_MAX_LENGTH": "La description ne peut dépasser 30 caractères"
       }

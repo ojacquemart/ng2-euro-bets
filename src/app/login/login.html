@@ -5,14 +5,18 @@
     </h1>
     <bets-uefa-euro-logo [size]="'gt'"></bets-uefa-euro-logo>
 
-    <p class>{{ signInLabel}}</p>
+    <md-toolbar class="md-hue-2 tabs-toolbar">
+      <div class="tabs" flex layout="row" layout-align="space-around center">
+        <a class="tab" flex (click)="showingSignIn = true" [ngClass]="{active: showingSignIn}">
+          <span>{{ LABELS.SIGN_IN }}</span>
+        </a>
+        <a class="tab" flex (click)="showingSignIn = false" [ngClass]="{active: !showingSignIn}">
+          <span>{{ LABELS.SIGN_UP }}</span>
+        </a>
+      </div>
+    </md-toolbar>
 
-    <div layout="column" layout-align="center center">
-      <button *ngFor="#provider of providers"
-              [ngClass]="provider.code"
-              (click)="auth.login(provider.authProvider)">
-        {{ provider.name }}
-      </button>
-    </div>
-  </div>
+
+    <login-sign-in [hidden]="!showingSignIn"></login-sign-in>
+    <login-sign-up [hidden]="showingSignIn"></login-sign-up>
 </div>

@@ -1,0 +1,47 @@
+$facebook: #3B5998;
+$twitter: #55ACEE;
+$google: #DD4B39;
+
+.providers {
+  position: relative;
+  padding: 2px;
+  margin: 18px 0;
+  vertical-align: middle;
+
+  button {
+    margin: 0 3%;
+    width: calc(40% - 8px);
+    height: 36px;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: 0.2s ease;
+    cursor: pointer;
+  }
+
+  & .facebook {
+    background: $facebook;
+  }
+
+  & .twitter {
+    background-color: $twitter;
+  }
+
+  & .google {
+    background-color: $google;
+  }
+
+}
+
+.form {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #ddd;
+
+  .password {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
