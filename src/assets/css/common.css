@@ -11,13 +11,15 @@ html, body {
   padding: 0;
   margin: 0;
   height: 100%;
-  position: relative;
+  width: 100%;
+  position: fixed;
   display: flex;
   align-items: flex-start;
   align-content: flex-start;
   justify-content: center;
   background: #E53935;
   cursor: default;
+  overflow: auto;
 }
 
 .splash-item {
