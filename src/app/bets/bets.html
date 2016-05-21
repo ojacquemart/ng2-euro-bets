@@ -8,7 +8,7 @@
       <a class="tab" flex router-link-active [routerLink]="['./Groups']">
         <span>{{ 'BETS.TABS.GROUPS' | translate }}</span>
       </a>
-      <a class="tab" flex router-link-active [routerLink]="['./Favorites']">
+      <a class="tab" flex router-link-active [routerLink]="['./Winner']">
         <span>{{ 'BETS.TABS.WINNER' | translate }}</span>
       </a>
     </div>
@@ -16,6 +16,8 @@
 
   </md-toolbar>
 
-  <router-outlet></router-outlet>
+  <div flex>
+    <router-outlet flex></router-outlet>
+  </div>
 
 </div>

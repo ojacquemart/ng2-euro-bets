@@ -1,0 +1,43 @@
+<div layout="column" layout-wrap layout-align="left start" class="winner-container" *ngIf="countryWinner">
+  <md-toolbar class="md-hue-2 winner">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">{{ 'BETS.WINNER.TITLE' | translate }}</h2>
+    </div>
+  </md-toolbar>
+
+  <p>{{ 'BETS.WINNER.DESCRIPTION' | translate }}</p>
+
+  <div layout="row" layout-wrap layout-align="center center" class="country-winner-container" *ngIf="countryWinner.userWinner">
+    <div flex="30" flex-xs="60">
+      <winner-country-card-item [country]="countryWinner.userWinner" [lang]="lang" class="country-winner">
+        <md-card-actions>
+          <bets-uefa-euro-logo flex [size]="'md'"></bets-uefa-euro-logo>
+        </md-card-actions>
+      </winner-country-card-item>
+    </div>
+  </div>
+
+  <div *ngIf="!countryWinner.gameStarted">
+    <md-toolbar class="md-hue-2 winner winner-selection">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ 'BETS.WINNER.TEAM_SELECTION' | translate }}</h2>
+
+        <span flex></span>
+        <button md-button (click)="imFeelingLucky()">
+          {{ 'COMMON.IM_FEELING_LUCKY' | translate }}
+        </button>
+      </div>
+    </md-toolbar>
+
+    <div layout="row" layout-wrap layout-align="center start" class="country-cards">
+      <template ngFor #country [ngForOf]="countryWinner.countries">
+        <div flex="25" flex-md="30" flex-xs="50" layout="column">
+          <winner-country-card-item [country]="country" [lang]="lang" class="country-card"
+                                      (click)="saveCountry(country)">
+          </winner-country-card-item>
+        </div>
+      </template>
+    </div>
+  </div>
+</div>
+

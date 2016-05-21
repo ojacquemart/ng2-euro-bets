@@ -3,9 +3,10 @@ export interface Country {
   isoAlpha2Code: string;
 }
 
-export interface CountryFavorite {
+export interface CountryWinner {
+  gameStarted: boolean;
   countries: Array<Country>
-  favorite: Country;
+  userWinner: Country;
 }
 
 export interface Stadium {

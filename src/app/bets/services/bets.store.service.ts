@@ -18,7 +18,7 @@ import {LoadingState} from '../../core/services/loading-state/loading-state.serv
 import {
   Bet,
   Country,
-  CountryFavorite,
+  CountryWinner,
   Group,
   GroupTable,
   Match,
@@ -27,7 +27,8 @@ import {
   Status
 } from '../models/bets.models';
 import {UserBetsStore} from './user-bets.store.service';
-import {Settings} from "../../core/services/settings/settings.service";
+import {Settings} from '../../core/services/settings/settings.service';
+import {SettingsGroup} from '../../core/services/settings/settings.service';
 
 const FIXTURE_DAY_PATTERN = 'dddd DD MMMM';
 
@@ -88,22 +89,31 @@ export class BetsStore {
       });
   }
 
-  getCountries():Observable<CountryFavorite> {
+  getCountries():Observable<CountryWinner> {
     this.loadingState.start();
+
+    let settings$ = this.settings.getSetings$();
     let countries$ = this.af.object('/countries');
     let userCountry$ = this.userBetsStore.getCountry();
 
-    return Observable.zip(countries$, userCountry$, (countries:Array<Country>, userCountry) => {
-        let favorite = this.getCountry(countries, userCountry);
-
-        return {
-          countries: _.sortBy(countries, (country:Country) => country.i18n.fr),
-          favorite: favorite
-        };
+    return settings$.flatMap((settings:SettingsGroup) => {
+        return this.zipCountriesWithUserWinner(settings, countries$, userCountry$);
       })
-      .do(() => {
-        this.loadingState.stop();
-      });
+      .do(() => this.loadingState.stop());
+  }
+
+  private zipCountriesWithUserWinner(settings: SettingsGroup, countries$: Observable<Array<Country>>, userCountry$) {
+    return Observable.zip(countries$, userCountry$, (countries:Array<Country>, userCountry) => {
+      let userWinner = this.getCountry(countries, userCountry);
+
+      let countryWinner:CountryWinner = {
+        gameStarted: settings.started,
+        countries: settings.started ? [] : _.sortBy(countries, (country:Country) => country.i18n.fr),
+        userWinner: userWinner
+      };
+
+      return countryWinner;
+    })
   }
 
   private getCountry(countries:Array<Country>, userCountry:string) {

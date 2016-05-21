@@ -7,12 +7,12 @@ import {FlagIcon} from '../../../core/components/flag-icon/flag-icon.component';
 import {Country} from '../../models/bets.models';
 
 @Component({
-  selector: 'favorite-country-card-item',
+  selector: 'winner-country-card-item',
   directives: [FlagIcon],
   template: require('./country-card-item.html'),
   styles: [require('./country-card-item.scss')]
 })
-export class FavoriteCountryCardItemCmp {
+export class WinnerCountryCardItemCmp {
 
   @Input()
   private lang:string;

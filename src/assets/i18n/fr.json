@@ -13,7 +13,8 @@
   },
   "COMMON": {
     "ERROR_OCCURRED": "Une erreur est survenue",
-    "LOADING": "Chargement..."
+    "LOADING": "Chargement...",
+    "IM_FEELING_LUCKY": "J'ai de la chance"
   },
   "BETS": {
     "TABS": {
@@ -22,7 +23,6 @@
       "WINNER": "Vainqueur"
     },
     "MATCHES": {
-      "IM_FEELING_LUCKY": "J'ai de la chance",
       "INVALID_SCORE": "Score invalide",
       "SHOW_HISTORY": "Voir l'historique"
     },
@@ -39,10 +39,10 @@
       }
     },
     "WINNER": {
-      "TITLE": "Sélectionne ton équipe favorite",
+      "TITLE": "Le vainqueur",
       "DESCRIPTION": "Tu peux gagner 50 points si tu sélectionnes l'équipe vainqueur de l'Euro.",
       "USER_SELECTION": "Ton équipe vainqueur",
-      "TEAM_SELECTION": "Sélectionne une équipe"
+      "TEAM_SELECTION": "Sélectionne ton vainqueur"
     }
   },
   "TABLES": {

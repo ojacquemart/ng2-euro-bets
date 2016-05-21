@@ -13,7 +13,8 @@
   },
   "COMMON": {
     "ERROR_OCCURRED": "An error occurred",
-    "LOADING": "Loading..."
+    "LOADING": "Loading...",
+    "IM_FEELING_LUCKY": "I'm feeling lucky"
   },
   "BETS": {
     "TABS": {
@@ -22,7 +23,6 @@
       "WINNER": "Winner"
     },
     "MATCHES": {
-      "IM_FEELING_LUCKY": "I'm feeling lucky",
       "INVALID_SCORE": "Invalid score",
       "SHOW_HISTORY": "Show history"
     },
@@ -39,10 +39,10 @@
       }
     },
     "WINNER": {
-      "TITLE": "Select your favorite team",
+      "TITLE": "The winner",
       "DESCRIPTION": "You could gain 50 points if the team you select win the tournament.",
       "USER_SELECTION": "Your winner's team",
-      "TEAM_SELECTION": "Select a team"
+      "TEAM_SELECTION": "Select your winner"
     }
   },
   "TABLES": {

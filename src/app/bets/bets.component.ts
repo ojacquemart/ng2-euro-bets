@@ -8,7 +8,7 @@ import {Pages, Page} from '../core/services/navigation/pages.service';
 
 import {MatchesBetsCmp} from './matches/matches.component';
 import {GroupsBetsCmp} from './groups/groups.component';
-import {FavoritesBetsCmp} from './favorites/favorites.component';
+import {WinnerBetsCmp} from './winner/winner.component';
 
 import {BetsStore} from './services/bets.store.service';
 import {Match, MatchGroup} from './models/bets.models';
@@ -16,7 +16,7 @@ import {Match, MatchGroup} from './models/bets.models';
 @RouteConfig([
   {path: '/matches', as: 'Matches', component: MatchesBetsCmp, useAsDefault: true},
   {path: '/groups', as: 'Groups', component: GroupsBetsCmp},
-  {path: '/favorites', as: 'Favorites', component: FavoritesBetsCmp}
+  {path: '/winner', as: 'Winner', component: WinnerBetsCmp}
 ])
 @Component({
   template: require('./bets.html'),

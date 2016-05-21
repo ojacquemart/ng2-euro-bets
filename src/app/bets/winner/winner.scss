@@ -1,3 +1,7 @@
+.winner-container {
+  margin-top: 1em;
+}
+
 .country-cards {
   background: #029FE8;
 
@@ -10,11 +14,21 @@
   }
 }
 
-.country-favorite-container {
-  margin-top: 1em;
+md-toolbar.winner {
+  h2 {
+    text-transform: uppercase;
+  }
 }
 
-favorite-country-card-item.country-favorite  {
+md-toolbar.winner-selection {
+  margin-bottom: 1em;
+}
+
+.country-winner-container {
+  margin-bottom: 1em;
+}
+
+winner-country-card-item.country-winner  {
   md-card {
     background: #FFA000;
 
