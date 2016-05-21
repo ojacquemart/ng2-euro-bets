@@ -15,7 +15,7 @@
     <button md-button class="md-primary" (click)="dialog.close(false)">
       <span>{{ 'LEAGUES.ACTIONS.CANCEL' | translate }}</span>
     </button>
-    <button md-button class="md-accent" [disabled]="leagueName !== leagueNameConfirm" (click)="dialog.close(true)">
+    <button md-button class="md-accent" [disabled]="league.name !== leagueNameConfirm" (click)="dialog.close(true)">
       <span class="league-name-delete">{{ 'LEAGUES.ACTIONS.DELETE_LEAGUE' | translate }}</span>
     </button>
   </md-dialog-actions>
