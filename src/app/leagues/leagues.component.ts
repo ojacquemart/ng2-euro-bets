@@ -1,27 +1,24 @@
-import {ApplicationRef, Component, Input, ElementRef} from 'angular2/core';
+import {ApplicationRef, Component, ElementRef} from 'angular2/core';
 import {FORM_DIRECTIVES, Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
 
 import {Observable} from 'rxjs/Observable';
 
-import {MdDialog, MdDialogRef, Media} from 'ng2-material/all';
-
 import {LoadingState} from '../core/services/loading-state/loading-state.service';
 import {Pages, Page} from '../core/services/navigation/pages.service';
 
-import {League} from '../leagues/models/league.models';
+import {League} from './models/league.models';
 import {LeaguesStore} from './services/leagues-store.service';
 import {PictureReader} from './services/picture.reader.helper';
+
 import {LeagueHolder} from './models/league.models';
-import {LeagueDeleteDialogCmp} from './delete-dialog/delete-dialog.component';
-import {LeagueDialogConfig} from './delete-dialog/dialog-config.model';
-import {LeagueInviteDialogCmp} from './invite-dialog/invite-dialog.component';
+import {LeagueCardItemCmp} from "./league-card-item/league-card-item.component";
 
 const TIMEOUT_VALIDATION_LEAGUE_NAME = 750;
 
 @Component({
   template: require('./leagues.html'),
   styles: [require('./leagues.scss')],
-  directives: [FORM_DIRECTIVES]
+  directives: [FORM_DIRECTIVES, LeagueCardItemCmp]
 })
 export class LeaguesCmp {
 
@@ -39,9 +36,9 @@ export class LeaguesCmp {
 
   private leagues$:Observable<Array<LeagueHolder>>;
 
-  constructor(public dialog:MdDialog, public element:ElementRef,
-              private appRef:ApplicationRef,
+  constructor(private appRef:ApplicationRef,
               private leaguesStore:LeaguesStore,
+              private element: ElementRef,
               loadingState:LoadingState, pages:Pages, fb:FormBuilder) {
     console.log('leagues @ init');
 
@@ -131,55 +128,6 @@ export class LeaguesCmp {
     this.editingForm = false;
     this.showingForm = false;
     this.imageSrc = null;
-  }
-
-  invite(league:League, ev) {
-    console.log('leagues @ invite', league);
-
-    let config = new LeagueDialogConfig()
-      .league(league)
-      .clickOutsideToClose(true)
-      .targetEvent(ev);
-
-
-    this.dialog.open(LeagueInviteDialogCmp, this.element, config)
-      .then((ref:MdDialogRef) => {
-        ref.whenClosed.then(() => {
-          console.log('close');
-        })
-      });
-
-  }
-
-  leave(league:League) {
-    console.log('leagues @ leave', league);
-
-    this.leaguesStore.leave(league);
-  }
-
-  deleteConfirm(league:League, ev) {
-    console.log('leagues @ delete', league);
-
-    let config = new LeagueDialogConfig()
-      .league(league)
-      .clickOutsideToClose(true)
-      .targetEvent(ev);
-
-
-    this.dialog.open(LeagueDeleteDialogCmp, this.element, config)
-      .then((ref:MdDialogRef) => {
-        ref.whenClosed.then((confirmed) => {
-          if (confirmed) {
-            this.leaguesStore.delete(league);
-          }
-        })
-      });
-  }
-
-  join(league:League) {
-    console.log('leagues @ join', league);
-
-    this.leaguesStore.join(league);
   }
 
   ngOnInit() {

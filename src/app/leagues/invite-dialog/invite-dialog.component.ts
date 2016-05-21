@@ -20,22 +20,17 @@ export class LeagueInviteDialogCmp {
 
   generateInvitationCode() {
     let invitationCode = UniqueIdGenerator.generate();
-    this.leaguesStore.attachInvitationCode(this.league, invitationCode, () => {
-      this.setInvitationLink(invitationCode);
-    });
+    this.league.invitationCode = invitationCode;
+
+    this.leaguesStore.attachInvitationCode(this.league, invitationCode, () => this.setInvitationLink());
   }
 
-  private setInvitationLink(invitationCode:string) {
-    if (invitationCode) {
-      this.invitationLink = `${window.location.origin}/#/leagues/${this.league.slug}/invitations/${invitationCode}`;
-    }
+  private setInvitationLink() {
+    this.invitationLink = `${window.location.origin}/#/leagues/${this.league.slug}/invitations/${this.league.invitationCode}`;
   }
 
   ngOnInit() {
-    this.leaguesStore.find(this.league.slug)
-      .subscribe((league:League) => {
-        this.setInvitationLink(league.invitationCode);
-      });
+    this.setInvitationLink();
   }
 
 }
