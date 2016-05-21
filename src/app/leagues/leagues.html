@@ -87,34 +87,44 @@
                 <span class="members-count">{{ leagueHolder.membersCount }}</span>
                 <i md-icon>person</i>
               </button>
-              <button md-button class="md-icon-button"
-                *ngIf="leagueHolder.actions.canAlter"
-                (click)="invite(leagueHolder.league, $event)">
-                <i md-icon>person_add</i>
-              </button>
+              <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.INVITE' | translate }}"
+                   *ngIf="leagueHolder.actions.canAlter"
+                   (click)="invite(leagueHolder.league, $event)">
+                <button md-button class="md-icon-button">
+                  <i md-icon>person_add</i>
+                </button>
+              </div>
 
               <span flex></span>
 
-              <button md-button class="md-icon-button leave-button"
-                *ngIf="leagueHolder.actions.canLeave"
-                (click)="leave(leagueHolder.league)">
-                <i md-icon class="leave">input</i>
-              </button>
-              <button md-button class="md-icon-button"
-                *ngIf="leagueHolder.actions.canJoin"
-                (click)="join(leagueHolder.league)">
-                <i md-icon>input</i>
-              </button>
-              <button md-button class="md-icon-button"
-                *ngIf="leagueHolder.actions.canAlter"
-                (click)="edit(leagueHolder.league)">
-                <i md-icon>create</i>
-              </button>
-              <button md-button class="md-icon-button"
-                *ngIf="leagueHolder.actions.canAlter"
-                (click)="deleteConfirm(leagueHolder.league, $event)">
-                <i md-icon>delete</i>
-              </button>
+              <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.LEAVE' | translate }}"
+                   *ngIf="leagueHolder.actions.canLeave"
+                   (click)="leave(leagueHolder.league)">
+                <button md-button class="md-icon-button leave-button">
+                  <i md-icon class="leave">input</i>
+                </button>
+              </div>
+              <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.JOIN' | translate }}"
+                   *ngIf="leagueHolder.actions.canJoin"
+                   (click)="join(leagueHolder.league)">
+                <button md-button class="md-icon-button">
+                  <i md-icon>input</i>
+                </button>
+              </div>
+              <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.EDIT' | translate }}"
+                   *ngIf="leagueHolder.actions.canAlter"
+                   (click)="edit(leagueHolder.league)">
+                <button md-button class="md-icon-button">
+                  <i md-icon>create</i>
+                </button>
+              </div>
+              <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.DELETE' | translate }}"
+                   *ngIf="leagueHolder.actions.canAlter"
+                   (click)="deleteConfirm(leagueHolder.league, $event)">
+                <button md-button class="md-icon-button">
+                  <i md-icon>delete</i>
+                </button>
+              </div>
             </md-card-icon-actions>
           </md-card-actions>
         </md-card>

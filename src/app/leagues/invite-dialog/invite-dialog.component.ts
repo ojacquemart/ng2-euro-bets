@@ -26,7 +26,9 @@ export class LeagueInviteDialogCmp {
   }
 
   private setInvitationLink(invitationCode:string) {
-    this.invitationLink = `${window.location.origin}/#/leagues/${this.league.slug}/invitations/${invitationCode}`;
+    if (invitationCode) {
+      this.invitationLink = `${window.location.origin}/#/leagues/${this.league.slug}/invitations/${invitationCode}`;
+    }
   }
 
   ngOnInit() {
