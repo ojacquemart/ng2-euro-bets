@@ -33,6 +33,12 @@ html, body {
   border-radius: 2px;
 }
 
+@media (max-width: 600px) {
+  .splash-item {
+    margin: 16px 0;
+  }
+}
+
 .splash-item .uefa-euro-logo img {
   width: 256px;
   height: 256px;
