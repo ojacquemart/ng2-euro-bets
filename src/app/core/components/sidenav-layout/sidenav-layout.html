@@ -27,17 +27,21 @@
     </div>
   </md-sidenav>
   <section class="app-content" layout="column" layout-align="start center" flex>
-    <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo [break]="210" breakAction="show"></md-toolbar>
+    <md-toolbar class="shadow-toolbar md-whiteframe-z1" md-peekaboo
+      [breakMd]="128" [breakLg]="90" breakAction="show"></md-toolbar>
     <md-toolbar class="fixed-toolbar"
                 md-peekaboo
-                [break]="140"
+                [break]="180"
                 breakAction="show">
     </md-toolbar>
     <md-toolbar class="hero">
-      <h1 md-peekaboo
-          [breakMd]="50"
-          [breakXs]="20"
-          breakAction="hide">{{ pageTitle }}</h1>
+      <div md-peekaboo
+        [breakMd]="56"
+        [breakXs]="20"
+        breakAction="hide">
+
+        <h1>{{ pageTitle }}</h1>
+      </div>
     </md-toolbar>
     <md-toolbar class="fixed-toolbar">
       <div class="md-toolbar-tools">
@@ -49,7 +53,7 @@
           <i md-icon class="md-dark">menu</i>
         </button>
         <h2 md-peekaboo
-            [breakMd]="50"
+            [breakMd]="65"
             [breakXs]="20"
             breakAction="show">
           <span>{{ pageTitle }}</span>

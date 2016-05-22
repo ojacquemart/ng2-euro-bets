@@ -12,12 +12,11 @@ md-list-item.divider {
   }
 }
 
-.hero, .fixed-toolbar.md-peekaboo-active  {
+.hero, .shadow-toolbar.md-peekaboo-active, .fixed-toolbar.md-peekaboo-active {
   &:before {
     background: url(assets/img/bg_pattern.png) top center #007cba;
     background-size: 50%;
     opacity: .2;
-    z-index: 1;
     content: "";
     display: block;
     position: absolute;
