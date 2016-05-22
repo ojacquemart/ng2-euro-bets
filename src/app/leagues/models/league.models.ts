@@ -15,7 +15,6 @@ export class League {
   imageModerated:boolean;
   background:string = BACKGROUND_COLORS[RANDOM_NUMBER_GENERATOR.generate(BACKGROUND_COLORS.length)];
   createdAt:number;
-  updatedAt:number;
   members:Members;
 }
 

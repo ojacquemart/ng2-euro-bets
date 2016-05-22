@@ -89,16 +89,17 @@ export class LeaguesStore {
   update(league:League, previousLeague:League):Promise<void> {
     console.log('leagues store @', league, 'will replace', previousLeague);
 
-    let imageModerated = previousLeague.imageModerated ? league.image === previousLeague.image : false;
+    delete league['$key'];
+    league.imageModerated = previousLeague.imageModerated ? league.image === previousLeague.image : false;
 
-    return this.ref.child('/leagues').child(previousLeague.slug)
-      .update({
-        name: league.name,
-        description: league.description,
-        image: league.image,
-        imageModerated: imageModerated,
-        updatedAt: Date.now()
-      });
+    let onDeleteComplete = () => {
+      league.members = previousLeague.members;
+
+      return this.save(league);
+    };
+
+    return this.ref.child('/leagues').child(previousLeague.slug).remove()
+      .then(() => onDeleteComplete());
   }
 
   save(league:League):Promise<void> {
@@ -106,7 +107,6 @@ export class LeaguesStore {
     league.owner = this.auth.uid;
     league.ownerDisplayName = this.auth.user.displayName;
     league.ownerProfileImageURL = this.auth.user.profileImageURL;
-    league.imageModerated = false;
     league.createdAt = Date.now();
 
     if (!league.members) {
