@@ -1,8 +1,14 @@
-<div class="user md-toolbar-tools-bottom inset" layout="column" layout-align="start start">
-  <div>
-    <img [src]="user.profileImageURL">
+<div layout="row" layout-align="space-between center">
+  <div class="user md-toolbar-tools-bottom inset" layout="column" layout-align="start start">
+    <div>
+      <img [src]="user.profileImageURL">
+    </div>
+    <div>
+      <span>{{ user.displayName }}</span>
+    </div>
   </div>
+
   <div>
-    <span>{{ user.displayName }}</span>
+    <bets-uefa-euro-logo size="md"></bets-uefa-euro-logo>
   </div>
 </div>

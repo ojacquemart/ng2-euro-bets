@@ -4,7 +4,6 @@ import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {MATERIAL_DIRECTIVES, Media, SidenavService} from 'ng2-material/all';
 
 import {Auth} from '../../services/firebase/auth.service';
-import {UefaEuroLogoCmp} from '../uefa-euro-logo/uefa-euro-logo.component';
 import {UserAvatar} from '../user-avatar/user-avatar.component';
 import {SidenavItem} from './sidenav-item.model';
 import {TranslateService} from "ng2-translate/ng2-translate";
@@ -14,7 +13,7 @@ import {PageComponent} from "../../services/navigation/pages.service";
 
 @Component({
   selector: 'bets-sidenav-layout',
-  directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES, UserAvatar, UefaEuroLogoCmp],
+  directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES, UserAvatar],
   providers: [SidenavService],
   template: require('./sidenav-layout.html'),
   styles: [require('./sidenav-layout.scss')],
