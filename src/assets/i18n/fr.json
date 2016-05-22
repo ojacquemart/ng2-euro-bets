@@ -23,6 +23,7 @@
     }
   },
   "LOGIN": {
+    "OR": "ou",
     "ERRORS": {
       "INVALID_CREDENTIALS": "Identifiants invalides",
       "ACCOUNT_ALREADY_EXISTS": "Email déjà utilisé",

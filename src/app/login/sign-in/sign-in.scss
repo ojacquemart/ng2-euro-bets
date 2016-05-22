@@ -35,10 +35,32 @@ $google: #DD4B39;
 
 }
 
+.divider {
+  margin-top: 1.5em;
+  position: relative;
+  z-index: 1;
+
+  span {
+    padding: 0 .5em;
+    background: #fff;
+    color: #bbb;
+  }
+
+  &:before {
+    content: '';
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid #ddd;
+    z-index: -1;
+  }
+}
+
 .form {
-  margin-top: 1em;
   padding-top: 1em;
-  border-top: 1px solid #ddd;
 
   .password {
     margin-bottom: 0;
