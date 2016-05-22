@@ -82,8 +82,7 @@ export class Auth {
   loginWithAuthProvider(provider:AuthProviders):Promise<FirebaseAuthState> {
     return this.auth$.login({
       provider: provider,
-      method: AuthMethods.Popup,
-      scope: ['email']
+      method: AuthMethods.Popup
     }).then((authState:FirebaseAuthState) => this.handleOnLogin(authState));
   }
 
