@@ -38,7 +38,7 @@ export class LeaguesCmp {
 
   constructor(private appRef:ApplicationRef,
               private leaguesStore:LeaguesStore,
-              private element: ElementRef,
+              private element:ElementRef,
               loadingState:LoadingState, pages:Pages, fb:FormBuilder) {
     console.log('leagues @ init');
 
@@ -102,9 +102,11 @@ export class LeaguesCmp {
     this.league.image = this.imageSrc || '';
 
     if (this.editingForm) {
-      this.leaguesStore.update(this.league, this.editingLeague, doResetForm);
+      this.leaguesStore.update(this.league, this.editingLeague)
+        .then(() => this.resetForm());
     } else {
-      this.leaguesStore.save(this.league, doResetForm);
+      this.leaguesStore.save(this.league)
+        .then(() => this.resetForm())
     }
   }
 

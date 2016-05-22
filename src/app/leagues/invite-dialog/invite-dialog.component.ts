@@ -20,9 +20,12 @@ export class LeagueInviteDialogCmp {
 
   generateInvitationCode() {
     let invitationCode = UniqueIdGenerator.generate();
-    this.league.invitationCode = invitationCode;
 
-    this.leaguesStore.attachInvitationCode(this.league, invitationCode, () => this.setInvitationLink());
+    this.leaguesStore.attachInvitationCode(this.league, invitationCode)
+      .then(() => {
+        this.league.invitationCode = invitationCode;
+        this.setInvitationLink();
+      });
   }
 
   private setInvitationLink() {

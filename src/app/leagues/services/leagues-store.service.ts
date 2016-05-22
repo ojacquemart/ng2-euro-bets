@@ -19,7 +19,7 @@ export class LeaguesStore {
   constructor(private auth:Auth, private loadingState:LoadingState, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
   }
 
-  find(leagueSlug:string): Observable<League> {
+  find(leagueSlug:string):Observable<League> {
     this.loadingState.start();
 
     return this.af.object(`/leagues/${leagueSlug}`)
@@ -55,10 +55,10 @@ export class LeaguesStore {
       .do(() => this.loadingState.stop());
   }
 
-  attachInvitationCode(league:League, invitationCode, onComplete:() => void) {
+  attachInvitationCode(league:League, invitationCode) {
     console.log('leagues store @ attach invitation code', league, invitationCode);
 
-    this.ref.child('/leagues').child(league.slug).update({invitationCode: invitationCode}, onComplete);
+    return this.ref.child('/leagues').child(league.slug).update({invitationCode: invitationCode});
   }
 
   validateExists(leagueName:string, resolve:any) {
@@ -86,20 +86,22 @@ export class LeaguesStore {
     });
   }
 
-  update(league:League, previousLeague:League, onSuccess:() => void) {
+  update(league:League, previousLeague:League):Promise<void> {
     console.log('leagues store @', league, 'will replace', previousLeague);
-    delete league['$key'];
-    league.imageModerated = league.image !== previousLeague.image;
-    league.updatedAt = Date.now();
 
-    let onDeleteComplete = () => {
-      league.members = previousLeague.members;
-      this.save(league, onSuccess);
-    };
-    this.ref.child('/leagues').child(previousLeague.slug).remove(onDeleteComplete);
+    let imageModerated = previousLeague.imageModerated ? league.image === previousLeague.image : false;
+
+    return this.ref.child('/leagues').child(previousLeague.slug)
+      .update({
+        name: league.name,
+        description: league.description,
+        image: league.image,
+        imageModerated: imageModerated,
+        updatedAt: Date.now()
+      });
   }
 
-  save(league:League, onSuccess:() => void) {
+  save(league:League):Promise<void> {
     league.slug = Slugifier.slugify(league.name);
     league.owner = this.auth.uid;
     league.ownerDisplayName = this.auth.user.displayName;
@@ -113,28 +115,41 @@ export class LeaguesStore {
     league.members[`${league.owner}`] = true;
 
     var leagueRef = this.ref.child('/leagues').child(league.slug);
-    leagueRef.set(league)
-      .then((error:any) => {
-        if (error) {
-          log.error('leagues store @ save error', error);
-          return;
-        }
 
-        leagueRef.child('members')
-          .child(this.auth.uid).set(true, onSuccess);
+    return leagueRef.set(league)
+      .then(() => {
+        leagueRef.child('members').child(this.auth.uid).set(true);
+      })
+      .then(() => {
+        return this.attachUserLeague(league);
       });
   }
 
   join(league:League) {
-    this.ref.child('/leagues').child(league.slug).child('members').child(this.auth.uid).set(true);
+    return this.ref.child('/leagues').child(league.slug).child('members').child(this.auth.uid).set(true)
+      .then(() => this.attachUserLeague(league));
   }
 
   leave(league:League) {
-    this.ref.child('/leagues').child(league.slug).child('members').child(this.auth.uid).remove();
+    return this.ref.child('/leagues').child(league.slug).child('members').child(this.auth.uid).remove()
+      .then(() => this.detachUserLeague(league));
   }
 
   delete(league:League) {
-    this.ref.child('/leagues').child(league.slug).remove();
+    return this.ref.child('/leagues').child(league.slug).remove()
+      .then(() => this.detachUserLeague(league));
+  }
+
+  attachUserLeague(league:League) {
+    return this.getUserLeagues(league).set(true);
+  }
+
+  detachUserLeague(league:League) {
+    return this.getUserLeagues(league).remove();
+  }
+
+  getUserLeagues(league:League) {
+    return this.ref.child(`users/${this.auth.uid}/leagues/${league.slug}`);
   }
 
 }
