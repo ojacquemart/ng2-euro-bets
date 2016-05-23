@@ -60,7 +60,7 @@ export class App {
     var userLang = UserLang.getLang();
     translate.use(userLang);
 
-    moment.lang(userLang);
+    moment.locale(userLang);
   }
 
 }
