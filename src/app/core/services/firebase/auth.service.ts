@@ -7,8 +7,6 @@ import {AuthProviders, AuthMethods, FirebaseAuth, FirebaseAuthState} from 'angul
 import {UsersStore} from './users.store.service';
 import {UserData, UserCredentials} from './auth.model';
 
-const NOOP = () => {};
-
 @Injectable()
 export class Auth {
 
@@ -50,62 +48,58 @@ export class Auth {
     return providerData;
   }
 
-  getProviderData(authData:FirebaseAuthData|FirebaseAuthState):FirebaseAuthDataGoogle {
-    let provider = AuthProviders[authData.provider].toLowerCase();
-
-    return authData[provider];
-  }
-
-  createUser(userCredentials:UserCredentials):Promise<FirebaseAuthData> {
+  createUser(userCredentials:UserCredentials):Promise<void> {
     console.log('auth @ create user');
 
     return this.auth$.createUser(userCredentials.credentials)
-      .then((authData:FirebaseAuthData) => {
-        this.save({
-          uid: authData.uid,
-          displayName: userCredentials.displayName,
-          profileImageURL: '',
-          timestamp: Firebase.ServerValue.TIMESTAMP,
-          provider: AuthProviders.Password,
-        }, () => this.loginWithCredentials(userCredentials.credentials));
+      .then((authData:FirebaseAuthData) => this.auth$.login(userCredentials.credentials))
+      .then((authState:FirebaseAuthState) => {
+        let providerData = this.getProviderData(authState);
 
-        return authData;
+        return this.save({
+          uid: this.uid,
+          provider: AuthProviders.Password,
+          displayName: userCredentials.displayName,
+          profileImageURL: providerData.profileImageURL,
+          timestamp: Firebase.ServerValue.TIMESTAMP
+        });
       });
   }
 
-  loginWithCredentials(credentials:FirebaseCredentials):Promise<FirebaseAuthState> {
+  loginWithCredentials(credentials:FirebaseCredentials):Promise<void> {
     console.log('auth @ login user');
 
-    return this.auth$.login(credentials).then((authState) => this.handleOnLogin(authState));
+    return this.auth$.login(credentials)
+      .then((authState) => this.handleOnLogin(authState));
   }
 
-  loginWithAuthProvider(provider:AuthProviders):Promise<FirebaseAuthState> {
-    return this.auth$.login({
-      provider: provider,
-      method: AuthMethods.Popup
-    }).then((authState:FirebaseAuthState) => this.handleOnLogin(authState));
+  loginWithAuthProvider(provider:AuthProviders):Promise<void> {
+    return this.auth$.login({provider: provider, method: AuthMethods.Popup})
+      .then((authState:FirebaseAuthState) => this.handleOnLogin(authState));
   }
 
   private handleOnLogin(authState:FirebaseAuthState) {
-    this.authState = authState;
-
     let providerData = this.getProviderData(authState);
 
-    this.save({
+    return this.save({
       uid: authState.uid,
       provider: authState.provider,
       displayName: providerData.displayName,
       profileImageURL: providerData.profileImageURL,
       timestamp: Firebase.ServerValue.TIMESTAMP
     });
-
-    return authState;
   }
 
-  private save(userData:UserData, onComplete:()=> void = NOOP) {
+  private save(userData:UserData) {
     console.log('auth @ after login');
 
-    this.usersStore.save(userData, onComplete);
+    this.usersStore.save(userData);
+  }
+
+  getProviderData(authData:FirebaseAuthData|FirebaseAuthState):FirebaseAuthDataGoogle {
+    let provider = AuthProviders[authData.provider].toLowerCase();
+
+    return authData[provider];
   }
 
   logout() {
