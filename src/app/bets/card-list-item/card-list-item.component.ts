@@ -59,8 +59,9 @@ export class BetCardListItemCmp {
 
         console.log('bet @ change', data, this.match.bet);
 
+        this.showingError = false;
+
         let onSuccess = () => {
-          this.showingError = false;
           this.feelingLucky = false;
         };
         let onError = () => {
