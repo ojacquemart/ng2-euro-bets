@@ -1,6 +1,5 @@
-import {Component} from 'angular2/core';
-import {FormBuilder} from 'angular2/common';
-import {ControlGroup} from 'angular2/common';
+import {Component, EventEmitter, Output} from 'angular2/core';
+import {FormBuilder, ControlGroup} from 'angular2/common';
 
 import {AuthProviders} from 'angularfire2/angularfire2';
 
@@ -18,6 +17,9 @@ import {LOGIN_PROVIDERS, Provider} from '../provider.model';
   styles: [require('./sign-in.scss')]
 })
 export class SignInCmp {
+
+  @Output()
+  private onNoAccount = new EventEmitter<boolean>();
 
   private LABELS;
   private providers:Array<Provider>;
@@ -57,6 +59,10 @@ export class SignInCmp {
       this.auth.loginWithCredentials(this.credentials)
         .catch(() => this.error = true);
     }
+  }
+
+  onNoAccountClick() {
+    this.onNoAccount.emit(true);
   }
 
 }

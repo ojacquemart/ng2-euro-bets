@@ -32,4 +32,5 @@
   <bets-error-bubble *ngIf="error">{{ 'LOGIN.ERRORS.INVALID_CREDENTIALS' | translate }}</bets-error-bubble>
 
   <button md-raised-button class="md-primary" [disabled]="!form.valid" (click)="loginWithCredentials()">{{ LABELS.SIGN_IN }}</button>
+  <span class="no-account" (click)="onNoAccountClick()">{{ 'LOGIN.NO_ACCOUNT' | translate }}</span>
 </div>

@@ -24,6 +24,10 @@ export class LoginCmp {
     this.LABELS = LoginLabels.getLabels();
   }
 
+  goToSignUp() {
+    this.showingSignIn = false;
+  }
+
   ngOnInit() {
     console.log('login @ ngOnInit');
   }

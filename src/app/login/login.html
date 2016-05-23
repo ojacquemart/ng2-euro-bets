@@ -17,6 +17,6 @@
     </md-toolbar>
 
 
-    <login-sign-in [hidden]="!showingSignIn"></login-sign-in>
+    <login-sign-in [hidden]="!showingSignIn" (onNoAccount)="goToSignUp($event)"></login-sign-in>
     <login-sign-up [hidden]="showingSignIn"></login-sign-up>
 </div>

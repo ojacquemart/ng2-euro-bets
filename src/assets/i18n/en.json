@@ -24,6 +24,7 @@
   },
   "LOGIN": {
     "OR": "or",
+    "NO_ACCOUNT": "No account yet?",
     "ERRORS": {
       "INVALID_CREDENTIALS": "Invalid credentials",
       "ACCOUNT_ALREADY_EXISTS": "Email already used",
