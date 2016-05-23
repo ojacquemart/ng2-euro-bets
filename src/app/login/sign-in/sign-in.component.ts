@@ -41,6 +41,8 @@ export class SignInCmp {
   }
 
   loginWithProvider(provider:AuthProviders) {
+    this.error = false;
+    
     console.log('sign in @ login with provider', provider);
 
     this.auth.loginWithAuthProvider(provider);
