@@ -7,8 +7,8 @@ import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/random-number-ge
 import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
 import {UefaEuroLogoCmp} from '../../core/components/uefa-euro-logo/uefa-euro-logo.component';
 
-import {BetsStore} from '../services/bets.store.service';
-import {UserBetsStore} from '../services/user-bets.store.service';
+import {BetsService} from '../services/bets.service';
+import {WinnerService} from '../services/winner.service';
 import {Country, CountryWinner} from '../models/bets.models';
 import {WinnerCountryCardItemCmp} from './card/country-card-item.component';
 
@@ -23,14 +23,14 @@ export class WinnerBetsCmp {
   private countryWinner:CountryWinner;
   private lang;
 
-  constructor(private betsStore:BetsStore, private userBetsStore:UserBetsStore) {
+  constructor(private bets: BetsService, private winner:WinnerService) {
     console.log('favorites bets @ init');
 
     this.lang = UserLang.getLang();
   }
 
   ngOnInit() {
-    this.betsStore.getCountries()
+    this.winner.getWinner()
       .subscribe((countryFavorite:CountryWinner) => {
         this.countryWinner = countryFavorite;
       });
@@ -48,7 +48,7 @@ export class WinnerBetsCmp {
       this.countryWinner.userWinner = country;
     };
 
-    this.userBetsStore.saveCountry(country, onSuccess);
+    this.bets.saveCountry(country, onSuccess);
   }
 
 }

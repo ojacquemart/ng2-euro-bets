@@ -2,6 +2,7 @@ import {Injectable} from "angular2/core";
 
 import {Observable} from "rxjs/Observable";
 import {AngularFire} from "angularfire2/angularfire2";
+import {FirebaseObjectObservable} from "angularfire2/angularfire2";
 
 export interface SettingsGroup {
   dayId: number;
@@ -10,16 +11,14 @@ export interface SettingsGroup {
 }
 
 @Injectable()
-export class Settings {
+export class SettingsService {
+
+  settings$:FirebaseObjectObservable<SettingsGroup>;
 
   constructor(private af:AngularFire) {
     console.log('settings @ init');
-  }
 
-  getSetings$():Observable<SettingsGroup> {
-    console.log('settings @ get settings$');
-
-    return this.af.object('/settings');
+    this.settings$ = this.af.object('/settings');
   }
 
 }

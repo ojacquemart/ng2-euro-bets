@@ -10,7 +10,6 @@ import {MatchesBetsCmp} from './matches/matches.component';
 import {GroupsBetsCmp} from './groups/groups.component';
 import {WinnerBetsCmp} from './winner/winner.component';
 
-import {BetsStore} from './services/bets.store.service';
 import {Match, MatchGroup} from './models/bets.models';
 
 @RouteConfig([
@@ -27,7 +26,7 @@ export class BetsCmp {
   private loading = false;
   private loadingStateSubscription;
 
-  constructor(private betsStore:BetsStore, private loadingState: LoadingState, pages:Pages) {
+  constructor(private loadingState: LoadingState, pages:Pages) {
     console.log('bets @ init');
 
     pages.emit(Page.BETS);

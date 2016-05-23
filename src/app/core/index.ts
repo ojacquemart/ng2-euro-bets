@@ -2,7 +2,7 @@ import {APP_FIREBASE_PROVIDERS, APP_AUTH_PROVIDERS} from './services/firebase/in
 
 import {LoadingState} from './services/loading-state/loading-state.service';
 import {Pages} from './services/navigation/pages.service';
-import {Settings} from './services/settings/settings.service';
+import {SettingsService} from './services/settings/settings.service';
 import {SidenavLayoutCmp} from './components/sidenav-layout/sidenav-layout.component';
 
 export const APP_CORE_PROVIDERS = [
@@ -10,6 +10,6 @@ export const APP_CORE_PROVIDERS = [
   APP_AUTH_PROVIDERS,
   Pages,
   LoadingState,
-  Settings,
+  SettingsService,
   SidenavLayoutCmp
 ];

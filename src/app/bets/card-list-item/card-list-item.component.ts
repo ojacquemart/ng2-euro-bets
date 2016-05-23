@@ -1,12 +1,12 @@
 import {Component, Input} from 'angular2/core';
 import {Control, ControlGroup, FormBuilder, Validators} from 'angular2/common';
 
+import {ErrorBubble} from '../../core/components/error-bubble/error-bubble.component';
 import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
 import {RANDOM_NUMBER_GENERATOR} from '../../core/services/util/random-number-generator.helper';
 
-import {UserBetsStore} from '../services/user-bets.store.service';
+import {BetsService} from '../services/bets.service';
 import {Bet, Match} from '../models/bets.models';
-import {ErrorBubble} from '../../core/components/error-bubble/error-bubble.component';
 import {validateScore} from './score.validator';
 
 @Component({
@@ -26,7 +26,7 @@ export class BetCardListItemCmp {
 
   private form;
 
-  constructor(private userBetsStore:UserBetsStore, private formBuilder:FormBuilder) {
+  constructor(private bets:BetsService, private formBuilder:FormBuilder) {
     this.form = this.formBuilder.group({
         home: [0, Validators.required],
         away: [0, Validators.required]
@@ -67,7 +67,9 @@ export class BetCardListItemCmp {
           this.showingError = true;
         };
 
-        this.userBetsStore.save(this.match, onSuccess, onError);
+        this.bets.save(this.match, onSuccess, onError)
+          .then(_ => onSuccess())
+          .catch(_ => onError());
       });
   }
 

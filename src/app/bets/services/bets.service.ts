@@ -1,41 +1,33 @@
 import {Inject, Injectable} from 'angular2/core';
-import {AngularFire} from 'angularfire2/angularfire2';
+
+import {AngularFire, FirebaseObjectObservable} from 'angularfire2/angularfire2';
 import {FirebaseRef} from 'angularfire2/tokens';
 
 import {Observable} from 'rxjs/Observable';
 
 import {Auth} from '../../core/services/firebase/auth.service';
 import {Match} from '../models/bets.models';
-import {Country} from "../models/bets.models";
+import {Country} from '../models/bets.models';
 
 @Injectable()
-export class UserBetsStore {
+export class BetsService {
 
   constructor(private auth:Auth, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
   }
 
-  save(match:Match, onSuccess: () => void, onError: () => void) {
+  get bets$():Observable<FirebaseDataSnapshot> {
+    // use ref once instead of af object to avoid to refresh all promises related to bets
+    return Observable.fromPromise(this.ref.child(`/bets/${this.auth.uid}/matches`).once('value'));
+  }
+
+  get winner$():FirebaseObjectObservable<any> {
+    return this.af.object(`/bets_favorites/${this.auth.uid}/country`);
+  }
+
+  save(match:Match, onSuccess:() => void, onError:() => void) {
     console.log('bets @ save', match);
 
-    this.ref.child(`/bets/${this.auth.uid}`).child(`/matches/${match.number}`)
-      .set(match.bet, (error:any) => {
-        if (!error) {
-          console.log('bets @ save successful');
-          onSuccess();
-          return;
-        }
-
-        console.log('bets @ save error:', error);
-        onError();
-      });
-  }
-
-  getBets$() {
-    return this.af.object(`/bets/${this.auth.uid}/matches`);
-  }
-
-  getCountry() {
-    return this.af.object(`/bets_favorites/${this.auth.uid}/country`);
+    return this.af.object(`/bets/${this.auth.uid}/matches/${match.number}`).set(match.bet);
   }
 
   saveCountry(country:Country, onSuccessCallback:(country:Country) => void) {

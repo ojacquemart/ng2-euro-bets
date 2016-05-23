@@ -1,6 +1,6 @@
 <div class="groups" layout="row" layout-wrap layout-align="left start">
 
-  <template ngFor #groupTable [ngForOf]="groups | async">
+  <template ngFor #groupTable [ngForOf]="groups$ | async">
 
     <md-toolbar class="md-hue-2 md-accent group" [id]="groupTable.group.code">
       <div class="md-toolbar-tools">

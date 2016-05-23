@@ -1,6 +1,9 @@
-import {BetsStore} from './services/bets.store.service';
-import {UserBetsStore} from './services/user-bets.store.service';
+import {MatchesService} from './services/matches.service';
+import {GroupsService} from './services/groups.service';
+import {WinnerService} from './services/winner.service';
+import {BetsService} from './services/bets.service';
+import {CountriesService} from './services/countries.service';
 
 export const APP_BETS_PROVIDERS = [
-  BetsStore, UserBetsStore
+  MatchesService, GroupsService, WinnerService, BetsService, CountriesService
 ];

@@ -29,6 +29,8 @@ export interface Bet {
   timestamp?: number;
 }
 
+export const PHASE_GROUP_MAX_DAY_ID = 3;
+
 export interface Phase {
   state: string;
   code: string;
@@ -53,7 +55,8 @@ export interface Match {
 
 export enum Status {
   TO_PLAY,
-  PLAYED
+  PLAYED,
+  PLAYING
 }
 
 export interface GroupTable {

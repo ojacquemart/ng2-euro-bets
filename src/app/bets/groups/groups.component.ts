@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 
 import {UserLang} from '../../core/services/util/user-lang.helper';
 import {FlagIcon} from '../../core/components/flag-icon/flag-icon.component';
-import {BetsStore} from '../services/bets.store.service';
+import {GroupsService} from '../services/groups.service';
 import {GroupTable} from '../models/bets.models';
 import {BetsCardListCmp} from '../card-list/card-list.component';
 
@@ -15,17 +15,17 @@ import {BetsCardListCmp} from '../card-list/card-list.component';
 })
 export class GroupsBetsCmp {
 
-  private groups: Observable<Array<GroupTable>>;
+  private groups$: Observable<Array<GroupTable>>;
   private lang: string;
 
-  constructor(private betsStore:BetsStore) {
-    console.log('groups bets @ init');
+  constructor(private groups:GroupsService) {
+    console.log('groups groups @ init');
 
     this.lang = UserLang.getLang();
   }
 
   ngOnInit() {
-    this.groups = this.betsStore.getGroups();
+    this.groups$ = this.groups.getGroups();
   }
 
 }
