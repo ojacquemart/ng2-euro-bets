@@ -59,6 +59,11 @@ export class Pages {
 
   emitPageTitle(pageTitle:string) {
     this.page$.emit(pageTitle);
+
+    if (window.pageYOffset > 0) {
+      console.log('pages @ scroll to (0, 0)');
+      window.scrollTo(0, 0);
+    }
   }
 
   subscribe(subscriber:(pageTitle:string) => void) {
