@@ -13,9 +13,26 @@
     height: 150px;
   }
 
-  .members-count {
-    position: relative;
-    top: -0.4em;
+  .members {
+    margin-left: 12px;
+
+    .counter {
+      font-size: 0.8em;
+      margin-top: 0.4em;
+    }
+
+    button {
+      cursor: default;
+      width: 20px;
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 0;
+      margin-right: 0;
+
+      &:hover {
+        background: transparent;
+      }
+    }
   }
 
   .leave-button {

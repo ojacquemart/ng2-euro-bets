@@ -18,10 +18,16 @@
   </md-card-title>
   <md-card-actions layout="row" layout-align="start center">
     <md-card-icon-actions>
-      <button md-button class="md-icon-button members-count-button">
-        <span class="members-count">{{ leagueHolder.membersCount }}</span>
-        <i md-icon>person</i>
-      </button>
+      <div layout="row" layout-align="space-between center" class="members">
+        <div class="counter">
+          <span>{{ leagueHolder.membersCount }}</span>
+        </div>
+        <div>
+          <button md-button class="md-icon-button">
+            <i md-icon>person</i>
+          </button>
+        </div>
+      </div>
       <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.INVITE' | translate }}"
            *ngIf="leagueHolder.actions.canAlter"
            (click)="invite(leagueHolder.league, $event)">
