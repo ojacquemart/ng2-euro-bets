@@ -88,8 +88,8 @@
       "SAVE": "Sauvegarder",
       "EDIT": "Editer",
       "CANCEL": "Annuler",
-      "INVITE": "Inviter d'autres members",
-      "CLOSE": "Close",
+      "INVITE": "Inviter d'autres membres",
+      "CLOSE": "Fermer",
       "JOIN": "Rejoindre",
       "LEAVE": "Quitter",
       "DELETE": "Supprimer",
@@ -103,7 +103,7 @@
       "MSG_3": "Tape le nom de ton équipe..."
     },
     "INVITATION": {
-      "INVITED_BY": "Vous avez été(e) invité(e) par",
+      "INVITED_BY": "Tu es invité(e) par",
       "JOIN": "Rejoindre l'équipe"
     },
     "INVITE_MODAL": {
