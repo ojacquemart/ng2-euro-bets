@@ -13,7 +13,7 @@ export class Auth {
   private authState:FirebaseAuthState = null;
 
   constructor(private auth$:FirebaseAuth, private usersStore:UsersStore) {
-    console.log('aut @ init');
+    console.log('auth @ init');
 
     auth$.subscribe((state:FirebaseAuthState) => {
       if (!state) {
