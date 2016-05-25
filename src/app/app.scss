@@ -176,6 +176,10 @@ bets-sidenav-layout {
     }
   }
 
+  .leave-button {
+    transform: rotate(180deg);
+  }
+
   .content {
     padding: 20px $baseline-grid;
     min-height: 640px;
@@ -199,6 +203,37 @@ bets-sidenav-layout {
       }
     }
 
+  }
+
+  .tooltip {
+    display: inline;
+    position: relative;
+  }
+
+  .tooltip:hover:after {
+    padding: 5px 15px;
+    position: absolute;
+    left: 20%;
+    bottom: 40px;
+    background: #333;
+    background: rgba(0, 0, 0, .8);
+    border-radius: 5px;
+    color: #fff;
+    content: attr(title);
+    z-index: 99;
+    text-align: center;
+  }
+
+  .tooltip:hover:before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    z-index: 99;
   }
 
 }

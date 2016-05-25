@@ -3,67 +3,21 @@
     <div class="md-toolbar-tools">
       <h2><span>{{ 'LEAGUES.TITLE' | translate }}</span></h2>
       <span flex></span>
-      <button md-fab class="md-fab fab" aria-label="Create a league" (click)="showingForm = !showingForm">
+      <button md-fab class="md-fab fab" aria-label="Create a league"
+              (click)="leagueActionsHandler.create(element, $event)">
         <i md-icon>add</i>
       </button>
     </div>
   </md-toolbar>
-  <md-progress-linear class="md-accent md-hue-3"  mode="indeterminate" [hidden]="!loading" ></md-progress-linear>
+  <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
 
   <div flex *ngIf="showingForm">
-    <md-card class="form-league-card">
-      <md-card-title>
-        <h3>{{ 'LEAGUES.CREATE' | translate }}</h3>
-      </md-card-title>
-      <md-card-content>
-        <div layout-padding>
-          <form [ngFormModel]="projectForm">
-            <md-input-container class="md-block">
-              <label for="name">{{ 'LEAGUES.ATTRS.NAME' | translate }}</label>
-              <input md-input ngControl="name" [(ngModel)]="league.name" id="name">
-              <div md-messages="name" role="alert">
-                <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
-                <div md-message="invalidName">{{ 'COMMON.ERRORS.INVALID' | translate }}</div>
-                <div md-message="nameTaken">{{ 'LEAGUES.ATTRS.ERRORS.NAME_TAKEN' | translate }}</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block">
-              <label for="description">{{ 'LEAGUES.ATTRS.DESCRIPTION' | translate }}</label>
-              <input md-input ngControl="description" [(ngModel)]="league.description" id="description">
-              <div md-messages="description">
-                <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
-                <div md-message="maxlength">{{ 'LEAGUES.ATTRS.ERRORS.DESCRIPTION_MAX_LENGTH' | translate }}</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block picture-container">
-              <label id="picture">{{ 'LEAGUES.ATTRS.IMG' | translate }}</label>
-              <input type="file" name="picture" (change)="previewBanner(input)" #input>
-              <div *ngIf="imageError">
-                <p>{{ imageError | translate }}</p>
-              </div>
-              <div class="preview" *ngIf="imageSrc">
-                <p *ngIf="!league.imageModerated">{{ 'LEAGUES.IMG.VALIDATION_NECESSARY' | translate }}</p>
-                <img [src]="imageSrc" class="preview-banner">
-                <div>
-                  <button md-button (click)="removeBanner()">{{ 'LEAGUES.IMG.REMOVE' | translate }}</button>
-                </div>
-              </div>
-            </md-input-container>
-          </form>
-        </div>
-      </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <button md-button aria-label="Cancel" class="md-primary"
-                (click)="cancel()">{{ 'LEAGUES.ACTIONS.CANCEL' | translate }}</button>
-        <button md-raised-button aria-label="Save" class="md-raised md-hue-1 md-primary"
-                [disabled]="!projectForm.valid" (click)="persist()">Save</button>
-      </md-card-actions>
-    </md-card>
+
   </div>
   <div class="card-list" layout="row" layout-wrap layout-align="left start">
     <template ngFor #leagueHolder [ngForOf]="leagues$ | async">
       <league-card-item flex="50" flex-xs="100" layout="column"
-        [leagueHolder]="leagueHolder" [elementRef]="element" (onEdit)="edit($event)"></league-card-item>
+                        [leagueHolder]="leagueHolder" [elementRef]="element" (onEdit)="edit($event); $event.stopPropagation()"></league-card-item>
     </template>
   </div>
 

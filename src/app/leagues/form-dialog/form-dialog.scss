@@ -1,0 +1,23 @@
+.container {
+  margin-top: 1em;
+}
+
+.preview-banner {
+  width: 430px;
+  height: 150px;
+}
+
+.picture-container {
+  margin: 18px 0 0 0;
+
+  label {
+    transform: translate3d(0, 0, 0) scale(1);
+    display: block;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+  }
+
+  .preview {
+    margin-top: 1em;
+  }
+}

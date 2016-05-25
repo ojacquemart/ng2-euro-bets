@@ -1,0 +1,73 @@
+<div class="md-padding" layout="row" layout-wrap layout-align="left start">
+  <md-toolbar class="md-hue-2 page-title">
+    <div class="md-toolbar-tools" *ngIf="loading">
+      <h2 *ngIf="loading"><span>{{ 'COMMON.LOADING' | translate }}</span></h2>
+    </div>
+
+    <div class="md-toolbar-tools" *ngIf="!loading">
+      <h2><span>{{ leagueHolder.league.name }}</span></h2>
+      <span flex></span>
+      <button md-fab class="md-fab fab"
+              *ngIf="leagueHolder.actions.canAlter"
+              (click)="leagueActionsHandler.invite(leagueHolder.league, elementRef, $event)">
+        <i md-icon>person_add</i>
+      </button>
+      <button md-fab class="md-fab fab" class="leave-button"
+              *ngIf="leagueHolder.actions.canLeave"
+              (click)="leagueActionsHandler.leave(leagueHolder.league)">
+        <i md-icon class="leave">input</i>
+      </button>
+      <button md-fab class="md-fab fab"
+              *ngIf="leagueHolder.actions.canJoin"
+              (click)="leagueActionsHandler.join(leagueHolder.league)">
+        <i md-icon>input</i>
+      </button>
+
+      <button md-fab class="md-fab fab"
+              *ngIf="leagueHolder.actions.canAlter"
+              (click)="edit($event)">
+        <i md-icon>create</i>
+      </button>
+
+      <button md-fab class="md-fab fab"
+              *ngIf="leagueHolder.actions.canAlter"
+              (click)="delete(leagueHolder.league, $event)">
+        <i md-icon>delete</i>
+      </button>
+    </div>
+  </md-toolbar>
+  <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
+
+  <div flex *ngIf="!loading">
+    <md-card class="league-card">
+      <img [src]="leagueHolder.league.image" class="md-card-image banner" *ngIf="leagueHolder.canShowBanner">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{ leagueHolder.league.description }}</span>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+
+    <div flex class="members">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h3>{{ 'LEAGUES.ATTRS.MEMBERS' | translate }} ({{ leagueHolder.membersCount }})</h3>
+        </div>
+      </md-toolbar>
+
+      <div layout="row" layout-wrap class="items">
+        <template ngFor #member [ngForOf]="members">
+          <div layout="row" layout-align="center center" flex-xs="100" flex-sm="100" flex="50" class="member">
+            <div class="avatar">
+              <img [src]="member.profileImageURL"/>
+            </div>
+            <div flex-grow class="name">
+              <span>{{ member.displayName }}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+
+    </div>
+  </div>
+</div>

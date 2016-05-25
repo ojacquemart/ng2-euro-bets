@@ -15,6 +15,7 @@ import {LoginCmp} from './login/login.component';
 import {BetsCmp} from './bets/bets.component';
 import {TableCmp} from './table/table.component';
 import {LeaguesCmp} from './leagues/leagues.component';
+import {LeagueDetailsCmp} from './leagues/details/league-details.component';
 import {LeagueInvitationCmp} from './leagues/invitation/league-invitation.component';
 import {HelpCmp} from './help/help.component';
 
@@ -44,6 +45,7 @@ import {HelpCmp} from './help/help.component';
   {path: '/bets/...', component: BetsCmp, as: 'Bets'},
   {path: '/table', component: TableCmp, as: 'Table'},
   {path: '/leagues', component: LeaguesCmp, as: 'Leagues'},
+  {path: '/leagues/:leagueSlug', component: LeagueDetailsCmp, as: 'LeagueDetails'},
   {path: '/leagues/:leagueSlug/invitations/:invitationCode', component: LeagueInvitationCmp, as: 'LeaguesInvitation'},
   {path: '/help', component: HelpCmp, as: 'Help'},
   {path: '/**', redirectTo: ['/Bets']}

@@ -1,0 +1,60 @@
+$button-xs-size: 48px;
+md-toolbar {
+  .md-fab {
+    @media (max-width: 599px) {
+      width: $button-xs-size;
+      height: $button-xs-size;
+      line-height: $button-xs-size;
+    }
+  }
+
+}
+
+md-card-title {
+  padding: 24px 0 0 0;
+}
+
+md-card {
+  background: transparent;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+.banner {
+  margin-top: 16px;
+  width: 100%;
+  max-height: 500px;
+}
+
+.members {
+  md-toolbar {
+    margin: 1em 0;
+
+    .md-toolbar-tools {
+      h3 {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .items {
+    padding: 0 1em;
+  }
+
+  .member {
+    padding: 0.5em 2em;
+
+    .avatar img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+    }
+
+    .name {
+      padding-left: 1em;
+    }
+  }
+
+}
+

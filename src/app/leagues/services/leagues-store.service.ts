@@ -2,6 +2,7 @@ import * as moment from 'moment/moment';
 
 import {Inject,Injectable} from 'angular2/core';
 import {Control} from 'angular2/common';
+import {Router,RouteParams} from 'angular2/router';
 
 import {AngularFire} from 'angularfire2/angularfire2';
 import {FirebaseRef} from 'angularfire2/tokens';
@@ -9,50 +10,104 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import {Auth} from '../../core/services/firebase/auth.service';
-import {LoadingState} from '../../core/services/loading-state/loading-state.service';
+import {Pages, Page} from '../../core/services/navigation/pages.service';
 import {Slugifier} from '../../core/services/util/slugifer.helper';
+import {UsersStore} from '../../core/services/firebase/users.store.service';
+import {UsersService} from '../../core/services/users/users.service';
+import {UserData} from '../../core/services/firebase/auth.model';
+
 import {League, LeagueHolder, Members} from '../models/league.models';
+import {LeagueMembers} from '../models/league.models';
 
 @Injectable()
 export class LeaguesStore {
 
-  constructor(private auth:Auth, private loadingState:LoadingState, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
+  constructor(private auth:Auth, private users:UsersService,
+              private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase,
+              private router:Router) {
+  }
+
+  one(leagueSlug:string):Observable<League> {
+    return this.af.object(`/leagues/${leagueSlug}`);
+  }
+
+  findOnce(leagueSlug:string):Observable<League> {
+    return Observable.fromPromise(this.ref.child(`/leagues/${leagueSlug}`).once('value'))
+      .map((dataSnapshot:FirebaseDataSnapshot) => dataSnapshot.val());
   }
 
   find(leagueSlug:string):Observable<League> {
-    this.loadingState.start();
+    return this.one(leagueSlug)
+      .map((league:League) => {
+        if (league === null) {
+          console.log('leagues @ league not found:', leagueSlug);
 
-    return this.af.object(`/leagues/${leagueSlug}`)
-      .do(() => this.loadingState.stop());
+          throw new Error('League not found: ' + leagueSlug);
+        }
+
+        return league;
+      })
+      .catch(_ => Observable.throw(_))
+  }
+
+  findWithMembers(leagueSlug:string):Observable<LeagueMembers> {
+    return this.find(leagueSlug)
+      .map(league => this.mapLeagueToLeagueHolder(league, this.auth.uid))
+      .flatMap((leagueHolder:LeagueHolder) => this.combineLeagueWithMembers(leagueHolder));
+  }
+
+  private combineLeagueWithMembers(leagueHolder:LeagueHolder) {
+    let memberIds = leagueHolder.league.members;
+
+    return this.users.usersOnce$.map(users => {
+      let members = _.filter(users, user => {
+        return !!memberIds[user.uid];
+      });
+
+      return {
+        holder: leagueHolder,
+        members: _.sortBy(members, 'displayName')
+      };
+    });
+  }
+
+  redirectToLeagues() {
+    return this.router.navigate(['Leagues']);
+  }
+
+  redirectToLeague(leagueSlug:string) {
+    return this.router.navigate(['LeagueDetails', {'leagueSlug': leagueSlug}]);
   }
 
   list() {
-    let userUid = this.auth.uid;
-
-    this.loadingState.start();
-
     return this.af.list('/leagues')
       .map((leagues:Array<League>) => {
-        return leagues.map((league:League) => {
-          let isInLeague = !!league.members[userUid];
-          let isOwner = userUid === league.owner;
-
-          return {
-            league: league,
-            canShowBanner: !_.isEmpty(league.image) && league.imageModerated,
-            membersCount: _.keys(league.members).length,
-            actions: {
-              canJoin: !isInLeague,
-              canLeave: isInLeague && !isOwner,
-              canAlter: isInLeague && isOwner
-            }
-          };
-        });
+        console.log('leagues @ map league item');
+        return leagues.map((league:League) => this.mapLeagueToLeagueHolder(league, this.auth.uid));
       })
       .map((leagues:Array<LeagueHolder>) => {
+        console.log('leagues @ sort teams');
+
         return _.sortBy(leagues, (leagueHolder:LeagueHolder) => leagueHolder.league.name);
       })
-      .do(() => this.loadingState.stop());
+  }
+
+  mapLeagueToLeagueHolder(league:League, userUid:string) {
+    let isInLeague = !!league.members[userUid];
+    let isOwner = userUid === league.owner;
+    let canLeave = isInLeague && !isOwner;
+    let canAlter = isInLeague && isOwner;
+
+    return {
+      league: league,
+      canShowBanner: !_.isEmpty(league.image) && league.imageModerated,
+      membersCount: _.keys(league.members).length,
+      actions: {
+        canJoin: !isInLeague,
+        canLeave: canLeave,
+        canAlter: canAlter
+      }
+    };
   }
 
   attachInvitationCode(league:League, invitationCode) {
@@ -141,14 +196,14 @@ export class LeaguesStore {
   }
 
   attachUserLeague(league:League) {
-    return this.getUserLeagues(league).set(true);
+    return this.getUserLeague(league).set(true);
   }
 
   detachUserLeague(league:League) {
-    return this.getUserLeagues(league).remove();
+    return this.getUserLeague(league).remove();
   }
 
-  getUserLeagues(league:League) {
+  getUserLeague(league:League) {
     return this.ref.child(`users/${this.auth.uid}/leagues/${league.slug}`);
   }
 

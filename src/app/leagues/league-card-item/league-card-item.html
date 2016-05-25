@@ -1,4 +1,4 @@
-<md-card class="league-card">
+<md-card class="league-card" [routerLink]="['/LeagueDetails', {leagueSlug: leagueHolder.league.slug}]">
   <md-card-header>
     <md-card-avatar>
       <img class="md-user-avatar" [src]="leagueHolder.league.ownerProfileImageURL"/>
@@ -16,6 +16,9 @@
       <span class="md-subhead">{{ leagueHolder.league.description }}</span>
     </md-card-title-text>
   </md-card-title>
+  <md-card-content *ngIf="leagueHolder.actions.canShowMembers">
+    <ng-content></ng-content>
+  </md-card-content>
   <md-card-actions layout="row" layout-align="start center">
     <md-card-icon-actions>
       <div layout="row" layout-align="space-between center" class="members">
@@ -30,7 +33,7 @@
       </div>
       <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.INVITE' | translate }}"
            *ngIf="leagueHolder.actions.canAlter"
-           (click)="invite(leagueHolder.league, $event)">
+           (click)="leagueActionsHandler.invite(leagueHolder.league, elementRef, $event); $event.stopPropagation()">
         <button md-button class="md-icon-button">
           <i md-icon>person_add</i>
         </button>
@@ -40,28 +43,28 @@
 
       <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.LEAVE' | translate }}"
            *ngIf="leagueHolder.actions.canLeave"
-           (click)="leave(leagueHolder.league)">
+           (click)="leagueActionsHandler.leave(leagueHolder.league); $event.stopPropagation()">
         <button md-button class="md-icon-button leave-button">
           <i md-icon class="leave">input</i>
         </button>
       </div>
       <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.JOIN' | translate }}"
            *ngIf="leagueHolder.actions.canJoin"
-           (click)="join(leagueHolder.league)">
+           (click)="leagueActionsHandler.join(leagueHolder.league); $event.stopPropagation()">
         <button md-button class="md-icon-button">
           <i md-icon>input</i>
         </button>
       </div>
       <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.EDIT' | translate }}"
            *ngIf="leagueHolder.actions.canAlter"
-           (click)="edit(leagueHolder.league)">
+           (click)="leagueActionsHandler.edit(leagueHolder.league, elementRef, $event); $event.stopPropagation()">
         <button md-button class="md-icon-button">
           <i md-icon>create</i>
         </button>
       </div>
       <div class="tooltip" title="{{ 'LEAGUES.ACTIONS.DELETE' | translate }}"
            *ngIf="leagueHolder.actions.canAlter"
-           (click)="deleteConfirm(leagueHolder.league, $event)">
+           (click)="leagueActionsHandler.delete(leagueHolder.league, elementRef, $event); $event.stopPropagation()">
         <button md-button class="md-icon-button">
           <i md-icon>delete</i>
         </button>

@@ -99,7 +99,7 @@
       "DELETE": "Delete",
       "DELETE_LEAGUE": "Delete the league"
     },
-    "CREATE": "Your team",
+    "CREATE": "Your league",
     "DELETE_MODAL": {
       "TITLE": "Are you sure?",
       "MSG_1": "This action CANNOT be undone",
@@ -112,7 +112,7 @@
     },
     "INVITE_MODAL": {
       "TITLE": "Invitation",
-      "MSG_1": "Invite a friend, a colleague in your team",
+      "MSG_1": "Invite a friend, a colleague in your league",
       "MSG_BUTTON": "Generate an invitation link",
       "NOTE": "Send the link by email, chat, slack..."
     }

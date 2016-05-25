@@ -1,0 +1,43 @@
+<form [ngFormModel]="projectForm">
+  <h2 class="md-title">{{ 'LEAGUES.CREATE' | translate }}</h2>
+  <div class="container">
+    <md-input-container class="md-block">
+      <label for="name">{{ 'LEAGUES.ATTRS.NAME' | translate }}</label>
+      <input md-input ngControl="name" [(ngModel)]="league.name" id="name">
+      <div md-messages="name" role="alert">
+        <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
+        <div md-message="invalidName">{{ 'COMMON.ERRORS.INVALID' | translate }}</div>
+        <div md-message="nameTaken">{{ 'LEAGUES.ATTRS.ERRORS.NAME_TAKEN' | translate }}</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label for="description">{{ 'LEAGUES.ATTRS.DESCRIPTION' | translate }}</label>
+      <input md-input ngControl="description" [(ngModel)]="league.description" id="description">
+      <div md-messages="description">
+        <div md-message="required">{{ 'COMMON.ERRORS.REQUIRED' | translate }}</div>
+        <div md-message="maxlength">{{ 'LEAGUES.ATTRS.ERRORS.DESCRIPTION_MAX_LENGTH' | translate }}</div>
+      </div>
+    </md-input-container>
+    <md-input-container class="md-block picture-container">
+      <label id="picture">{{ 'LEAGUES.ATTRS.IMG' | translate }}</label>
+      <input type="file" name="picture" (change)="previewBanner(input)" #input>
+      <div *ngIf="imageError">
+        <p>{{ imageError | translate }}</p>
+      </div>
+      <div class="preview" *ngIf="imageSrc">
+        <p *ngIf="!league.imageModerated">{{ 'LEAGUES.IMG.VALIDATION_NECESSARY' | translate }}</p>
+        <img [src]="imageSrc" class="preview-banner">
+        <div>
+          <button md-button (click)="removeBanner()">{{ 'LEAGUES.IMG.REMOVE' | translate }}</button>
+        </div>
+      </div>
+    </md-input-container>
+    <md-dialog-actions>
+      <button md-button aria-label="Cancel" class="md-primary"
+              (click)="dialog.close()">{{ 'LEAGUES.ACTIONS.CANCEL' | translate }}</button>
+      <button md-raised-button aria-label="Save" class="md-raised md-hue-1 md-primary"
+              [disabled]="!projectForm.valid" (click)="persist()">Save</button>
+    </md-dialog-actions>
+
+  </div>
+</form>

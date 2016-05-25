@@ -2,12 +2,11 @@ import {Component} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 
 import {Auth} from '../../core/services/firebase/auth.service';
-import {LoadingState} from '../../core/services/loading-state/loading-state.service';
 import {Pages} from '../../core/services/navigation/pages.service';
+import {Page} from '../../core/services/navigation/pages.service';
 
-import {League} from '../models/league.models';
 import {LeaguesStore} from '../services/leagues-store.service';
-import {Page} from "../../core/services/navigation/pages.service";
+import {League} from '../models/league.models';
 
 @Component({
   template: require('./league-invitation.html'),
@@ -18,65 +17,56 @@ import {Page} from "../../core/services/navigation/pages.service";
 export class LeagueInvitationCmp {
 
   private loading = true;
-  private loadingStateSubscription;
   private leagueFinderSubscription;
 
   private league:League;
 
-  constructor(private leaguesStore:LeaguesStore,
-              private auth:Auth,
-              private routeParams:RouteParams, private router:Router,
+  constructor(private auth:Auth, private leaguesStore:LeaguesStore,
               private pages:Pages,
-              loadingState:LoadingState) {
+              private routeParams:RouteParams) {
     console.log('invitation league @ init');
-
-    this.loadingStateSubscription = loadingState.subscribe((loading:boolean) => {
-      this.loading = loading;
-    });
   }
 
   join() {
     console.log('invitation league @ join');
-    this.leaguesStore.join(this.league);
-
-    return this.redirectToLeagues();
+    this.leaguesStore.join(this.league)
+      .then(_ => this.leaguesStore.redirectToLeague(this.league.slug));
   }
 
   ngOnInit() {
     console.log('invitation league @ ngOnInit');
 
+    this.pages.emit(Page.LEAGUES);
+
     let leagueSlug = this.routeParams.get('leagueSlug');
-    this.leagueFinderSubscription = this.leaguesStore.find(leagueSlug)
+
+    this.leagueFinderSubscription = this.leaguesStore.findOnce(leagueSlug)
       .subscribe((league:League) => {
-        if (league === null) {
-          console.log('invitation league @ league', leagueSlug, ' not found. redirect to /leagues');
-
-          return this.redirectToLeagues();
+        if (!this.isInvitationCodeValid(league)) {
+          return this.leaguesStore.redirectToLeagues();
+        }
+        if (this.isAlreadyMember(league)) {
+          return this.leaguesStore.redirectToLeague(league.slug);
         }
 
-        let invitationCode = this.routeParams.get('invitationCode');
-        if (league.invitationCode !== invitationCode) {
-          return this.redirectToLeagues();
-        }
-
-        if (!!league.members[this.auth.uid]) {
-          return this.redirectToLeagues();
-        }
-
-        console.log('invitation league @ league', league);
-        this.pages.emitPageTitle(league.name);
         this.league = league;
+        this.loading = false;
       });
   }
 
-  redirectToLeagues() {
-    return this.router.navigate(['Leagues']);
+  private isInvitationCodeValid(league:League) {
+    return league !== null && league.invitationCode === this.routeParams.get('invitationCode');
+  }
+
+  private isAlreadyMember(league:League) {
+    return !!league.members[this.auth.uid];
   }
 
   ngOnDestroy() {
-    if (this.loadingStateSubscription) {
-      this.loadingStateSubscription.unsubscribe();
-    }
+    this.unsubscribeLeagueFinder();
+  }
+
+  private unsubscribeLeagueFinder() {
     if (this.leagueFinderSubscription) {
       this.leagueFinderSubscription.unsubscribe();
     }
