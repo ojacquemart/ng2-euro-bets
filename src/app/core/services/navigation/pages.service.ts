@@ -6,7 +6,8 @@ import {Observable} from 'rxjs/Observable';
 export const PAGES:Array<PageComponent> = [
   {key: 'BETS', pathStart: 'bets', linkParams: ['Bets']},
   {key: 'TABLES', pathStart: 'table', linkParams: ['Table']},
-  {key: 'LEAGUES', pathStart: 'leagues', linkParams: ['Leagues']}
+  {key: 'LEAGUES', pathStart: 'leagues', linkParams: ['Leagues']},
+  {key: 'HELP', pathStart: 'help', linkParams: ['Help']}
 ];
 
 export interface PageComponent {
@@ -19,7 +20,8 @@ export interface PageComponent {
 export enum Page {
   BETS,
   TABLE,
-  LEAGUES
+  LEAGUES,
+  HELP
 }
 
 @Injectable()

@@ -4,7 +4,8 @@
     "PAGES": {
       "BETS": "Pronostics",
       "TABLES": "Classement",
-      "LEAGUES": "Equipes"
+      "LEAGUES": "Equipes",
+      "HELP": "Aide"
     },
     "USER": {
       "RANK": "Position",
@@ -31,6 +32,9 @@
       "NAME_MIN_LENGTH": "Tapez au moins 5 caractères",
       "NAME_MAX_LENGTH": "Tapez au plus 50 caractères"
     }
+  },
+  "HELP": {
+    "TITLE": "Aide"
   },
   "BETS": {
     "TABS": {

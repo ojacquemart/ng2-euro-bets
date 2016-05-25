@@ -1,0 +1,25 @@
+<div class="help">
+  <div layout="column" layout-wrap layout-align="left start">
+    <md-toolbar class="md-hue-2 page-title">
+      <div class="md-toolbar-tools">
+        <h2><span>{{ 'HELP.TITLE' | translate }}</span></h2>
+      </div>
+    </md-toolbar>
+    <md-progress-linear class="md-accent md-hue-3"  mode="indeterminate" [hidden]="!loading" ></md-progress-linear>
+  </div>
+
+  <div class="sections" flex *ngFor="#section of sections$ | async">
+
+    <div layout="column" layout-align="start start">
+
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h3>{{ section.title[lang] }}</h3>
+        </div>
+      </md-toolbar>
+      <div>
+        <p [innerHTML]="section.content[lang]"></p>
+      </div>
+    </div>
+  </div>
+</div>

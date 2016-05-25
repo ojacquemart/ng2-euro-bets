@@ -1,3 +1,5 @@
+import {I18n} from '../../core/models/i18n.model';
+
 export interface Country {
   i18n: I18n;
   isoAlpha2Code: string;
@@ -91,9 +93,4 @@ export interface MatchGroup {
 export interface Matches {
   current: Array<MatchGroup>;
   history: Array<MatchGroup>;
-}
-
-export interface I18n {
-  fr: string;
-  en: string;
 }

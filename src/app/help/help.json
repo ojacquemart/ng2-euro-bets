@@ -1,0 +1,278 @@
+{
+  "sections": [
+    {
+      "title": {
+        "en": "Points computation",
+        "fr": "Calcul des points"
+      },
+      "content": {
+        "en": "Here is the table which will determinate the points:<br />
+
+        <div>
+        <table class='md-data-table euro' layout-fill>
+        <thead>
+        <tr>
+        <th class='md-text-cell'></th>
+        <th >Bad prevision</th>
+        <th>Good prevision</th>
+        <th>Score perfect</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td class='md-text-cell'>Group phase</td>
+        <td>0 pts</td>
+        <td>5 pts</td>
+        <td>10 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Round 16</td>
+        <td>0 pts</td>
+        <td>10 pts</td>
+        <td>25 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Quarter final</td>
+        <td>0 pts</td>
+        <td>25 pts</td>
+        <td>50 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Semi final</td>
+        <td>0 pts</td>
+        <td>50 pts</td>
+        <td>100 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Final</td>
+        <td>1 pt</td>
+        <td>100 pts</td>
+        <td>200 pts</td>
+        </tr>
+        </tbody>
+        </table>
+
+        <p>You noticed that if you bet on the finale loser, you gain one point as an assiduity reward.</p>
+
+        <p>Here is an example with an imaginary result, France - Romania: 2 - 0</p>
+
+        <table class='md-data-table euro' layout-fill>
+        <thead>
+        <tr>
+        <th class='md-text-cell'></th>
+        <th>Bad prevision</th>
+        <th>Good prevision</th>
+        <th>Score perfect</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td class='md-text-cell'>0 - 2</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>1 - 1</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>1 - 0</td>
+        <td>-</td>
+        <td>3 pts</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>2 - 0</td>
+        <td>-</td>
+        <td>-</td>
+        <td>10 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>3 - 0</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>4 - 0</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+
+        <p>It should help to win even by joining the game late</p>
+        <p>It could evolve during the game...</p>
+        ",
+        "fr": "Voici le tableau qui déterminera la répartition des points:<br />
+
+        <div>
+        <table class='md-data-table euro' layout-fill>
+        <thead>
+        <tr>
+        <th class='md-text-cell'></th>
+        <th>Mauvais prono</th>
+        <th>Bon prono</th>
+        <th>Score parfait</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td class='md-text-cell'>Phase de groupes</td>
+        <td>0 pts</td>
+        <td>5 pts</td>
+        <td>10 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Huitième de finale</td>
+        <td>0 pts</td>
+        <td>10 pts</td>
+        <td>25 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Quart de finale</td>
+        <td>0 pts</td>
+        <td>25 pts</td>
+        <td>50 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Demi finale</td>
+        <td>0 pts</td>
+        <td>50 pts</td>
+        <td>100 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>Finale</td>
+        <td>1 pt</td>
+        <td>100 pts</td>
+        <td>200 pts</td>
+        </tr>
+        </tbody>
+        </table>
+
+        <p>Tu remarqueras qu'un bon pronostic sur le perdant de la finale rapporte 1 point. Cela récompensera l'assiduité.</p>
+
+        <p>Voici un exemple avec un résultat imaginaire, France - Roumanie: 2 - 0</p>
+
+        <table class='md-data-table euro' layout-fill>
+        <thead>
+        <tr>
+        <th class='md-text-cell'></th>
+        <th>Mauvais prono</th>
+        <th>Bon prono</th>
+        <th>Score parfait</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td class='md-text-cell'>0 - 2</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>1 - 1</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>1 - 0</td>
+        <td>-</td>
+        <td>3 pts</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>2 - 0</td>
+        <td>-</td>
+        <td>-</td>
+        <td>10 pts</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>3 - 0</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        <tr>
+        <td class='md-text-cell'>4 - 0</td>
+        <td>0 pt</td>
+        <td>-</td>
+        <td>-</td>
+        </tr>
+        </tbody>
+        </table>
+
+        <p>Même un participant ayant rejoint le jeu tardivement pourrait gagner.</p>
+        <p>Ce système de points est soumis à évolution. Notamment, pour récompenser les nombreux scores parfaits consécutifs.</p>
+        </div>
+        "
+      }
+    },
+    {
+      "title": {
+        "en": "Until when I can bet?",
+        "fr": "Je peux parier jusque quand?"
+      },
+      "content": {
+        "en": "You can bet on a match until the start of the match.<br />When the match is started, the match is not available anymore. The points are updated a little while after the referee blows the final whistle.",
+        "fr": "Tu ne peux plus pronostiquer sur un match démarré.<br />Quand le match est démarré, le match n'est plus disponible. Les points et classement sont calculés au coup de siffet final."
+      }
+    },
+    {
+      "title": {
+        "en": "Winner?",
+        "fr": "Le vainqueur?"
+      },
+      "content": {
+        "en": "You can bet on the UEFA Euro 2016 winner until the start of the first match: 10th june of 2016 at 21:00. A good pronostic will give you 50 points (not fixed yet)",
+        "fr": "Tu peux parier sur le vainqueur de l'UEFE Euro 2016 jusqu'au début du premier match: le 10 juin 2016 à 21h00. Un bon pronostic te donnera 50 points (pas encore fixé)."
+      }
+    },
+    {
+      "title": {
+        "en": "Bug or idea?",
+        "fr": "Bug ou idée?"
+      },
+      "content": {
+        "en":"You found a bug or have an idea.<p>Don't hesitate to fill an issue on the github's project: <a class='link' href='https://github.com/ojacquemart/ng2-euro-bets/issues/new?title=bug|idea: &body=...' target='_blank'>here</a>. We will discuss about it</p>",
+        "fr": "Tu as trouvé un bug ou tu as une idée.<p>N'hésite pas à créer un ticket sur le github du projet: <a class='link' href='https://github.com/ojacquemart/ng2-euro-bets/issues/new?title=bug|idée: &body=...' target='_blank'>ici</a>. Nous en discuterons.</p>"
+      }
+    },
+    {
+      "title": {
+        "en": "I can't see the team  members?",
+        "fr": "Je ne vois pas les membres des équipes?"
+      },
+      "content": {
+        "en": "Be patient. It's coming.",
+        "fr": "Patience, ça va arriver!"
+      }
+    },
+    {
+      "title": {
+        "en": "I can't see my team's banner?",
+        "fr": "Je ne vois pas la bannière de mon équipe?"
+      },
+      "content":{
+        "en": "The image is either not appropriated, either not moderated. Avoid to use the uefa euro 2016 logo, by example :)<p>Be original! Look #data.io...</p>",
+        "fr": "L'image est soit inappropriée ou n'a pas été modérée. Par exemple, il faut éviter d'utiliser le logo uefa de la compétition.<p>Sois plus original! Regarde #data.io...</p>"
+      }
+    },
+    {
+      "title": {
+        "en": "My password?",
+        "fr": "Mon mot de passe?"
+      },
+      "content":{
+        "en": "For those who created an account to the application and did not use their google account, your password is not stored anywhere.<p>It is handled by <a class='link' href='https://www.firebase.com/docs/web/guide/login/password.html' target='_blank'>firebase</a>. Anyway, the project is fully open source and you can read the code if you want :)</p>",
+        "fr": "Pour ceux qui ont créés un compte et n'ont pas utilisé leur compte google, votre mot de passe n'est pas stocké par l'application.<p>Le stockage est délégué à <a class='link' href='https://www.firebase.com/docs/web/guide/login/password.html' target='_blank'>firebase</a>.  Le projet est open-source, lis le code pour en avoir le coeur net :)</p>"
+      }
+    }
+  ]
+}

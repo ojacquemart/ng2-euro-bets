@@ -16,6 +16,7 @@ import {BetsCmp} from './bets/bets.component';
 import {TableCmp} from './table/table.component';
 import {LeaguesCmp} from './leagues/leagues.component';
 import {LeagueInvitationCmp} from './leagues/invitation/league-invitation.component';
+import {HelpCmp} from './help/help.component';
 
 /*
  * App Component
@@ -41,9 +42,10 @@ import {LeagueInvitationCmp} from './leagues/invitation/league-invitation.compon
 @RouteConfig([
   {path: '/', name: 'Index', redirectTo: ['/Bets']},
   {path: '/bets/...', component: BetsCmp, as: 'Bets'},
-  {path: '/table', name: 'Table', component: TableCmp},
-  {path: '/leagues', name: 'Leagues', component: LeaguesCmp},
-  {path: '/leagues/:leagueSlug/invitations/:invitationCode', name: 'LeaguesInvitation', component: LeagueInvitationCmp},
+  {path: '/table', component: TableCmp, as: 'Table'},
+  {path: '/leagues', component: LeaguesCmp, as: 'Leagues'},
+  {path: '/leagues/:leagueSlug/invitations/:invitationCode', component: LeagueInvitationCmp, as: 'LeaguesInvitation'},
+  {path: '/help', component: HelpCmp, as: 'Help'},
   {path: '/**', redirectTo: ['/Bets']}
 ])
 export class App {

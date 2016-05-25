@@ -1,0 +1,25 @@
+.help {
+
+  .sections {
+    margin-top: 1em;
+  }
+
+  .md-toolbar-tools {
+    h3 {
+      text-transform: uppercase;
+    }
+  }
+
+  .md-data-table th.md-text-cell, .md-data-table td.md-text-cell {
+    width: 10%;
+  }
+
+  .link {
+    font-weight: bold;
+    color: #000;
+  }
+
+  .link:visited {
+    color: #aaa;
+  }
+}

@@ -4,7 +4,8 @@
     "PAGES": {
       "BETS": "Bets",
       "TABLES": "Table",
-      "LEAGUES": "Leagues"
+      "LEAGUES": "Leagues",
+      "HELP": "Help"
     },
     "USER": {
       "RANK": "Rank",
@@ -31,6 +32,9 @@
       "NAME_MIN_LENGTH": "Restart with at least 5 characters",
       "NAME_MAX_LENGTH": "Restart with at most 50 characters"
     }
+  },
+  "HELP": {
+    "TITLE": "Help"
   },
   "BETS": {
     "TABS": {
