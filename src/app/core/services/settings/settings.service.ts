@@ -1,8 +1,7 @@
-import {Injectable} from "angular2/core";
+import {Injectable} from 'angular2/core';
 
-import {Observable} from "rxjs/Observable";
-import {AngularFire} from "angularfire2/angularfire2";
-import {FirebaseObjectObservable} from "angularfire2/angularfire2";
+import {AngularFire, FirebaseObjectObservable} from 'angularfire2/angularfire2';
+import {Observable} from 'rxjs/Observable';
 
 export interface SettingsGroup {
   dayId: number;
