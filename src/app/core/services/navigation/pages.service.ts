@@ -7,12 +7,13 @@ export const PAGES:Array<PageComponent> = [
   {key: 'BETS', pathStart: 'bets', linkParams: ['Bets']},
   {key: 'TABLES', pathStart: 'table', linkParams: ['Table']},
   {key: 'LEAGUES', pathStart: 'leagues', linkParams: ['Leagues']},
-  {key: 'HELP', pathStart: 'help', linkParams: ['Help']}
+  {key: 'HELP', divider: true, pathStart: 'help', linkParams: ['Help']}
 ];
 
 export interface PageComponent {
   key: string;
   title?: string;
+  divider?:boolean;
   pathStart: string;
   linkParams: Array<string>;
 }

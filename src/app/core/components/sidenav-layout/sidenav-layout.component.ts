@@ -5,7 +5,6 @@ import {MATERIAL_DIRECTIVES, Media, SidenavService} from 'ng2-material/all';
 
 import {Auth} from '../../services/firebase/auth.service';
 import {UserAvatar} from '../user-avatar/user-avatar.component';
-import {SidenavItem} from './sidenav-item.model';
 import {TranslateService} from "ng2-translate/ng2-translate";
 import {Pages} from "../../services/navigation/pages.service";
 import {Observable} from "rxjs/Observable";

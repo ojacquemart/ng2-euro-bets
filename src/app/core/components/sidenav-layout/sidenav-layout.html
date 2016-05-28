@@ -17,6 +17,7 @@
       <md-list flex>
         <md-list-item *ngFor="#sidenavItem of pages$ | async "
                       md-ink [class.md-active]="sidenavItem.title === pageTitle"
+                      [ngClass]="{divider: sidenavItem.divider}"
                       (inked)="navigate(sidenavItem.linkParams)">
           {{sidenavItem.title}}
         </md-list-item>
