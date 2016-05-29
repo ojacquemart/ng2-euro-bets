@@ -1,5 +1,10 @@
 import {I18n} from '../../core/models/i18n.model';
 
+export const EMPTY_BET = {
+  homeGoals: null,
+  awayGoals: null
+};
+
 export interface Country {
   i18n: I18n;
   isoAlpha2Code: string;

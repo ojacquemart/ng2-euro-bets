@@ -16,6 +16,7 @@ import {Auth} from '../../core/services/firebase/auth.service';
 import {LoadingState} from '../../core/services/loading-state/loading-state.service';
 
 import {
+  EMPTY_BET,
   Bet,
   Match,
   MatchGroup,
@@ -84,10 +85,18 @@ export class MatchesService {
     });
   }
 
+  getMatchesToBetAndToPlay():Observable<Array<Match>> {
+    return this.matches$.flatMap((matches:Array<Match>) => {
+      let matchesToPlay = matches.filter(match => match.status == Status.TO_PLAY);
+
+      return this.filterMatchesByDayIdAvailable(matchesToPlay);
+    });
+  }
+
   private getMatchesToBet():Observable<Array<Match>> {
     return this.matches$.flatMap((matches:Array<Match>) => {
       return this.filterMatchesByDayIdAvailable(matches);
-    })
+    });
   }
 
   private filterMatchesByDayIdAvailable(matches:Array<Match>):Observable<Array<Match>> {
@@ -101,7 +110,7 @@ export class MatchesService {
   }
 
   private associateWithUserBet(matches:Array<Match>):Observable<Array<Match>> {
-    return this.bets.bets$.map((userBets:FirebaseDataSnapshot) => {
+    return this.bets.betsOnce$.map((userBets:FirebaseDataSnapshot) => {
       console.log(userBets.val());
       userBets = userBets.val() || {};
 
@@ -120,10 +129,7 @@ export class MatchesService {
     }
 
     if (!match.bet) {
-      match.bet = {
-        homeGoals: null,
-        awayGoals: null
-      };
+      match.bet = EMPTY_BET;
     }
   }
 

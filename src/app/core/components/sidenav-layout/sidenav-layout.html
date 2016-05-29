@@ -20,6 +20,8 @@
                       [ngClass]="{divider: sidenavItem.divider}"
                       (inked)="navigate(sidenavItem.linkParams)">
           {{sidenavItem.title}}
+          <span flex></span>
+          <span class="counter" *ngIf="sidenavItem.pathStart === 'bets' && numberOfRemainingBets && numberOfRemainingBets > 0">{{numberOfRemainingBets}}</span>
         </md-list-item>
         <md-list-item md-ink router-link-active class="divider" (inked)="logout()">
           <a>{{ 'SIDENAV.LOGOUT' | translate }}</a>
