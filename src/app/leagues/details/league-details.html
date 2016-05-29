@@ -1,4 +1,4 @@
-<div class="md-padding" layout="row" layout-wrap layout-align="left start">
+<div class="md-padding league-details" layout="row" layout-wrap layout-align="left start">
   <md-toolbar class="md-hue-2 page-title">
     <div class="md-toolbar-tools" *ngIf="loading">
       <h2 *ngIf="loading"><span>{{ 'COMMON.LOADING' | translate }}</span></h2>
@@ -12,7 +12,7 @@
               (click)="leagueActionsHandler.invite(leagueHolder.league, elementRef, $event)">
         <i md-icon>person_add</i>
       </button>
-      <button md-fab class="md-fab fab" class="leave-button"
+      <button md-fab class="md-fab fab leave-button"
               *ngIf="leagueHolder.actions.canLeave"
               (click)="leagueActionsHandler.leave(leagueHolder.league)">
         <i md-icon class="leave">input</i>
@@ -39,8 +39,8 @@
   <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
 
   <div flex *ngIf="!loading">
-    <md-card class="league-card">
-      <img [src]="leagueHolder.league.image" class="md-card-image banner" *ngIf="leagueHolder.canShowBanner">
+    <md-card>
+      <league-image [imageRef]="leagueHolder.league.image" size="big" *ngIf="leagueHolder.canShowBanner"></league-image>
       <md-card-title>
         <md-card-title-text>
           <span class="md-headline">{{ leagueHolder.league.description }}</span>

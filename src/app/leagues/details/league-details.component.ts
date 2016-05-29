@@ -1,20 +1,20 @@
-import {Component, ElementRef} from 'angular2/core';
-import {LeaguesStore} from "../services/leagues-store.service";
-import {Router, RouteParams} from "angular2/router";
-import {Observable} from "rxjs/Observable";
+import {Component, ElementRef, ViewEncapsulation} from 'angular2/core';
+import {LeaguesStore} from '../services/leagues-store.service';
+import {Router, RouteParams} from 'angular2/router';
+import {Observable} from 'rxjs/Observable';
 
-import {UserData} from "../../core/services/firebase/auth.model";
-import {UsersService} from "../../core/services/users/users.service";
-import {Page, Pages} from "../../core/services/navigation/pages.service";
-import {LeagueHolder} from "../models/league.models";
+import {UserData} from '../../core/services/firebase/auth.model';
+import {UsersService} from '../../core/services/users/users.service';
+import {Page, Pages} from '../../core/services/navigation/pages.service';
+import {LeagueHolder} from '../models/league.models';
 
-import {LeagueCardItemCmp} from "../league-card-item/league-card-item.component";
-import {LeagueActionsHandler} from "../services/league-actions-handler.service";
-import {League} from "../models/league.models";
-import {LeagueMembers} from "../models/league.models";
+import {LeagueImgCmp} from '../league-image/image.component';
+import {LeagueActionsHandler} from '../services/league-actions-handler.service';
+import {League} from '../models/league.models';
+import {LeagueMembers} from '../models/league.models';
 
 @Component({
-  directives: [LeagueCardItemCmp],
+  directives: [LeagueImgCmp],
   styles: [require('./league-details.scss')],
   template: require('./league-details.html')
 })

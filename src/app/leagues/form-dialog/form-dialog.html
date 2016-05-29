@@ -26,7 +26,8 @@
       </div>
       <div class="preview" *ngIf="imageSrc">
         <p *ngIf="!league.imageModerated">{{ 'LEAGUES.IMG.VALIDATION_NECESSARY' | translate }}</p>
-        <img [src]="imageSrc" class="preview-banner">
+        <img [src]="imageSrc" *ngIf="imageChanged" class="preview-banner">
+        <league-image [imageRef]="imageSrc" size="mini" *ngIf="!imageChanged && imageSrc"></league-image>
         <div>
           <button md-button (click)="removeBanner()">{{ 'LEAGUES.IMG.REMOVE' | translate }}</button>
         </div>

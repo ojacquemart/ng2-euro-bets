@@ -1,0 +1,5 @@
+<div layout="row" layout-align="center center" class="loader" *ngIf="loading">
+  <md-progress-circular mode="indeterminate" [style.width]="'20px'"></md-progress-circular>
+</div>
+
+<img [src]="image" class="league-image" [ngClass]="size" *ngIf="!loading">

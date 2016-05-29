@@ -7,8 +7,8 @@
       <span class="md-title">{{ leagueHolder.league.ownerDisplayName }}</span>
     </md-card-header-text>
   </md-card-header>
-  <img [src]="leagueHolder.league.image" class="md-card-image banner" *ngIf="leagueHolder.canShowBanner">
-  <div class="md-card-image banner" [style.background]="leagueHolder.league.background" *ngIf="!leagueHolder.canShowBanner">
+  <div class="md-card-image banner" [style.background]="leagueHolder.league.background">
+    <league-image [imageRef]="leagueHolder.league.image" size="mini" class="banner" *ngIf="leagueHolder.canShowBanner"></league-image>
   </div>
   <md-card-title>
     <md-card-title-text>

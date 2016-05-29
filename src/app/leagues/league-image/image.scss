@@ -1,0 +1,12 @@
+.league-image {
+  width: 100%;
+
+  &.mini {
+    height: 150px;
+  }
+
+  &.big {
+    height: auto;
+    max-height: 350px;
+  }
+}

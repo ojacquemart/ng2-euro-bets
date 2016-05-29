@@ -12,12 +12,12 @@ import 'rxjs/add/operator/map';
 import {Auth} from '../../core/services/firebase/auth.service';
 import {Pages, Page} from '../../core/services/navigation/pages.service';
 import {Slugifier} from '../../core/services/util/slugifer.helper';
-import {UsersStore} from '../../core/services/firebase/users.store.service';
 import {UsersService} from '../../core/services/users/users.service';
 import {UserData} from '../../core/services/firebase/auth.model';
 
 import {League, LeagueHolder, Members} from '../models/league.models';
 import {LeagueMembers} from '../models/league.models';
+import {UniqueIdGenerator} from "../../core/services/util/unique-id-generator.helper";
 
 @Injectable()
 export class LeaguesStore {
@@ -27,13 +27,18 @@ export class LeaguesStore {
               private router:Router) {
   }
 
+  image(imageKey:string):Observable<string> {
+    return Observable.fromPromise(this.ref.child(`/leagues_images/${imageKey}`).once('value'))
+      .map(dataSnapshot => dataSnapshot.val());
+  }
+
   one(leagueSlug:string):Observable<League> {
     return this.af.object(`/leagues/${leagueSlug}`);
   }
 
   findOnce(leagueSlug:string):Observable<League> {
     return Observable.fromPromise(this.ref.child(`/leagues/${leagueSlug}`).once('value'))
-      .map((dataSnapshot:FirebaseDataSnapshot) => dataSnapshot.val());
+      .map(dataSnapshot => dataSnapshot.val());
   }
 
   find(leagueSlug:string):Observable<League> {
@@ -141,25 +146,25 @@ export class LeaguesStore {
     });
   }
 
-  update(league:League, previousLeague:League):Promise<void> {
+  update(league:League, previousLeague:League, imageSrc:string):Promise<void> {
     console.log('leagues store @', league, 'will replace', previousLeague);
 
     delete league['$key'];
-    league.imageModerated = previousLeague.imageModerated ? league.image === previousLeague.image : false;
 
     let onDeleteComplete = () => {
       league.members = previousLeague.members;
 
-      return this.save(league);
+      return this.save(league, imageSrc);
     };
 
     return this.ref.child('/leagues').child(previousLeague.slug).remove()
       .then(() => onDeleteComplete());
   }
 
-  save(league:League):Promise<void> {
+  save(league:League, imageSrc:string = ''):Promise<void> {
     league.slug = Slugifier.slugify(league.name);
     league.owner = this.auth.uid;
+    league.imageModerated = false;
     league.ownerDisplayName = this.auth.user.displayName;
     league.ownerProfileImageURL = this.auth.user.profileImageURL;
     league.createdAt = Date.now();
@@ -169,15 +174,20 @@ export class LeaguesStore {
     }
     league.members[`${league.owner}`] = true;
 
+    var isEmptyImageSrc = _.isEmpty(imageSrc);
+    let imageId = !isEmptyImageSrc ? UniqueIdGenerator.generate() : '';
+    league.image = imageId;
+
     var leagueRef = this.ref.child('/leagues').child(league.slug);
 
     return leagueRef.set(league)
-      .then(() => {
-        leagueRef.child('members').child(this.auth.uid).set(true);
+      .then(_ => {
+        if (!isEmptyImageSrc) {
+          this.ref.child('/leagues_images').child(imageId).set(imageSrc);
+        }
       })
-      .then(() => {
-        return this.attachUserLeague(league);
-      });
+      .then(_ => leagueRef.child('members').child(this.auth.uid).set(true))
+      .then(_ => this.attachUserLeague(league));
   }
 
   join(league:League) {

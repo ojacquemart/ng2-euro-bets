@@ -7,10 +7,12 @@ import {ControlGroup} from "angular2/common";
 import {FormBuilder} from "angular2/common";
 import {Validators} from "angular2/common";
 import {Control} from "angular2/common";
+import {LeagueImgCmp} from "../league-image/image.component";
 
 const TIMEOUT_VALIDATION_LEAGUE_NAME = 750;
 
 @Component({
+  directives: [LeagueImgCmp],
   styles: [require('./form-dialog.scss')],
   template: require('./form-dialog.html')
 })
@@ -22,6 +24,7 @@ export class LeagueFormDialogCmp {
 
   private projectForm:ControlGroup;
 
+  private imageChanged;
   private imageSrc;
   private imageError;
 
@@ -55,6 +58,7 @@ export class LeagueFormDialogCmp {
     let pictureReader = new PictureReader(input);
     pictureReader.read()
       .subscribe(imageSrc => {
+        this.imageChanged = true;
         this.imageSrc = imageSrc;
         this.imageError = null;
         this.league.imageModerated = false;
@@ -73,13 +77,11 @@ export class LeagueFormDialogCmp {
   persist() {
     console.log('leagues @ save', this.league);
 
-    this.league.image = this.imageSrc || '';
-
     if (this.editMode) {
-      this.leaguesStore.update(this.league, this.editingLeague)
+      this.leaguesStore.update(this.league, this.editingLeague, this.imageSrc)
         .then(() => this.dialog.close(true));
     } else {
-      this.leaguesStore.save(this.league)
+      this.leaguesStore.save(this.league, this.imageSrc)
         .then(() => this.dialog.close());
     }
   }

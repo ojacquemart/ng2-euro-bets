@@ -7,24 +7,28 @@ md-toolbar {
       line-height: $button-xs-size;
     }
   }
-
-}
-
-md-card-title {
-  padding: 24px 0 0 0;
 }
 
 md-card {
   background: transparent;
   box-shadow: none;
-  margin: 0;
+  margin: 16px 0 0 0;
   padding: 0;
-}
 
-.banner {
-  margin-top: 16px;
-  width: 100%;
-  max-height: 500px;
+  league-image {
+    margin-bottom: 16px;
+  }
+
+  md-card-title {
+    padding: 0;
+
+    md-card-title-text {
+      .md-headline {
+        font-size: 1.2em;
+      }
+    }
+  }
+
 }
 
 .members {
@@ -57,4 +61,5 @@ md-card {
   }
 
 }
+
 

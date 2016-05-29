@@ -23,21 +23,13 @@ import {LeagueActionsHandler} from "./services/league-actions-handler.service";
 export class LeaguesCmp {
 
   private loading = false;
-  private loadingStateSubscription;
 
   private leagues$:Observable<Array<LeagueHolder>>;
 
-  constructor(private appRef:ApplicationRef,
-              private leaguesStore:LeaguesStore,
+  constructor(private leaguesStore:LeaguesStore,
               private leagueActionsHandler:LeagueActionsHandler,
-              private element:ElementRef,
-              loadingState:LoadingState, private pages:Pages) {
+              private element:ElementRef, private pages:Pages) {
     console.log('leagues @ init');
-
-    //this.loadingStateSubscription = loadingState.subscribe((loading:boolean) => {
-    //  this.loading = loading;
-    //});
-
   }
 
   ngOnInit() {
@@ -46,13 +38,7 @@ export class LeaguesCmp {
     console.log('leagues @ ngOnInit');
     this.loading = true;
     this.leagues$ = this.leaguesStore.list()
-      .do(_ => this.loading =false);
-  }
-
-  ngOnDestroy() {
-    if (this.loadingStateSubscription) {
-      this.loadingStateSubscription.unsubscribe();
-    }
+      .do(_ => this.loading = false);
   }
 
 }
