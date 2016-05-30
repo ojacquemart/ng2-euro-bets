@@ -18,6 +18,8 @@ export class Auth {
     auth$.subscribe((state:FirebaseAuthState) => {
       if (!state) {
         console.log('auth @ onAuth - ko');
+        this.authState = null;
+
         return;
       }
 
