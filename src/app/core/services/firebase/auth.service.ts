@@ -16,15 +16,13 @@ export class Auth {
     console.log('auth @ init');
 
     auth$.subscribe((state:FirebaseAuthState) => {
+      this.authState = state;
+
       if (!state) {
         console.log('auth @ onAuth - ko');
-        this.authState = null;
-
-        return;
+      } else {
+        console.log('auth @ onAuth - ok');
       }
-
-      console.log('auth @ onAuth - ok');
-      this.authState = state;
     });
   }
 
