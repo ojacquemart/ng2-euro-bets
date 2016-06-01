@@ -93,7 +93,21 @@ export class LeaguesStore {
       .map((leagues:Array<LeagueHolder>) => {
         console.log('leagues @ sort teams');
 
-        return _.sortBy(leagues, (leagueHolder:LeagueHolder) => leagueHolder.league.name);
+        return leagues.sort((league1, league2) => {
+          let byMembersCount = league2.membersCount - league1.membersCount;
+          if (byMembersCount !== 0) {
+            return byMembersCount;
+          }
+
+          if (league1.league.name > league2.league.name) {
+            return 1;
+          }
+          if (league1.league.name < league2.league.name) {
+            return -1;
+          }
+
+          return 0;
+        });
       })
   }
 
