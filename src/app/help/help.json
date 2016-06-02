@@ -22,7 +22,7 @@
         <tr>
         <td class='md-text-cell'>Group phase</td>
         <td>0 pts</td>
-        <td>5 pts</td>
+        <td>3 pts</td>
         <td>10 pts</td>
         </tr>
         <tr>
@@ -125,7 +125,7 @@
         <tr>
         <td class='md-text-cell'>Phase de groupes</td>
         <td>0 pts</td>
-        <td>5 pts</td>
+        <td>3 pts</td>
         <td>10 pts</td>
         </tr>
         <tr>
@@ -250,8 +250,8 @@
         "fr": "Je ne vois pas les membres des équipes?"
       },
       "content": {
-        "en": "Be patient. It's coming.",
-        "fr": "Patience, ça va arriver!"
+        "en": "Click on a team's card to see the members.",
+        "fr": "Tu peux cliquer sur la fiche d'une équipe pour en voir les membres."
       }
     },
     {
