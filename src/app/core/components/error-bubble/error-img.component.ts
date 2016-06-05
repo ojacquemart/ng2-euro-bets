@@ -1,7 +1,9 @@
 import {Component} from 'angular2/core';
 import {RANDOM_NUMBER_GENERATOR} from '../../services/util/random-number-generator.helper';
 
-const PLAYERS = ['benzema', 'valbuena', 'ribery', 'deschamps', 'platini', 'zidane'];
+const PLAYERS = [
+  'anelka', 'duga', 'liza', 'sakho', 'varane', 'menes', 'zidane', 'ribery', 'desailly', 'platini',
+  'aurier', 'valbuena', 'barthez', 'benzema', 'deschamps', 'henry', 'nasri'];
 
 @Component({
   selector: 'bets-error-img',
