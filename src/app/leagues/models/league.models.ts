@@ -1,6 +1,7 @@
 import {RANDOM_NUMBER_GENERATOR} from "../../core/services/util/random-number-generator.helper";
 import {UserData} from "../../core/services/firebase/auth.model";
 import {Observable} from "rxjs/Observable";
+import {TableRow} from "../../table/models/table.models";
 const BACKGROUND_COLORS = [
   '#BBDEF9', '#C5CAE9', '#FF4081', '#D1C4E9', '#B2DFDB', '#E1BEE7', '#FFEB3B', '#8BC34A', '#795548', '#FFCCBC'
 ];
@@ -25,7 +26,8 @@ export interface Members {
 }
 
 export interface LeagueMembers {
-  holder: LeagueHolder,
+  holder: LeagueHolder;
+  tableRows: Array<TableRow>;
   members: Array<UserData>;
 }
 

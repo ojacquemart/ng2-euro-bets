@@ -12,9 +12,14 @@ import {LeagueImgCmp} from '../league-image/image.component';
 import {LeagueActionsHandler} from '../services/league-actions-handler.service';
 import {League} from '../models/league.models';
 import {LeagueMembers} from '../models/league.models';
+import {TablesService} from "../../table/services/tables.service";
+import {TableRow} from "../../table/models/table.models";
+import {TableListCmp} from "../../table/table-list/table-list.component";
+import {SettingsService} from "../../core/services/settings/settings.service";
+import {SettingsGroup} from "../../core/services/settings/settings.service";
 
 @Component({
-  directives: [LeagueImgCmp],
+  directives: [LeagueImgCmp, TableListCmp],
   styles: [require('./league-details.scss')],
   template: require('./league-details.html')
 })
@@ -23,11 +28,14 @@ export class LeagueDetailsCmp {
   private loading = true;
   private leagueFinderSubscription;
 
+  private showingLeagueTable: boolean;
   private leagueHolder:LeagueHolder;
   private members:Array<UserData>;
+  private tableRows:Array<TableRow>;
 
   constructor(private leaguesStore:LeaguesStore, private leagueActionsHandler:LeagueActionsHandler,
-              private pages: Pages,
+              private pages:Pages,
+              private settings:SettingsService,
               private routeParams:RouteParams,
               private elementRef:ElementRef) {
     console.log('invitation league @ init');
@@ -41,7 +49,7 @@ export class LeagueDetailsCmp {
         if (league) {
           if (league.slug === this.getCurrentSlug()) {
             // league has changed other attributes, fetch the new values.
-            return this.fetchLeague(league.slug);
+            return this.fetchLeague(league.slug, this.showingLeagueTable);
           }
 
           // league has changed its name, go to the new one.
@@ -59,12 +67,17 @@ export class LeagueDetailsCmp {
 
     this.pages.emit(Page.LEAGUES);
 
-    let leagueSlug = this.getCurrentSlug();
-    this.fetchLeague(leagueSlug);
+    this.settings.settings$
+      .subscribe((settings:SettingsGroup) => {
+        this.showingLeagueTable = settings.leagueTable;
+
+        let leagueSlug = this.getCurrentSlug();
+        this.fetchLeague(leagueSlug, settings.leagueTable);
+      });
   }
 
-  private fetchLeague(leagueSlug:string) {
-    this.leagueFinderSubscription = this.leaguesStore.findWithMembers(leagueSlug)
+  private fetchLeague(leagueSlug:string, showingLeagueTable:boolean) {
+    this.leagueFinderSubscription = this.leaguesStore.findWithMembers(leagueSlug, showingLeagueTable)
       .subscribe((league:LeagueMembers) => {
         this.loading = false;
 
@@ -72,6 +85,7 @@ export class LeagueDetailsCmp {
 
         this.leagueHolder = league.holder;
         this.members = league.members;
+        this.tableRows = league.tableRows;
 
       }, _ => {
         console.log('league details @ error: ', _);

@@ -6,8 +6,12 @@
   </md-toolbar>
   <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
 
-  <div flex>
+  <div flex *ngIf="!loading && emptyTable">
     <p>{{ 'TABLES.NOT_AVAILABLE' | translate }}</p>
   </div>
 
+  <div *ngIf="!loading && !emptyTable">
+    <table-list [tableRows]="tableRows"></table-list>
+    <table-pagination [pagination]="pagination" (pageChanged)="goTo($event)"></table-pagination>
+  </div>
 </div>

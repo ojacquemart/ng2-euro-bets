@@ -90,9 +90,15 @@ bets-sidenav-layout {
     }
     @media screen and (max-width: $layout-breakpoint-md) {
       width: $app-content-md;
+      overflow-x: auto;
+      display: block;
     }
     @media screen and (max-width: $layout-breakpoint-sm) {
       width: $app-content-sm;
+    }
+    @media screen and (max-width: $layout-breakpoint-xs) {
+      overflow-x: auto;
+      display: block;
     }
   }
 

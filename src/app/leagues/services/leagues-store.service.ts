@@ -18,11 +18,13 @@ import {UserData} from '../../core/services/firebase/auth.model';
 import {League, LeagueHolder, Members} from '../models/league.models';
 import {LeagueMembers} from '../models/league.models';
 import {UniqueIdGenerator} from "../../core/services/util/unique-id-generator.helper";
+import {TablesService} from "../../table/services/tables.service";
+import {TableRow} from "../../table/models/table.models";
 
 @Injectable()
 export class LeaguesStore {
 
-  constructor(private auth:Auth, private users:UsersService,
+  constructor(private auth:Auth, private tables: TablesService, private users:UsersService,
               private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase,
               private router:Router) {
   }
@@ -55,10 +57,26 @@ export class LeaguesStore {
       .catch(_ => Observable.throw(_))
   }
 
-  findWithMembers(leagueSlug:string):Observable<LeagueMembers> {
+  findWithMembers(leagueSlug:string, leagueTable: boolean):Observable<LeagueMembers> {
     return this.find(leagueSlug)
       .map(league => this.mapLeagueToLeagueHolder(league, this.auth.uid))
-      .flatMap((leagueHolder:LeagueHolder) => this.combineLeagueWithMembers(leagueHolder));
+      .flatMap((leagueHolder:LeagueHolder) => {
+        if (leagueTable) {
+          return this.combineLeagueWithTable(leagueHolder);
+        }
+        return this.combineLeagueWithMembers(leagueHolder);
+      });
+  }
+
+  private combineLeagueWithTable(leagueHolder:LeagueHolder): Observable<LeagueMembers> {
+    return this.tables.getLeagueTable(leagueHolder.league.slug)
+      .map((tableRows: Array<TableRow>) => {
+        return {
+          holder: leagueHolder,
+          tableRows: tableRows,
+          members: []
+        };
+      });
   }
 
   private combineLeagueWithMembers(leagueHolder:LeagueHolder) {
@@ -71,7 +89,8 @@ export class LeaguesStore {
 
       return {
         holder: leagueHolder,
-        members: _.sortBy(members, 'displayName')
+        tableRows: [],
+        members: _.sortBy(members, 'displayName'),
       };
     });
   }

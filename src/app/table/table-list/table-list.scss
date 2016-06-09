@@ -1,0 +1,38 @@
+md-data-table {
+
+  .user {
+    min-width: 200px;
+    width: 200px;
+
+    .user-layout {
+      padding-left: 1em;
+    }
+
+    .avatar, .avatar img {
+      width: 64px;
+      height: 64px;
+    }
+
+    .avatar {
+      img {
+        border-radius: 4px;
+      }
+    }
+
+    .name {
+      padding-left: 1em;
+    }
+
+  }
+
+  .current-user {
+    background: #FFEB3B;
+    font-weight: bold;
+  }
+
+  .recents {
+    width: 125px;
+    min-width: 125px;
+  }
+
+}

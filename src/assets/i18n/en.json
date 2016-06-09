@@ -67,7 +67,13 @@
   },
   "TABLES": {
     "TITLE": "Table",
-    "NOT_AVAILABLE": "Available after the 1st match..."
+    "NOT_AVAILABLE": "Table not availavable...",
+    "POINTS": "Pts",
+    "BETS": "Bet",
+    "PERFECTS": "Perfect",
+    "GOODS": "Good",
+    "BADS": "Bad",
+    "RECENTS": "Form"
   },
   "LEAGUES": {
     "TITLE": "Leagues",

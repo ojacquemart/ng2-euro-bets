@@ -48,7 +48,9 @@
       </md-card-title>
     </md-card>
 
-    <div flex class="members">
+    <table-list *ngIf="tableRows.length > 0" [tableRows]="tableRows"></table-list>
+
+    <div flex class="members" *ngIf="members.length > 0">
       <md-toolbar>
         <div class="md-toolbar-tools">
           <h3>{{ 'LEAGUES.ATTRS.MEMBERS' | translate }} ({{ leagueHolder.membersCount }})</h3>

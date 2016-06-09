@@ -1,0 +1,15 @@
+<div class="pagination" *ngIf="pagination" layout="row" layout-align="center center">
+  <button md-button class="md-icon-button" [disabled]="noPreviousPage()" (click)="goToFirstPage()">
+    <i md-icon>skip_previous</i>
+  </button>
+  <button md-button class="md-icon-button" [disabled]="noPreviousPage()" (click)="goToPreviousPage()">
+    <i md-icon>chevron_left</i>
+  </button>
+  <span (click)="goToPage(page.index)">{{ pagination.currentPage +1 }} / {{ pagination.nbPages +1 }}</span>
+  <button md-button class="md-icon-button" [disabled]="noNextPage()" (click)="goToNextPage()">
+    <i md-icon>chevron_right</i>
+  </button>
+  <button md-button class="md-icon-button" [disabled]="noNextPage()" (click)="goToLastPage()">
+    <i md-icon>skip_next</i>
+  </button>
+</div>

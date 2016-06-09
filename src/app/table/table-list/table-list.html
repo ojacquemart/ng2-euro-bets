@@ -1,0 +1,37 @@
+<md-data-table class="euro" layout-fill>
+  <thead>
+  <tr>
+    <th>#</th>
+    <th class="md-text-cell"></th>
+    <th>{{ 'TABLES.POINTS' | translate }}</th>
+    <th>{{ 'TABLES.BETS' | translate }}</th>
+    <th>{{ 'TABLES.PERFECTS' | translate }}</th>
+    <th>{{ 'TABLES.GOODS' | translate }}</th>
+    <th>{{ 'TABLES.BADS' | translate }}</th>
+    <th>{{ 'TABLES.RECENTS' | translate }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="#tableRow of tableRows" [ngClass]="{'current-user': currentUid === tableRow.uid}">
+    <td>{{ tableRow.position }}</td>
+    <td class="md-text-cell user">
+      <div layout="row" layout-align="start center" class="user-layout">
+        <div class="avatar">
+          <img [src]="tableRow.profileImageURL"/>
+        </div>
+        <div class="name">
+          <span>{{ tableRow.displayName }}</span>
+        </div>
+      </div>
+    </td>
+    <td>{{ tableRow.points }}</td>
+    <td>{{ tableRow.bets }}</td>
+    <td>{{ tableRow.perfects }}</td>
+    <td>{{ tableRow.goods }}</td>
+    <td>{{ tableRow.bads }}</td>
+    <td class="recents">
+      <user-recents [recents]="tableRow.recents"></user-recents>
+    </td>
+  </tr>
+  </tbody>
+</md-data-table>

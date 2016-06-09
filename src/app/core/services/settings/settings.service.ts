@@ -7,6 +7,7 @@ export interface SettingsGroup {
   dayId: number;
   started: boolean;
   phase: string;
+  leagueTable: boolean;
 }
 
 @Injectable()
