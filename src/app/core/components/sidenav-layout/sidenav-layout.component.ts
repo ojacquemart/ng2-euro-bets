@@ -4,15 +4,17 @@ import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {MATERIAL_DIRECTIVES, Media, SidenavService} from 'ng2-material/all';
 
 import {Observable} from 'rxjs/Observable';
-import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {Auth} from '../../services/firebase/auth.service';
-import {UserAvatar} from '../user-avatar/user-avatar.component';
 import {Pages} from '../../services/navigation/pages.service';
 import {PageComponent} from '../../services/navigation/pages.service';
+import {UsersService} from '../../services/users/users.service';
+import {EMPTY_USER_TABLE, UserTableIndexed} from '../../services/users/user-table.model';
 
+import {UserAvatar} from '../user-avatar/user-avatar.component';
 import {BetsService} from '../../../bets/services/bets.service';
-import {RemainingBets} from "./remaining-bets.service";
+
+import {RemainingBets} from './remaining-bets.service';
 
 @Component({
   selector: 'bets-sidenav-layout',
@@ -31,14 +33,14 @@ export class SidenavLayoutCmp {
 
   private numberOfRemainingBetsSubscription;
   private numberOfRemainingBets:number;
+  private userTable:UserTableIndexed = EMPTY_USER_TABLE;
 
   private pages$:Observable<Array<PageComponent>>;
   private pageTitle:string;
 
-  constructor(private auth:Auth, private remainingBets:RemainingBets, private router:Router,
-              private pages:Pages,
-              public appRef:ApplicationRef,
-              public media:Media, public sidenav:SidenavService) {
+  constructor(private auth:Auth, private router:Router,
+              private remainingBets:RemainingBets, private pages:Pages, private users:UsersService,
+              public appRef:ApplicationRef, public media:Media, public sidenav:SidenavService) {
     this.pages$ = this.pages.getPages();
   }
 
@@ -90,6 +92,8 @@ export class SidenavLayoutCmp {
 
       console.log('sidenav @ change page', pageTitle);
     });
+
+    this.users.userTable$.subscribe(_ => this.userTable = _);
 
     this.numberOfRemainingBetsSubscription = this.remainingBets.getNumber()
       .subscribe(numberOfRemainingBets => this.numberOfRemainingBets = numberOfRemainingBets);

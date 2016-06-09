@@ -9,8 +9,8 @@
       <span flex></span>
       <bets-user-avatar></bets-user-avatar>
       <div class="user md-toolbar-tools-bottom inset" layout="row" layout-align="space-between center">
-        <div><span>{{ 'SIDENAV.USER.RANK' | translate }}: -</span></div>
-        <div><span>{{ 'SIDENAV.USER.POINTS' | translate }}: -</span></div>
+        <div><span>{{ 'SIDENAV.USER.RANK' | translate }}: {{ userTable.position }}</span></div>
+        <div><span>{{ 'SIDENAV.USER.POINTS' | translate }}: {{ userTable.points }}</span></div>
       </div>
     </md-toolbar>
     <div layout="row" layout-align="start start">
