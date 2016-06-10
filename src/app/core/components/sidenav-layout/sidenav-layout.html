@@ -15,13 +15,34 @@
     </md-toolbar>
     <div layout="row" layout-align="start start">
       <md-list flex>
-        <md-list-item *ngFor="#sidenavItem of pages$ | async "
-                      md-ink [class.md-active]="sidenavItem.title === pageTitle"
-                      [ngClass]="{divider: sidenavItem.divider}"
-                      (inked)="navigate(sidenavItem.linkParams)">
-          {{sidenavItem.title}}
+        <md-list-item md-ink [class.md-active]="currentPage?.key == 'BETS'"
+                      (inked)="navigate(['Bets'])">
+          {{ 'SIDENAV.PAGES.BETS' | translate }}
           <span flex></span>
-          <span class="counter" *ngIf="sidenavItem.pathStart === 'bets' && numberOfRemainingBets && numberOfRemainingBets > 0">{{numberOfRemainingBets}}</span>
+          <span *ngIf="numberOfRemainingBets && numberOfRemainingBets > 0" class="counter">
+            {{numberOfRemainingBets}}
+          </span>
+        </md-list-item>
+        <md-list-item md-ink [class.md-active]="currentPage?.key == 'TABLE'"
+                      (inked)="navigate(['Table'])">
+          {{ 'SIDENAV.PAGES.TABLES' | translate }}
+        </md-list-item>
+        <md-list-item md-ink [class.md-active]="currentPage?.key == 'LEAGUES'"
+                      (inked)="navigate(['Leagues'])">
+          {{ 'SIDENAV.PAGES.LEAGUES' | translate }}
+        </md-list-item>
+
+        <div class="leagues" layout="column" layout-align="star center">
+          <md-list-item md-ink class="user-league" [class.md-active]="league.slug === currentLeagueSlug"
+                        *ngFor="#league of userLeagues$ | async"
+                        (inked)="navigate(['LeagueDetails', {leagueSlug: league.slug}])">
+            {{ league.name }}
+          </md-list-item>
+        </div>
+
+        <md-list-item md-ink [class.md-active]="currentPage?.key == 'HELP'" class="divider"
+                       (inked)="navigate(['Help'])">
+          {{ 'SIDENAV.PAGES.HELP' | translate }}
         </md-list-item>
         <md-list-item md-ink router-link-active class="divider" (inked)="logout()">
           <a>{{ 'SIDENAV.LOGOUT' | translate }}</a>
@@ -43,7 +64,7 @@
         [breakXs]="20"
         breakAction="hide">
 
-        <h1>{{ pageTitle }}</h1>
+        <h1>{{ currentPage?.title }}</h1>
       </div>
     </md-toolbar>
     <md-toolbar class="fixed-toolbar">
@@ -59,7 +80,7 @@
             [breakMd]="65"
             [breakXs]="20"
             breakAction="show">
-          <span>{{ pageTitle }}</span>
+          <span>{{ currentPage?.title }}</span>
         </h2>
         <span flex></span>
       </div>

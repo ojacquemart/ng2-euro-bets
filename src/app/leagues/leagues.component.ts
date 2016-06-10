@@ -22,7 +22,7 @@ import {LeagueActionsHandler} from "./services/league-actions-handler.service";
 })
 export class LeaguesCmp {
 
-  private loading = false;
+  private loading = true;
 
   private leagues$:Observable<Array<LeagueHolder>>;
 

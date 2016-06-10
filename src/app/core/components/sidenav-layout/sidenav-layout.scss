@@ -20,6 +20,19 @@ md-list-item.divider {
   padding: 0.2em;
 }
 
+.leagues {
+  max-height: 200px;
+  overflow: auto;
+
+  .user-league {
+    padding-left: 0.5em;
+    font-weight: bold;
+  }
+  .user-league.md-active {
+    color: red;
+  }
+}
+
 .hero {
   h1 {
     margin: 0 64px;

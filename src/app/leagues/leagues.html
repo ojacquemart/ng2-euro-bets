@@ -11,9 +11,6 @@
   </md-toolbar>
   <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
 
-  <div flex *ngIf="showingForm">
-
-  </div>
   <div class="card-list" layout="row" layout-wrap layout-align="left start">
     <template ngFor #leagueHolder [ngForOf]="leagues$ | async">
       <league-card-item flex="50" flex-xs="100" layout="column"

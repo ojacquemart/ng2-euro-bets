@@ -28,7 +28,7 @@ export enum Page {
 @Injectable()
 export class Pages {
 
-  private page$:EventEmitter<string> = new EventEmitter<string>();
+  private page$:EventEmitter<PageComponent> = new EventEmitter<PageComponent>();
 
   constructor(private translate:TranslateService) {
   }
@@ -54,14 +54,16 @@ export class Pages {
   }
 
   emit(page:Page) {
-    this.getPage(PAGES[page])
+    let pageComponent = PAGES[page];
+    this.getPage(pageComponent)
       .subscribe((pageTitle:string) => {
-        this.emitPageTitle(pageTitle);
+        pageComponent.title = pageTitle;
+        this.emitPage(pageComponent);
       });
   }
 
-  emitPageTitle(pageTitle:string) {
-    this.page$.emit(pageTitle);
+  emitPage(page:PageComponent) {
+    this.page$.emit(page);
 
     if (window.pageYOffset > 0) {
       console.log('pages @ scroll to (0, 0)');
@@ -69,7 +71,7 @@ export class Pages {
     }
   }
 
-  subscribe(subscriber:(pageTitle:string) => void) {
+  subscribe(subscriber:(page:PageComponent) => void) {
     this.page$.subscribe(subscriber);
   };
 
