@@ -7,7 +7,7 @@ import {SettingsService} from '../../core/services/settings/settings.service';
 
 import {TablesService} from '../services/tables.service'
 
-import {PaginationCmp} from '../pagination/pagination.component';
+import {ArrowEvolutionCmp} from '../arrow-evolution/arrow-evolution.component';
 import {RecentsCmp} from '../recents/recents.component';
 
 import {Pagination} from '../models/page.model';
@@ -17,7 +17,7 @@ import {TableRow} from '../models/table.models';
 
 @Component({
   selector: 'table-list',
-  directives: [RecentsCmp],
+  directives: [ArrowEvolutionCmp, RecentsCmp],
   template: require('./table-list.html'),
   styles: [require('./table-list.scss')]
 })

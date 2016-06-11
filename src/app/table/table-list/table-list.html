@@ -3,6 +3,7 @@
   <tr>
     <th>#</th>
     <th class="md-text-cell"></th>
+    <th></th>
     <th>{{ 'TABLES.POINTS' | translate }}</th>
     <th>{{ 'TABLES.BETS' | translate }}</th>
     <th>{{ 'TABLES.PERFECTS' | translate }}</th>
@@ -24,14 +25,13 @@
         </div>
       </div>
     </td>
+    <td><arrow-evolution [evolution]="tableRow.evolution"></arrow-evolution></td>
     <td>{{ tableRow.points }}</td>
     <td>{{ tableRow.bets }}</td>
     <td>{{ tableRow.perfects }}</td>
     <td>{{ tableRow.goods }}</td>
     <td>{{ tableRow.bads }}</td>
-    <td class="recents">
-      <user-recents [recents]="tableRow.recents"></user-recents>
-    </td>
+    <td class="recents"><user-recents [recents]="tableRow.recents"></user-recents></td>
   </tr>
   </tbody>
 </md-data-table>
