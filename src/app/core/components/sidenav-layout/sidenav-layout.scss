@@ -7,10 +7,17 @@ md-list-item.divider {
 }
 
 .counter {
+  display: inline-block;
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 0.8em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
   background: #F44336;
-  padding: 0.2em;
   color: #fff;
-  border-radius: 50%;
+  padding: 0.2em;
 }
 
 .hero {
