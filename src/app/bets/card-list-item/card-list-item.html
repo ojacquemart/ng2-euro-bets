@@ -71,8 +71,7 @@
       <bets-error-bubble *ngIf="showingError">{{ 'COMMON.ERROR_OCCURRED' | translate}}</bets-error-bubble>
     </form>
 
-    <div *ngIf="match.status == 1">
-      <div layout="row" class="score" layout-align="space-between center">
+    <div *ngIf="match.status == 1" layout="row" class="score" layout-align="space-between center">
         <div flex="45">
           <div layout="column" layout-align="space-around center">
             <span [ngClass]="{win: match.home.winner}">{{ match.home.goals }}</span>
@@ -85,17 +84,16 @@
           </div>
         </div>
       </div>
-      <div layout="row" class="score user-score" layout-align="space-between center">
-        <div flex="45">
-          <div layout="row" layout-align="space-around center">
-            <span>{{ match.bet.homeGoals }}</span>
-          </div>
+    <div *ngIf="match.status > 0" layout="row" class="score user-score" layout-align="space-between center">
+      <div flex="45">
+        <div layout="row" layout-align="space-around center">
+          <span>{{ match.bet.homeGoals }}</span>
         </div>
-        <div class="score-separator" flex><i md-icon>person</i></div>
-        <div flex="45">
-          <div layout="column" layout-align="space-around center">
-            <span>{{ match.bet.awayGoals }}</span>
-          </div>
+      </div>
+      <div class="score-separator" flex><i md-icon>person</i></div>
+      <div flex="45">
+        <div layout="column" layout-align="space-around center">
+          <span>{{ match.bet.awayGoals }}</span>
         </div>
       </div>
     </div>
