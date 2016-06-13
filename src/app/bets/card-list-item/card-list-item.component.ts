@@ -9,6 +9,8 @@ import {BetsService} from '../services/bets.service';
 import {Bet, Match} from '../models/bets.models';
 import {validateScore} from './score.validator';
 
+const FEELING_LUCKY_MAX_GOALS = 4;
+
 @Component({
   selector: 'bet-card',
   directives: [FlagIcon, ErrorBubble],
@@ -77,8 +79,8 @@ export class BetCardListItemCmp {
   onFeelingLucky() {
     this.feelingLucky = true;
     this.updateFormValue({
-      homeGoals: RANDOM_NUMBER_GENERATOR.generate(),
-      awayGoals: RANDOM_NUMBER_GENERATOR.generate()
+      homeGoals: RANDOM_NUMBER_GENERATOR.generate(FEELING_LUCKY_MAX_GOALS),
+      awayGoals: RANDOM_NUMBER_GENERATOR.generate(FEELING_LUCKY_MAX_GOALS)
     });
   }
 
