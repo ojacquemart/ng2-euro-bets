@@ -54,7 +54,7 @@ export class MatchesService {
 
         return {
           current: MatchHelper.groupMatchesByDay(matchesByStatusToPlay[0]),
-          history: MatchHelper.groupMatchesByDay(matchesByStatusToPlay[1])
+          history: MatchHelper.groupMatchesByDayOrdered(matchesByStatusToPlay[1], {iteratees: ['timestamp'], orders: ['desc']})
         };
       })
       .catch((error:any) => {

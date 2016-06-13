@@ -5,7 +5,18 @@ import {Match} from '../models/bets.models';
 
 const FIXTURE_DAY_PATTERN = 'dddd DD MMMM';
 
+export interface OrderByConfig {
+  iteratees: string[],
+  orders: string[]
+}
+
 export class MatchHelper {
+
+  static groupMatchesByDayOrdered(matches:Array<Match>, orderByConfig: OrderByConfig):Array<MatchGroup> {
+    let orderedMatches =  _.orderBy(matches, orderByConfig.iteratees, orderByConfig.orders);
+
+    return MatchHelper.groupMatchesByDay(orderedMatches);
+  }
 
   static groupMatchesByDay(matches:Array<Match>):Array<MatchGroup> {
     if (_.isEmpty(matches)) {
