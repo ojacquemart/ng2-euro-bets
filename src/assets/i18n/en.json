@@ -43,8 +43,9 @@
       "WINNER": "Winner"
     },
     "MATCHES": {
-      "INVALID_SCORE": "Invalid score",
-      "SHOW_HISTORY": "Show history"
+      "TODO": "To do",
+      "HISTORY": "History",
+      "INVALID_SCORE": "Invalid score"
     },
     "GROUPS": {
       "SHOW_MATCHES": "Show matches",

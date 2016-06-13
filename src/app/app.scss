@@ -26,6 +26,8 @@ $app-content-sm: 360px;
 $header-height: 200px;
 $hero-padding: 50px 16px 0;
 
+$md-toolbar-sub-background-color: #004D7E;
+
 $app-menu-width: $sidenav-mobile-width;
 
 bets-sidenav-layout {
@@ -66,6 +68,12 @@ bets-sidenav-layout {
     color: $page-title-color;
     border-bottom: 1px solid $page-title-color;
     text-transform: uppercase;
+  }
+
+  md-toolbar.sub-toolbar {
+    background-color: $md-toolbar-sub-background-color;
+    height: 56px;
+    min-height: 56px;
   }
 
   md-data-table.euro, .md-data-table.euro {

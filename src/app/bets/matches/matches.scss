@@ -1,3 +1,23 @@
+$tabs-color: #03A9F4;
+
+.sub-toolbar {
+  margin-top: 1em;
+
+  a {
+    padding: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .active {
+    color: $tabs-color;
+    border-bottom: 1px solid $tabs-color;
+    font-weight: bold;
+  }
+
+}
+
 .history {
   margin-top: 1em;
 }

@@ -1,14 +1,17 @@
-<bets-card-list [matches]="current"></bets-card-list>
+<md-toolbar class="md-hue-2 sub-toolbar matches-toolbar" *ngIf="current">
+  <div class="tabs" flex layout="row" layout-align="space-around center">
+    <a flex class="tab" [ngClass]="{active: !showingHistory}" (click)="showingHistory = false">
+      <span>{{ 'BETS.MATCHES.TODO' | translate }}</span>
+    </a>
+    <a flex class="tab" [ngClass]="{active: showingHistory}" (click)="showingHistory = true">
+      <span>{{ 'BETS.MATCHES.HISTORY' | translate }}</span>
+    </a>
+  </div>
+</md-toolbar>
 
-<div class="history" *ngIf="history && history.length > 0">
-  <md-toolbar class="md-accent">
-    <div class="md-toolbar-tools">
-      <button (click)="showingHistory = !showingHistory" md-button>
-        {{ 'BETS.MATCHES.SHOW_HISTORY' | translate }}
-      </button>
-    </div>
-  </md-toolbar>
+<bets-card-list [matches]="current" *ngIf="!showingHistory"></bets-card-list>
 
-  <bets-card-list [matches]="history" *ngIf="showingHistory"></bets-card-list>
+<div class="history" *ngIf="showingHistory && history && history.length > 0">
+  <bets-card-list [matches]="history"></bets-card-list>
 </div>
 
