@@ -15,7 +15,7 @@ export class LeagueImgCmp {
   @Input() imageRef;
   @Input() size;
 
-  private loading = true;
+  private loadingImage = true;
   private imageSubscription;
   private image:string;
 
@@ -23,11 +23,11 @@ export class LeagueImgCmp {
   }
 
   ngOnInit() {
-    this.loading = true;
+    this.loadingImage = true;
     this.imageSubscription = this.leaguesStore.image(this.imageRef)
       .subscribe(image => {
         this.image = image;
-        this.loading = false;
+        this.loadingImage = false;
       });
   }
 
