@@ -15,13 +15,12 @@ import {UsersService} from './users.service';
 @Injectable()
 export class UserLeaguesService {
 
-  constructor(private auth:Auth, @Inject(FirebaseRef) private ref:Firebase) {
+  constructor(private auth:Auth, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
   }
 
   getLeagues():Observable<Array<League>> {
-    let userLeagues$ = Observable.fromPromise(this.ref.child(`/users/${this.auth.uid}/leagues`).once('value'))
-      .map(ds => ds.val());
-    let leagues$: Observable<Array<League>> = Observable.fromPromise(this.ref.child('/leagues').once('value'))
+    let userLeagues$ = this.af.object(`/users/${this.auth.uid}/leagues`);
+    let leagues$:Observable<Array<League>> = Observable.fromPromise(this.ref.child('/leagues').once('value'))
       .map(ds => ds.val());
 
     return userLeagues$.flatMap(userLeagues => {

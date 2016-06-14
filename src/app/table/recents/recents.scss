@@ -13,6 +13,10 @@ ul {
     margin: 0;
     border-right: 1px solid #ddd;
 
+    &:last-child {
+      border-right: none;
+    }
+
     &.recent--1 {
       background: #B6B6B6;
     }
