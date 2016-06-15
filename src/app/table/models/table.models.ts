@@ -1,5 +1,10 @@
 import {Pagination} from './page.model';
 
+export interface UserPosition {
+  userPosition:number|string;
+  tableLastPosition:number;
+}
+
 export class Table {
   constructor(public rows:Array<TableRow> = [], public pagination:Pagination = null) {
   }

@@ -10,6 +10,7 @@ import {UserTableIndexed} from '../../core/services/users/user-table.model';
 
 import {Table} from '../models/table.models';
 import {TableRow} from '../models/table.models';
+import {UserPosition} from '../models/table.models';
 import {Pagination} from '../models/page.model';
 
 const TABLE_PAGE_SIZE = 5;
@@ -23,10 +24,24 @@ export class TablesService {
     this.nbRows$ = this.af.object('/tables/nbRows');
   }
 
-  getLeagueTable(leagueSlug: string):Observable<Array<TableRow>> {
+  getLeagueTable(leagueSlug:string):Observable<Array<TableRow>> {
     console.log('tables @ get table index from league', leagueSlug);
 
     return this.af.object(`/tables_leagues/${leagueSlug}/table`);
+  }
+
+  getGeneralTableUserPosition():Observable<UserPosition> {
+    console.log('tables @ get user position & table last position');
+
+    return this.users.userTable$.flatMap((userTable:UserTableIndexed) => this.combineUserPositionWithLastPosition(userTable));
+  }
+
+  private combineUserPositionWithLastPosition(userTable:UserTableIndexed) {
+    let tableLastPosition$ = this.af.object('/tables/lastPosition');
+
+      return tableLastPosition$.map((tableLastPosition:number) => {
+        return {userPosition: userTable.position || '-', tableLastPosition: tableLastPosition};
+      });
   }
 
   getGeneralTableRelativeToUser():Observable<Table> {

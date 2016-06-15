@@ -69,6 +69,8 @@
   "TABLES": {
     "TITLE": "Classement",
     "NOT_AVAILABLE": "Classement non disponible...",
+    "POSITION": "Ma position:",
+    "USER_PAGE": "Retour à ma position",
     "POINTS": "Pts",
     "BETS": "Paris",
     "PERFECTS": "Parfait",
