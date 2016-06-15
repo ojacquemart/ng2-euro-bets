@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div *ngIf="!countryWinner.gameStarted">
+  <div *ngIf="countryWinner.canVote">
     <md-toolbar class="md-hue-2 winner winner-selection">
       <div class="md-toolbar-tools">
         <h2 class="md-flex">{{ 'BETS.WINNER.TEAM_SELECTION' | translate }}</h2>

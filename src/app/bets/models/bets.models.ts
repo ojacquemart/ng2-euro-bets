@@ -11,7 +11,7 @@ export interface Country {
 }
 
 export interface CountryWinner {
-  gameStarted: boolean;
+  canVote: boolean;
   countries: Array<Country>
   userWinner: Country;
 }

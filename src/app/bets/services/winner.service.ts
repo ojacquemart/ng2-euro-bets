@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {AngularFire, FirebaseRef, FirebaseObjectObservable} from 'angularfire2/angularfire2';
 
 import {Auth} from '../../core/services/firebase/auth.service';
-import {SettingsService} from '../../core/services/settings/settings.service';
+import {DAY_ID_GROUP_PHASE, SettingsService} from '../../core/services/settings/settings.service';
 import {LoadingState} from '../../core/services/loading-state/loading-state.service';
 import {SettingsGroup} from '../../core/services/settings/settings.service';
 
@@ -16,7 +16,7 @@ import {CountryWinner} from '../models/bets.models';
 @Injectable()
 export class WinnerService {
 
-  constructor(private bets: BetsService,
+  constructor(private bets:BetsService,
               private countries:CountriesService, private settings:SettingsService,
               private loadingState:LoadingState) {
   }
@@ -31,21 +31,20 @@ export class WinnerService {
       .do(() => this.loadingState.stop());
   }
 
-  private zipCountriesWithUserWinner(settings:SettingsGroup) {
+  private zipCountriesWithUserWinner(settings:SettingsGroup):Observable<CountryWinner> {
     console.log('bets @ winner - zip countries with user selection');
 
     return Observable.zip(this.countries.countries$, this.bets.winner$, (countries:Array<Country>, userCountry) => {
       console.log('bets @ winner - do zip');
       let userWinner = this.getCountry(countries, userCountry);
+      let canVote = settings.dayId <= DAY_ID_GROUP_PHASE;
 
-      let countryWinner:CountryWinner = {
-        gameStarted: settings.started,
-        countries: settings.started ? [] : _.sortBy(countries, (country:Country) => country.i18n.fr),
+      return {
+        canVote: canVote,
+        countries: canVote ? _.sortBy(countries, (country:Country) => country.i18n.fr) : [],
         userWinner: userWinner
       };
-
-      return countryWinner;
-    })
+    });
   }
 
   private getCountry(countries:Array<Country>, userCountry:string) {

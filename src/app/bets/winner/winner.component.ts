@@ -31,8 +31,8 @@ export class WinnerBetsCmp {
 
   ngOnInit() {
     this.winner.getWinner()
-      .subscribe((countryFavorite:CountryWinner) => {
-        this.countryWinner = countryFavorite;
+      .subscribe((countryWinner:CountryWinner) => {
+        this.countryWinner = countryWinner;
       });
   }
 
