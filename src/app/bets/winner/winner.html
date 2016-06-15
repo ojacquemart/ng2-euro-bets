@@ -1,5 +1,5 @@
 <div layout="column" layout-wrap layout-align="left start" class="winner-container" *ngIf="countryWinner">
-  <md-toolbar class="md-hue-2 winner">
+  <md-toolbar class="md-hue-2 sub-toolbar winner">
     <div class="md-toolbar-tools">
       <h2 class="md-flex">{{ 'BETS.WINNER.TITLE' | translate }}</h2>
     </div>
@@ -18,7 +18,7 @@
   </div>
 
   <div *ngIf="countryWinner.canVote">
-    <md-toolbar class="md-hue-2 winner winner-selection">
+    <md-toolbar class="md-hue-2 sub-toolbar winner winner-selection">
       <div class="md-toolbar-tools">
         <h2 class="md-flex">{{ 'BETS.WINNER.TEAM_SELECTION' | translate }}</h2>
 
