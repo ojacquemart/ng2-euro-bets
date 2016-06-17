@@ -1,6 +1,10 @@
 md-toolbar.sub-toolbar {
   margin-top: 1em;
 
+  .md-toolbar-tools {
+    padding-right: 0;
+  }
+
   p {
     text-transform: uppercase;
   }
