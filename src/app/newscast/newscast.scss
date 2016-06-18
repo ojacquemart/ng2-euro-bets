@@ -1,0 +1,51 @@
+.stats {
+  margin-top: 1em;
+
+  .list {
+    width: 100%;
+  }
+
+  md-card md-card-content {
+    padding: 0;
+  }
+
+  .global, .winner, .bets {
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .top {
+    text-align: center;
+
+    .top-item {
+      .main {
+        font-weight: 600;
+        font-size: 1.1em;
+      }
+
+    }
+  }
+
+  .sub {
+    font-size: 0.8em;
+  }
+
+  .scores {
+    padding: 1em 1em 0 1em;
+    text-align: center;
+
+    ul {
+      margin-top: 0.5em;
+      padding: 0 1em;
+      -webkit-column-count: 3;
+      -webkit-column-gap: 26px;
+      -moz-column-count: 3;
+      -moz-column-gap: 26px;
+      column-count: 3;
+      column-gap: 26px;
+      list-style-type: none;
+      max-height: 220px;
+      overflow: auto;
+    }
+  }
+}

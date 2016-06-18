@@ -1,0 +1,95 @@
+<div class="md-padding" layout="row" layout-wrap layout-align="left start">
+  <md-toolbar class="md-hue-2 page-title">
+    <div class="md-toolbar-tools">
+      <h2><span>{{ 'NEWSCAST.TITLE' | translate }}</span></h2>
+    </div>
+  </md-toolbar>
+  <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
+
+  <div layout="row" layout-wrap layout-align="left start" class="stats">
+    <template ngFor #stat [ngForOf]="stats$ | async">
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <h2 class="md-flex">{{ 'NEWSCAST.STATS.MATCH' | translate }} #{{ stat.matchNumber }} - {{ stat.day }}</h2>
+        </div>
+      </md-toolbar>
+
+      <div class="list" layout="row" layout-wrap layout-align="start center">
+        <div flex="50" flex-xs="100" >
+          <bet-card layout="column" lang="fr" [match]="stat.match">
+          </bet-card>
+        </div>
+        <div flex="50" flex-xs="100">
+          <md-card layout="column">
+            <md-card-content>
+              <div class="top">
+                <div layout="row" layout-align="center center" class="global">
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.nbBets }}</span></div>
+                    <div class="sub"><span>{{ 'NEWSCAST.STATS.PLAYERS' | translate }}</span></div>
+                  </div>
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.lastBetFormatted }}</span></div>
+                    <div class="sub"><span>{{ 'NEWSCAST.STATS.LAST_BET' | translate }}</span></div>
+                  </div>
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.goodFeelingLuckyPercentage | percent:'.2-2' }}</span></div>
+                    <div class="sub"><span>{{ 'NEWSCAST.STATS.LUCKY' | translate }}</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="top">
+                <div layout="row" layout-align="center center" class="winner">
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.winner.home | percent:'.2-2' }}</span></div>
+                    <div class="sub">
+                      <flag-icon [code]="stat.match.home.isoAlpha2Code"></flag-icon>
+                    </div>
+                  </div>
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.winner.draw | percent:'.2-2' }}</span></div>
+                    <div class="sub"><span>{{ 'NEWSCAST.STATS.DRAW' | translate }}</span></div>
+                  </div>
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.winner.away | percent:'.2-2' }}</span></div>
+                    <div class="sub">
+                      <flag-icon [code]="stat.match.away.isoAlpha2Code"></flag-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="top">
+                <div layout="row" layout-align="center center" class="bets">
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.betsResult.perfect | percent:'.2-2'  }}</span></div>
+                    <div class="sub"><span>{{ 'NEWSCAST.STATS.PERFECT_SCORE' | translate }}</span></div>
+                  </div>
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.betsResult.good | percent:'.2-2'  }}</span></div>
+                    <div class="sub"><span>{{ 'NEWSCAST.STATS.GOOD_SCORE' | translate }}</span></div>
+                  </div>
+                  <div layout="column" flex="33" layout-align="center center" class="top-item">
+                    <div class="main"><span>{{ stat.betsResult.bad | percent:'.2-2'  }}</span></div>
+                    <div class="sub"><span>{{ 'NEWSCAST.STATS.BAD_SCORE' | translate }}</span></div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="scores">
+                <ul>
+                  <li *ngFor="#score of stat.scores">
+                    <span>{{ score.homeGoals }} - {{ score.awayGoals }}</span>
+                    <span class="sub">{{ score.percentage | percent:'.2-2' }}</span>
+                  </li>
+                </ul>
+              </div>
+            </md-card-content>
+          </md-card>
+        </div>
+      </div>
+    </template>
+  </div>
+</div>

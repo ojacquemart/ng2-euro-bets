@@ -4,6 +4,7 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
 import {Observable} from 'rxjs/Observable';
 
 export const PAGES:Array<PageComponent> = [
+  {key: 'NEWSCAST', pathStart: 'news', linkParams: ['Newscast']},
   {key: 'BETS', pathStart: 'bets', linkParams: ['Bets']},
   {key: 'TABLES', pathStart: 'table', linkParams: ['Table']},
   {key: 'LEAGUES', pathStart: 'leagues', linkParams: ['Leagues']},
@@ -19,6 +20,7 @@ export interface PageComponent {
 }
 
 export enum Page {
+  NEWSCAST,
   BETS,
   TABLE,
   LEAGUES,

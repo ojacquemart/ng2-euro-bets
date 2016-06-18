@@ -12,8 +12,12 @@ export interface OrderByConfig {
 
 export class MatchHelper {
 
-  static groupMatchesByDayOrdered(matches:Array<Match>, orderByConfig: OrderByConfig):Array<MatchGroup> {
-    let orderedMatches =  _.orderBy(matches, orderByConfig.iteratees, orderByConfig.orders);
+  static formatTimestamp(timestamp:number) {
+    return moment(timestamp).format(FIXTURE_DAY_PATTERN).toUpperCase();
+  }
+
+  static groupMatchesByDayOrdered(matches:Array<Match>, orderByConfig:OrderByConfig):Array<MatchGroup> {
+    let orderedMatches = _.orderBy(matches, orderByConfig.iteratees, orderByConfig.orders);
 
     return MatchHelper.groupMatchesByDay(orderedMatches);
   }
@@ -29,7 +33,7 @@ export class MatchHelper {
       .groupBy('dateTimestamp')
       .toPairsIn()
       .map((keyValues) => {
-        let dayFormatted = moment(parseInt(<string>keyValues[0])).format(FIXTURE_DAY_PATTERN).toUpperCase();
+        let dayFormatted = MatchHelper.formatTimestamp((parseInt(<string>keyValues[0])));
 
         return <MatchGroup>{
           day: <string>dayFormatted,

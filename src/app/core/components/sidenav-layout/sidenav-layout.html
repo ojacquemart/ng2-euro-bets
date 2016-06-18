@@ -15,7 +15,11 @@
     </md-toolbar>
     <div layout="row" layout-align="start start">
       <md-list flex>
-        <md-list-item md-ink [class.md-active]="currentPage?.key == 'BETS'"
+        <md-list-item md-ink [class.md-active]="currentPage?.key == 'NEWSCAST'"
+                      (inked)="navigate(['Newscast'])">
+          {{ 'SIDENAV.PAGES.NEWSCAST' | translate }}
+        </md-list-item>
+        <md-list-item md-ink [class.md-active]="currentPage?.key == 'BETS'" class="divider"
                       (inked)="navigate(['Bets'])">
           {{ 'SIDENAV.PAGES.BETS' | translate }}
           <span flex></span>

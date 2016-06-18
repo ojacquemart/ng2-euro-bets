@@ -12,6 +12,7 @@ import {DEFAULT_LANG, UserLang} from './core/services/util/user-lang.helper';
 import {SidenavLayoutCmp} from './core/components/sidenav-layout/sidenav-layout.component';
 
 import {LoginCmp} from './login/login.component';
+import {NewscastCmp} from './newscast/newscast.component';
 import {BetsCmp} from './bets/bets.component';
 import {TableCmp} from './table/table.component';
 import {LeaguesCmp} from './leagues/leagues.component';
@@ -42,6 +43,7 @@ import {HelpCmp} from './help/help.component';
 })
 @RouteConfig([
   {path: '/', name: 'Index', redirectTo: ['/Bets']},
+  {path: '/news', component: NewscastCmp, as: 'Newscast'},
   {path: '/bets/...', component: BetsCmp, as: 'Bets'},
   {path: '/table', component: TableCmp, as: 'Table'},
   {path: '/leagues', component: LeaguesCmp, as: 'Leagues'},

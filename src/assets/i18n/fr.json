@@ -2,6 +2,7 @@
   "SIDENAV": {
     "LOGOUT": "Déconnexion",
     "PAGES": {
+      "NEWSCAST": "Actus",
       "BETS": "Pronostics",
       "TABLES": "Classement",
       "LEAGUES": "Equipes",
@@ -35,6 +36,19 @@
   },
   "HELP": {
     "TITLE": "Aide"
+  },
+  "NEWSCAST": {
+    "TITLE": "Actus",
+    "STATS": {
+      "MATCH": "MATCH",
+      "PLAYERS": "parieurs",
+      "LAST_BET": "dernier pari",
+      "LUCKY": "de chanceux",
+      "DRAW": "match nul",
+      "PERFECT_SCORE": "score parfait",
+      "GOOD_SCORE": "bon score",
+      "BAD_SCORE": "mauvais score"
+    }
   },
   "BETS": {
     "TABS": {

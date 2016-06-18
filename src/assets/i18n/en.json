@@ -2,6 +2,7 @@
   "SIDENAV": {
     "LOGOUT": "Logout",
     "PAGES": {
+      "NEWSCAST": "News",
       "BETS": "Bets",
       "TABLES": "Table",
       "LEAGUES": "Leagues",
@@ -35,6 +36,20 @@
   },
   "HELP": {
     "TITLE": "Help"
+  },
+  "NEWSCAST": {
+    "TITLE": "News",
+    "STATS": {
+      "MATCH": "MATCH",
+      "PLAYERS": "players",
+      "LAST_BET": "last bet",
+      "LUCKY": "lucky",
+      "DRAW": "draw",
+      "PERFECT_SCORE": "perfect score",
+      "GOOD_SCORE": "good score",
+      "BAD_SCORE": "bad score"
+    }
+
   },
   "BETS": {
     "TABS": {
