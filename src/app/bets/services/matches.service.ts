@@ -111,7 +111,6 @@ export class MatchesService {
 
   private associateWithUserBet(matches:Array<Match>):Observable<Array<Match>> {
     return this.bets.betsOnce$.map((userBets:FirebaseDataSnapshot) => {
-      console.log(userBets.val());
       userBets = userBets.val() || {};
 
       matches.forEach((match:Match) => {
