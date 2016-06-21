@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
-import {Pagination} from '../models/page.model';
+import {Pagination} from '../../models/pagination.model';
 
 @Component({
   selector: 'table-pagination',

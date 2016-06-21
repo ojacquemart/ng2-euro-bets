@@ -4,7 +4,6 @@ export class Pagination {
     public pageSize:number, public nbPages:number, public nbItems: number) {
   }
 
-
   copy(pageNumber:number) {
     let newIndex = Pagination.getIndexFromPage(pageNumber, this.pageSize);
 

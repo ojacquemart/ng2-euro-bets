@@ -74,6 +74,23 @@ bets-sidenav-layout {
     background-color: $md-toolbar-sub-background-color;
   }
 
+  md-toolbar.tabs-toolbar {
+    background-color: transparent;
+    .tab {
+      padding: 16px;
+      color: #bbb;
+      text-align: center;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+
+      &.router-link-active {
+        color: #F44336;
+        border-bottom: 1px solid #F44336;
+      }
+    }
+  }
+
   md-data-table.euro, .md-data-table.euro {
     th {
       padding: 24px 6px;

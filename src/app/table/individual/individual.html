@@ -1,0 +1,26 @@
+<div flex *ngIf="loading && emptyTable">
+  <p>{{ 'TABLES.NOT_AVAILABLE' | translate }}</p>
+</div>
+
+<div flex *ngIf="!loading && !emptyTable">
+  <md-toolbar class="md-hue-2 sub-toolbar">
+    <div class="md-toolbar-tools">
+      <div class="tabs" flex layout="row" layout-align="space-between center">
+        <div>
+          <p>{{ 'TABLES.POSITION' | translate }} {{ userPosition.userPosition }} / {{ userPosition.tableLastPosition }}</p>
+        </div>
+        <div hide-xs>
+          <button md-button *ngIf="!showingUserPosition" (click)="setInitialTable()">
+            {{ 'TABLES.USER_PAGE' | translate }}
+          </button>
+        </div>
+        <div hide-xs hide-md>
+          <table-pagination class="top" [pagination]="pagination" (pageChanged)="goTo($event)"></table-pagination>
+        </div>
+      </div>
+    </div>
+  </md-toolbar>
+
+  <table-list [tableRows]="tableRows"></table-list>
+  <table-pagination class="bottom" [pagination]="pagination" (pageChanged)="goTo($event)"></table-pagination>
+</div>

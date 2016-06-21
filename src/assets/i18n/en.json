@@ -83,15 +83,21 @@
   },
   "TABLES": {
     "TITLE": "Table",
+    "TABS": {
+      "INDIVIDUAL": "Individual",
+      "LEAGUES": "Leagues"
+    },
     "NOT_AVAILABLE": "Table not availavable...",
     "POSITION": "Your position:",
     "USER_PAGE": "Back to my position",
     "POINTS": "Pts",
-    "BETS": "Bet",
+    "PLAYERS": "Players",
+    "BETS": "Bets",
     "PERFECTS": "Perfect",
     "GOODS": "Good",
     "BADS": "Bad",
-    "RECENTS": "Form"
+    "RECENTS": "Form",
+    "ASSIDUITY": "Assiduity"
   },
   "LEAGUES": {
     "TITLE": "Leagues",

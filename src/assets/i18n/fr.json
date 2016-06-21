@@ -82,15 +82,21 @@
   },
   "TABLES": {
     "TITLE": "Classement",
+    "TABS": {
+      "INDIVIDUAL": "Individuel",
+      "LEAGUES": "Equipes"
+    },
     "NOT_AVAILABLE": "Classement non disponible...",
     "POSITION": "Ma position:",
     "USER_PAGE": "Retour à ma position",
     "POINTS": "Pts",
+    "PLAYERS": "Joueurs",
     "BETS": "Paris",
     "PERFECTS": "Parfait",
     "GOODS": "Bon",
     "BADS": "Mauvais",
-    "RECENTS": "Forme"
+    "RECENTS": "Forme",
+    "ASSIDUITY": "Assiduité"
   },
   "LEAGUES": {
     "TITLE": "Equipes",

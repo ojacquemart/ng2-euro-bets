@@ -12,9 +12,8 @@ import {LeagueImgCmp} from '../league-image/image.component';
 import {LeagueActionsHandler} from '../services/league-actions-handler.service';
 import {League} from '../models/league.models';
 import {LeagueMembers} from '../models/league.models';
-import {TablesService} from "../../table/services/tables.service";
 import {TableRow} from "../../table/models/table.models";
-import {TableListCmp} from "../../table/table-list/table-list.component";
+import {TableListCmp} from "../../table/components/table-list/table-list.component";
 import {SettingsService} from "../../core/services/settings/settings.service";
 import {SettingsGroup} from "../../core/services/settings/settings.service";
 

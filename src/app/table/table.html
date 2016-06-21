@@ -1,35 +1,17 @@
-<div class="md-padding" layout="column" layout-wrap layout-align="left start">
-  <md-toolbar class="md-hue-2 page-title">
-    <div class="md-toolbar-tools">
-      <h2><span>{{ 'TABLES.TITLE' | translate }}</span></h2>
+<div class="md-padding" layout="row" layout-wrap layout-align="left start">
+  <md-toolbar class="md-hue-2 tabs-toolbar">
+    <div class="tabs" flex layout="row" layout-align="space-around center">
+      <a class="tab" flex router-link-active  [routerLink]="['./Individual']">
+        <span>{{ 'TABLES.TABS.INDIVIDUAL' | translate }}</span>
+      </a>
+      <a class="tab" flex router-link-active [routerLink]="['./Leagues']">
+        <span>{{ 'TABLES.TABS.LEAGUES' | translate }}</span>
+      </a>
     </div>
-  </md-toolbar>
   <md-progress-linear class="md-accent md-hue-3" mode="indeterminate" [hidden]="!loading"></md-progress-linear>
+  </md-toolbar>
 
-  <div flex *ngIf="!loading && emptyTable">
-    <p>{{ 'TABLES.NOT_AVAILABLE' | translate }}</p>
-  </div>
-
-  <div *ngIf="!loading && !emptyTable">
-    <md-toolbar class="md-hue-2 sub-toolbar">
-      <div class="md-toolbar-tools">
-        <div class="tabs" flex layout="row" layout-align="space-between center">
-          <div>
-            <p>{{ 'TABLES.POSITION' | translate }} {{ userPosition.userPosition }} / {{ userPosition.tableLastPosition }}</p>
-          </div>
-          <div hide-xs>
-            <button md-button *ngIf="!showingUserPosition" (click)="setInitialTable()">
-              {{ 'TABLES.USER_PAGE' | translate }}
-            </button>
-          </div>
-          <div hide-xs hide-md>
-            <table-pagination class="top" [pagination]="pagination" (pageChanged)="goTo($event)"></table-pagination>
-          </div>
-        </div>
-      </div>
-    </md-toolbar>
-
-    <table-list [tableRows]="tableRows"></table-list>
-    <table-pagination class="bottom" [pagination]="pagination" (pageChanged)="goTo($event)"></table-pagination>
+  <div flex>
+    <router-outlet></router-outlet>
   </div>
 </div>

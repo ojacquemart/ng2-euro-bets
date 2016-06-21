@@ -1,0 +1,23 @@
+md-toolbar.sub-toolbar {
+
+  .md-toolbar-tools {
+    padding-right: 0;
+  }
+
+}
+
+:host {
+  table-pagination.top {
+    font-size: 0.8em;
+
+    button:disabled {
+      background-color: #2E739E;
+    }
+  }
+
+  table-pagination.bottom {
+    button:disabled {
+      background-color: #e0e0e0 !important;
+    }
+  }
+}

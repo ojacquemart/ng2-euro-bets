@@ -1,26 +1,30 @@
 import {Injectable, Inject} from 'angular2/core';
-
 import {FirebaseRef} from 'angularfire2/tokens';
-import {AngularFire, FirebaseObjectObservable} from 'angularfire2/angularfire2';
+
 import {Observable} from 'rxjs/Observable';
 
+import {AngularFire, FirebaseObjectObservable} from 'angularfire2/angularfire2';
+
+import {Auth} from "../../core/services/firebase/auth.service";
 import {SettingsService} from '../../core/services/settings/settings.service';
 import {UsersService} from '../../core/services/users/users.service';
 import {UserTableIndexed} from '../../core/services/users/user-table.model';
 
+import {LeagueTableRow} from "../models/table.models";
+import {Pagination} from '../models/pagination.model';
 import {Table} from '../models/table.models';
 import {TableRow} from '../models/table.models';
 import {UserPosition} from '../models/table.models';
-import {Pagination} from '../models/page.model';
+import {UserPositionWithTable} from "../models/table.models";
 
 const TABLE_PAGE_SIZE = 5;
 
 @Injectable()
-export class TablesService {
+export class IndividualTableService {
 
   private nbRows$;
 
-  constructor(private users:UsersService, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
+  constructor(private auth:Auth, private users:UsersService, private af:AngularFire, @Inject(FirebaseRef) private ref:Firebase) {
     this.nbRows$ = this.af.object('/tables/nbRows');
   }
 
@@ -39,21 +43,28 @@ export class TablesService {
   private combineUserPositionWithLastPosition(userTable:UserTableIndexed) {
     let tableLastPosition$ = this.af.object('/tables/lastPosition');
 
-      return tableLastPosition$.map((tableLastPosition:number) => {
-        return {userPosition: userTable.position || '-', tableLastPosition: tableLastPosition};
-      });
+    return tableLastPosition$.map((tableLastPosition:number) => {
+      return {userPosition: userTable.position || '-', tableLastPosition: tableLastPosition};
+    });
   }
 
-  getGeneralTableRelativeToUser():Observable<Table> {
+  getTableRelativeToUser():Observable<UserPositionWithTable> {
     console.log('tables @ get table index from user');
 
-    return Observable.zip(this.users.userTable$, this.nbRows$, (userTable:UserTableIndexed, nbRows:number) => {
+    let userTable$ = Observable.zip(this.users.userTable$, this.nbRows$, (userTable:UserTableIndexed, nbRows:number) => {
         return Pagination.create(userTable.index, TABLE_PAGE_SIZE, nbRows);
       })
-      .flatMap((pagination:Pagination) => this.getGeneralTable(pagination));
+      .flatMap((pagination:Pagination) => this.getTable(pagination));
+
+    return Observable.zip(this.getGeneralTableUserPosition(), userTable$, (userPosition:UserPosition, table:Table) => {
+      return {
+        userPosition: userPosition,
+        table: table
+      };
+    })
   }
 
-  getGeneralTable(pagination:Pagination):Observable<Table> {
+  getTable(pagination:Pagination):Observable<Table> {
     console.log('tables @ get general tables', pagination);
 
     return Observable.fromPromise(this.ref.child('/tables').child('table')

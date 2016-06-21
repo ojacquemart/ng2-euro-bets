@@ -2,18 +2,15 @@ import {Component, Input} from 'angular2/core';
 
 import {Observable} from 'rxjs/Observable';
 
-import {Auth} from '../../core/services/firebase/auth.service';
-import {SettingsService} from '../../core/services/settings/settings.service';
-
-import {TablesService} from '../services/tables.service'
+import {Auth} from '../../../core/services/firebase/auth.service';
+import {SettingsService} from '../../../core/services/settings/settings.service';
 
 import {ArrowEvolutionCmp} from '../arrow-evolution/arrow-evolution.component';
 import {RecentsCmp} from '../recents/recents.component';
 
-import {Pagination} from '../models/page.model';
-import {PaginationConfig} from '../models/page.model';
-import {Table} from '../models/table.models';
-import {TableRow} from '../models/table.models';
+import {Pagination, PaginationConfig} from '../../models/pagination.model';
+import {Table} from '../../models/table.models';
+import {TableRow} from '../../models/table.models';
 
 @Component({
   selector: 'table-list',

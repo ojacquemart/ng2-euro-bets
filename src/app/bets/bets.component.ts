@@ -19,7 +19,7 @@ import {Match, MatchGroup} from './models/bets.models';
 ])
 @Component({
   template: require('./bets.html'),
-  styles: [require('./bets.scss')]
+  styles: []
 })
 export class BetsCmp {
 

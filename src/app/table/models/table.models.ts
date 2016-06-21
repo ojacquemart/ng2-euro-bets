@@ -1,4 +1,9 @@
-import {Pagination} from './page.model';
+import {Pagination} from './pagination.model';
+
+export class UserPositionWithTable {
+  userPosition:UserPosition;
+  table:Table;
+}
 
 export interface UserPosition {
   userPosition:number|string;
@@ -38,4 +43,16 @@ export interface PodiumMember {
   uid: string;
   displayName: string;
   profileImageURL: string;
+}
+
+export class LeagueTableRow {
+  position:number;
+  userIn:boolean;
+  slug:string;
+  name:string;
+  assiduity:number;
+  players:number;
+  perfects:number;
+  goods:number;
+  bads:number;
 }

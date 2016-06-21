@@ -45,7 +45,7 @@ import {HelpCmp} from './help/help.component';
   {path: '/', name: 'Index', redirectTo: ['/Bets']},
   {path: '/news', component: NewscastCmp, as: 'Newscast'},
   {path: '/bets/...', component: BetsCmp, as: 'Bets'},
-  {path: '/table', component: TableCmp, as: 'Table'},
+  {path: '/table/...', component: TableCmp, as: 'Table'},
   {path: '/leagues', component: LeaguesCmp, as: 'Leagues'},
   {path: '/leagues/:leagueSlug', component: LeagueDetailsCmp, as: 'LeagueDetails'},
   {path: '/leagues/:leagueSlug/invitations/:invitationCode', component: LeagueInvitationCmp, as: 'LeaguesInvitation'},

@@ -1,0 +1,13 @@
+tbody tr {
+  cursor: pointer;
+
+  &.user-in {
+    background: #FFEB3B;
+    font-weight: bold;
+
+    :hover {
+      background: none;
+    }
+  }
+}
+
