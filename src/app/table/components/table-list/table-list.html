@@ -13,7 +13,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="#tableRow of tableRows" [ngClass]="{'current-user': currentUid === tableRow.uid}">
+  <tr *ngFor="#tableRow of tableRows"
+    [ngClass]="{
+      'current-user': currentUid === tableRow.uid,
+      'gold': tableRow.position === 1, 'silver': tableRow.position === 2, 'bronze': tableRow.position === 3
+    }">
     <td>{{ tableRow.position }}</td>
     <td class="md-text-cell user">
       <div layout="row" layout-align="start center" class="user-layout">

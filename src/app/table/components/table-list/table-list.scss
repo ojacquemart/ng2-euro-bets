@@ -36,3 +36,13 @@ md-data-table {
   }
 
 }
+
+:host {
+  .silver {
+    td {
+      .flat {
+        color: #ddd;
+      }
+    }
+  }
+}

@@ -103,6 +103,24 @@ bets-sidenav-layout {
     th, td {
       font-size: 1rem;
     }
+
+    $gold: #FFDF00;
+    $silver: #CCC2C2;
+    $bronze: #CD853F;
+
+    tr.gold, tr.silver, tr.bronze {
+      font-weight: 600;
+    }
+
+    tr.gold {
+      background: $gold !important;
+    }
+    tr.silver {
+      background: $silver !important;
+    }
+    tr.bronze {
+      background: $bronze !important;
+    }
   }
 
   md-content.content {

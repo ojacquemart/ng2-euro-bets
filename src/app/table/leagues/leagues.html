@@ -13,7 +13,10 @@
   </thead>
   <tbody>
   <tr *ngFor="#leagueTableRow of leaguesTableRows" [routerLink]="['/LeagueDetails', {leagueSlug: leagueTableRow.slug}]"
-    [ngClass]="{'user-in': leagueTableRow.userIn}">
+    [ngClass]="{
+      'user-in': leagueTableRow.userIn,
+      'gold': leagueTableRow.position === 1, 'silver': leagueTableRow.position === 2, 'bronze': leagueTableRow.position === 3
+    }">
     <td>{{ leagueTableRow.position }}</td>
     <td class="md-text-cell user">{{ leagueTableRow.name }}</td>
     <td>{{ leagueTableRow.points | number:'.2-2' }}</td>
