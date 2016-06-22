@@ -43,7 +43,11 @@
       <league-image [imageRef]="leagueHolder.league.image" size="big" *ngIf="leagueHolder.canShowBanner"></league-image>
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">{{ leagueHolder.league.description }}</span>
+          <md-toolbar class="md-hue-2 sub-toolbar">
+            <div class="md-toolbar-tools">
+              <h2><span>{{ leagueHolder.league.description }}</span></h2>
+            </div>
+          </md-toolbar>
         </md-card-title-text>
       </md-card-title>
     </md-card>
