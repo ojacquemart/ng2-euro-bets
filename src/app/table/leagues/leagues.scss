@@ -1,6 +1,10 @@
 tbody tr {
   cursor: pointer;
 
+  .league {
+    text-transform: uppercase;
+  }
+
   &.user-in {
     background: #FFEB3B;
     font-weight: bold;

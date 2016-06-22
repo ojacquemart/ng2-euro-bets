@@ -18,7 +18,7 @@
       'gold': leagueTableRow.position === 1, 'silver': leagueTableRow.position === 2, 'bronze': leagueTableRow.position === 3
     }">
     <td>{{ leagueTableRow.position }}</td>
-    <td class="md-text-cell user">{{ leagueTableRow.name }}</td>
+    <td class="md-text-cell league">{{ leagueTableRow.name }}</td>
     <td>{{ leagueTableRow.points | number:'.2-2' }}</td>
     <td>{{ leagueTableRow.players }}</td>
     <td>{{ leagueTableRow.perfects | percent:'.2-2' }}</td>
