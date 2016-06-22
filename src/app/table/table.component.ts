@@ -12,7 +12,7 @@ import {LeaguesTableCmp} from './leagues/leagues.component';
 
 @RouteConfig([
   {path: '/individual', as: 'Individual', component: IndividualTableCmp, useAsDefault: true},
-  {path: '/groups', as: 'Leagues', component: LeaguesTableCmp}
+  {path: '/leagues', as: 'Leagues', component: LeaguesTableCmp}
 ])
 @Component({
   directives: [],
