@@ -20,14 +20,23 @@ ul {
     &.recent--1 {
       background: #B6B6B6;
     }
+
+    $perfect: #1B5E20;
+    $goodgap: #43A047;
+    $good: #81C784;
+    $bad: #D32F2F;
+
     &.recent-0 {
-      background: #388E3C;
+      background: $perfect;
+    }
+    &.recent-3 {
+      background: $goodgap;
     }
     &.recent-1 {
-      background: #8BC34A;
+      background: $good;
     }
     &.recent-2 {
-      background: #D32F2F;
+      background: $bad;
     }
 
   }

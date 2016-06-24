@@ -46,8 +46,9 @@
       "LUCKY": "de chanceux",
       "DRAW": "match nul",
       "PERFECT_SCORE": "score parfait",
-      "GOOD_SCORE": "bon score",
-      "BAD_SCORE": "mauvais score"
+      "GOOD_GAP": "bon écart",
+      "GOOD_SCORE": "bon vainqueur",
+      "BAD_SCORE": "mauvais vainqueur"
     }
   },
   "BETS": {
@@ -93,6 +94,7 @@
     "PLAYERS": "Joueurs",
     "BETS": "Paris",
     "PERFECTS": "Parfait",
+    "GOOD_GAPS": "Bon écart",
     "GOODS": "Bon",
     "BADS": "Mauvais",
     "RECENTS": "Forme",

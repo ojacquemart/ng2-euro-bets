@@ -6,6 +6,7 @@
     <th>{{ 'TABLES.POINTS' | translate }}</th>
     <th>{{ 'TABLES.PLAYERS' | translate }}</th>
     <th>{{ 'TABLES.PERFECTS' | translate }}</th>
+    <th>{{ 'TABLES.GOOD_GAPS' | translate }}</th>
     <th>{{ 'TABLES.GOODS' | translate }}</th>
     <th>{{ 'TABLES.BADS' | translate }}</th>
     <th>{{ 'TABLES.ASSIDUITY' | translate }}</th>
@@ -22,6 +23,7 @@
     <td>{{ leagueTableRow.points | number:'.2-2' }}</td>
     <td>{{ leagueTableRow.players }}</td>
     <td>{{ leagueTableRow.perfects | percent:'.2-2' }}</td>
+    <td>{{ leagueTableRow.goodGaps | percent:'.2-2' }}</td>
     <td>{{ leagueTableRow.goods | percent:'.2-2' }}</td>
     <td>{{ leagueTableRow.bads | percent:'.2-2' }}</td>
     <td>{{ leagueTableRow.assiduity | percent:'.2-2' }}</td>

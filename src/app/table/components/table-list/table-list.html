@@ -7,6 +7,7 @@
     <th>{{ 'TABLES.POINTS' | translate }}</th>
     <th>{{ 'TABLES.BETS' | translate }}</th>
     <th>{{ 'TABLES.PERFECTS' | translate }}</th>
+    <th>{{ 'TABLES.GOOD_GAPS' | translate }}</th>
     <th>{{ 'TABLES.GOODS' | translate }}</th>
     <th>{{ 'TABLES.BADS' | translate }}</th>
     <th>{{ 'TABLES.RECENTS' | translate }}</th>
@@ -33,6 +34,7 @@
     <td>{{ tableRow.points }}</td>
     <td>{{ tableRow.bets }}</td>
     <td>{{ tableRow.perfects }}</td>
+    <td>{{ tableRow.goodGaps }}</td>
     <td>{{ tableRow.goods }}</td>
     <td>{{ tableRow.bads }}</td>
     <td class="recents"><user-recents [recents]="tableRow.recents"></user-recents></td>

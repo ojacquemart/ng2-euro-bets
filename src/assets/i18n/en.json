@@ -46,8 +46,9 @@
       "LUCKY": "lucky",
       "DRAW": "draw",
       "PERFECT_SCORE": "perfect score",
-      "GOOD_SCORE": "good score",
-      "BAD_SCORE": "bad score"
+      "GOOD_GAP": "good gap",
+      "GOOD_SCORE": "good winner",
+      "BAD_SCORE": "bad winner"
     }
 
   },
@@ -94,6 +95,7 @@
     "PLAYERS": "Players",
     "BETS": "Bets",
     "PERFECTS": "Perfect",
+    "GOOD_GAPS": "Good gap",
     "GOODS": "Good",
     "BADS": "Bad",
     "RECENTS": "Form",

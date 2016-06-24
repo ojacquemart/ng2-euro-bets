@@ -56,6 +56,10 @@
               <div class="main"><span>{{ stat.betsResult.perfect | percent:'.2-2'  }}</span></div>
               <div class="sub"><span>{{ 'NEWSCAST.STATS.PERFECT_SCORE' | translate }}</span></div>
             </div>
+            <div layout="column" flex="33" layout-align="center center" class="top-item" *ngIf="stat.betsResult.goodGap > 0">
+              <div class="main"><span>{{ stat.betsResult.goodGap | percent:'.2-2'  }}</span></div>
+              <div class="sub"><span>{{ 'NEWSCAST.STATS.GOOD_GAP' | translate }}</span></div>
+            </div>
             <div layout="column" flex="33" layout-align="center center" class="top-item">
               <div class="main"><span>{{ stat.betsResult.good | percent:'.2-2'  }}</span></div>
               <div class="sub"><span>{{ 'NEWSCAST.STATS.GOOD_SCORE' | translate }}</span></div>
