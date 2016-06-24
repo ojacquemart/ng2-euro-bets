@@ -6,10 +6,11 @@ import {Observable} from 'rxjs/Observable';
 import {AngularFire} from 'angularfire2/angularfire2';
 
 import {MatchesService} from '../../bets/services/matches.service';
+
 import {MatchHelper} from '../../bets/services/match.helper';
 import {Match} from '../../bets/models/bets.models';
 
-export interface Stat {
+export interface Stat extends NewsObject {
   matchNumber: number;
   match: Match;
   day: string;
@@ -17,14 +18,50 @@ export interface Stat {
   lastBetFormatted:string;
 }
 
+export interface News extends NewsObject {
+  day: string
+  title: string;
+  content: string;
+}
+
+export interface NewsObject {
+  timestamp: number;
+  type: string;
+}
+
 @Injectable()
-export class StatsFetcher {
+export class NewscastCenter {
 
   constructor(private matches:MatchesService, private af:AngularFire) {
-    console.log('stats fetcher @ init');
+    console.log('newscastcenter @ init');
+  }
+
+  getNewscast():Observable<Array<NewsObject>> {
+    console.log('newscastcenter @ get newscast');
+
+    return this.getNews()
+      .flatMap((news:Array<News>) => this.concatWithStats(news))
+      .map((newsObjects:Array<NewsObject>) => _.orderBy(newsObjects, 'timestamp', 'desc'));
+  }
+
+  concatWithStats(news) {
+    return this.getStats()
+      .map((stats:Array<Stat>) => news.concat(stats));
+  }
+
+  getNews():Observable<Array<News>> {
+    console.log('newscastcenter @ get news');
+
+    return this.af.list('/newscast/news')
+      .map(news => news.map(item => {
+        item.day = MatchHelper.formatTimestamp(item.timestamp);
+
+        return item;
+      }));
   }
 
   getStats():Observable<Array<Stat>> {
+    console.log('newscastcenter @ get stats');
     let fixturesMap:Observable<Map<number,Match>> = this.matches.getMatchesWithUserBets()
       .map((matches:Array<Match>) => {
         let matchesIndexed:any = matches.map((match:Match) => {

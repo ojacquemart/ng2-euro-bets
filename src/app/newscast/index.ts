@@ -1,6 +1,6 @@
-import {StatsFetcher} from "./services/stats-fetcher.service";
+import {NewscastCenter} from "./services/newscast-center.service";
 
 export const APP_NEWSCAST_PROVIDERS = [
-  StatsFetcher
+  NewscastCenter
 ];
 
