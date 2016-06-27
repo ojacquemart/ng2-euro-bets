@@ -1,6 +1,7 @@
 <md-toolbar class="md-hue-2 sub-toolbar matches-toolbar" *ngIf="current">
   <div class="tabs" flex layout="row" layout-align="space-around center">
-    <a flex class="tab" [ngClass]="{active: !showingHistory}" (click)="showingHistory = false">
+    <a flex class="tab" *ngIf="!hidingCurrentMatches"
+      [ngClass]="{active: !showingHistory}" (click)="showingHistory = false">
       <span>{{ 'BETS.MATCHES.TODO' | translate }}</span>
     </a>
     <a flex class="tab" [ngClass]="{active: showingHistory}" (click)="showingHistory = true">
