@@ -6,6 +6,7 @@
     <th></th>
     <th>{{ 'TABLES.POINTS' | translate }}</th>
     <th>{{ 'TABLES.BETS' | translate }}</th>
+    <th>{{ 'TABLES.GOOD_WINNER' | translate }}</th>
     <th>{{ 'TABLES.PERFECTS' | translate }}</th>
     <th>{{ 'TABLES.GOOD_GAPS' | translate }}</th>
     <th>{{ 'TABLES.GOODS' | translate }}</th>
@@ -33,6 +34,16 @@
     <td><arrow-evolution [evolution]="tableRow.evolution"></arrow-evolution></td>
     <td>{{ tableRow.points }}</td>
     <td>{{ tableRow.bets }}</td>
+    <td>
+      <div layout="row" layout-align="center center" *ngIf="tableRow.winner">
+        <div>
+          <flag-icon [code]="tableRow.winner.isoAlpha2Code"></flag-icon>
+        </div>
+        <div>
+          <i class="trophy"></i>
+        </div>
+      </div>
+    </td>
     <td>{{ tableRow.perfects }}</td>
     <td>{{ tableRow.goodGaps }}</td>
     <td>{{ tableRow.goods }}</td>

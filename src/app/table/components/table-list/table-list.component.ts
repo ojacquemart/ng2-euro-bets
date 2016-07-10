@@ -6,6 +6,7 @@ import {Auth} from '../../../core/services/firebase/auth.service';
 import {SettingsService} from '../../../core/services/settings/settings.service';
 
 import {ArrowEvolutionCmp} from '../arrow-evolution/arrow-evolution.component';
+import {FlagIcon} from '../../../core/components/flag-icon/flag-icon.component';
 import {RecentsCmp} from '../recents/recents.component';
 
 import {Pagination, PaginationConfig} from '../../models/pagination.model';
@@ -14,7 +15,7 @@ import {TableRow} from '../../models/table.models';
 
 @Component({
   selector: 'table-list',
-  directives: [ArrowEvolutionCmp, RecentsCmp],
+  directives: [ArrowEvolutionCmp, FlagIcon, RecentsCmp],
   template: require('./table-list.html'),
   styles: [require('./table-list.scss')]
 })

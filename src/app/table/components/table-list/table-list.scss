@@ -31,6 +31,17 @@ md-data-table {
     font-weight: bold;
   }
 
+  .trophy {
+    margin-left: 0.2em;
+  }
+
+  .trophy:after {
+    content: '\1f3c6';
+    font-size: 1.5em;
+    font-style: normal;
+    color: #000000;
+  }
+
   .recents {
     width: 145px;
     min-width: 145px;
